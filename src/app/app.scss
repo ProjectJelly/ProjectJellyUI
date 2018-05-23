@@ -14,3 +14,50 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+ion-content{
+    font-family:"Segoe UI Light";
+}
+
+.toolbar{
+    padding: 12px;
+}
+
+.toolbar-background{
+    background: #26C0C8;
+}
+
+.toolbar-title {
+    font-size: 2.0rem;
+    color: #FFF;
+    font-family: "Segoe UI Semibold";
+}
+
+ion-menu{
+    ion-content{
+        background-color: #FFF !important;
+    }
+    .menu-title{
+        padding-left: 15px;
+        padding-top: 60px;
+    }
+    .toolbar-background {
+        background: #FFF;
+    }
+    .item{
+        color: #26C0C8;
+    }
+    .item-inner{
+        border-bottom: 0px !important;
+    }
+}
+
+.bar-button{
+    color: #FFF;
+}
+
+.card { border-radius : 15px; }
+
+h2{
+    font-family: "Segoe UI Semibold";
+    color: #26C0C8;
+}

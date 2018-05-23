@@ -1,15 +1,75 @@
-<ion-header>
-
+<ion-header no-border>
   <ion-navbar>
-    <ion-title>ModalPage</ion-title>
+    <ion-title>Add Pond</ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-item>
+    <ion-label>Device ID</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Site Name</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Site Size</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Water Depth</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Culture Environment</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Culture Type</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Species</ion-label>
+    <ion-select [(ngModel)]="gaming">
+      <ion-option value="tilapia">Tilapia</ion-option>
+      <ion-option value="shrimp">Shrimp</ion-option>
+      <ion-option value="milkfish">Milkfish</ion-option>
+      <ion-option value="crab">Crab</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Customize Reading Interval</ion-label>
+    <ion-toggle [(ngModel)]="isCustomize" [checked]="isCustomize"></ion-toggle>
+  </ion-item>
+
+  <ion-item *ngIf="!isCustomize">
+      <ion-label>Reading Interval</ion-label>
+      <ion-select [(ngModel)]="interval">
+        <ion-option value="3">3 HOURS</ion-option>
+        <ion-option value="6">6 HOURS</ion-option>
+        <ion-option value="9">9 HOURS</ion-option>
+        <ion-option value="12">12 HOURS</ion-option>
+      </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="isCustomize">
+    <ion-label>Reading Interval Hours</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <button ion-button full>Add Pond</button>
 
 </ion-content>

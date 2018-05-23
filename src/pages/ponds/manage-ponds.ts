@@ -1,7 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, Renderer } from "@angular/core";
 import {NavController, NavParams} from 'ionic-angular';
 import { JELLY_PROPERTIES } from '../../../config/jelly.properties';
-import { ExpandableComponent } from '../util/expandable-list/expandable';
 import { Modal, ModalController, ModalOptions } from 'ionic-angular';
 
 @Component({
@@ -24,19 +23,9 @@ export class ManagePondsPage {
       occupation: 'Developer'
     };
 
-    const myModal: Modal = this.modal.create('ModalPage', { data: myModalData }, myModalOptions);
+    const myModal: Modal = this.modal.create('AddPond');
 
     myModal.present();
-
-    myModal.onDidDismiss((data) => {
-      console.log("I have dismissed.");
-      console.log(data);
-    });
-
-    myModal.onWillDismiss((data) => {
-      console.log("I'm about to dismiss");
-      console.log(data);
-    });
 
   }
 }

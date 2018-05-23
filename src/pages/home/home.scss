@@ -1,11 +1,15 @@
-.ios, .md {
- 
-    page-home {
- 
-        button {
-            align-items: baseline;
-        }
- 
+page-home {
+    font-family: "Segoe UI Light";
+    button {
+         align-items: baseline;
     }
- 
+}
+
+.card { 
+    .warning-color{
+        background: #C00000;
+        color:#FFF;
+        font-family: "Segoe UI Semibold";
+        font-size: 20px;
+    }
 }

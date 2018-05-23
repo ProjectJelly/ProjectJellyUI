@@ -14,12 +14,13 @@ import { IonicPage, NavParams, ViewController } from 'ionic-angular';
 })
 export class AddPond {
 
+  public isCustomize: boolean;
   constructor(private navParams: NavParams, private view: ViewController) {
+    this.isCustomize = false;
   }
 
   ionViewWillLoad() {
-    const data = this.navParams.get('data');
-    console.log(data);
+    
   }
 
   closeModal() {
@@ -29,3 +30,4 @@ export class AddPond {
     };
     this.view.dismiss(data);
   }
+}

@@ -7,12 +7,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ManagePondsPage } from '../pages/ponds/manage-ponds';
+import { AddPond } from '../pages/ponds/add-pond';
+import { AnalyticsPage } from '../pages/analytics/analytics';
+import { HistoryPage } from '../pages/history/history';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ManagePondsPage
+    ManagePondsPage,
+    AnalyticsPage,
+    HistoryPage
   ],
   imports: [
     BrowserModule,
@@ -22,7 +27,9 @@ import { ManagePondsPage } from '../pages/ponds/manage-ponds';
   entryComponents: [
     MyApp,
     HomePage,
-    ManagePondsPage
+    ManagePondsPage,
+    AnalyticsPage,
+    HistoryPage
   ],
   providers: [
     StatusBar,
