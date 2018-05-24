@@ -7,43 +7,135 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="about">
-  <button ion-button full large (click)="openModal()">
+<ion-content padding>
+  <button ion-button full class="confirm" (click)="openModal()">
       <ion-icon name="md-add-circle"></ion-icon>&nbsp; Add Pond
     </button>
 
-  <ion-card>
-    <ion-card-content>
-      <ion-card-title>
-        Nine Inch Nails Live
-      </ion-card-title>
-      <p>
-        The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
-      </p>
-    </ion-card-content>
-  </ion-card>
+    <ion-card class="functional">
+        <!--<img src="img/nin-live.png"/>-->
+        <ion-row>
+            <ion-col class="site">
+                <ion-row>
+                    <ion-col>
+                        <div class="site-name">
+                            SITE NAME
+                        </div>
+                        <div class="device-number">
+                            DEV1234123
+                        </div>
+                    </ion-col>
+                    <ion-col class="hardware">
+                        <button ion-button small disable color="danger" class="hardware-status" outline>Functional</button>
+                    </ion-col>
+                </ion-row>
+                <div class="site-details">
+                    <ion-row>
+                        <ion-col col-4>
+                            <ion-row>
+                                <i class="icon fish"></i>
+                                <div class="fish-description">shrimp</div>
+                            </ion-row>
+                        </ion-col>
+                        <ion-col>
+                            <ion-row>
+                                <i class="icon placeholder"></i>
+                                <div class="location-description">9.894512, 123.971094</div>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
 
-  <ion-card>
-    <ion-card-content>
-      <ion-card-title>
-        Nine Inch Nails Live
-      </ion-card-title>
-      <p>
-        The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
-      </p>
-    </ion-card-content>
-  </ion-card>
+                    <ion-row class="other-details">
+                        <ion-col col-4>
+                            <ion-row>
+                                <div class="title">culture type</div>
+                            </ion-row>
+                            <ion-row>
+                                <div class="description">shrimp</div>
+                            </ion-row>
+                        </ion-col>
+                        <ion-col>
+                            <ion-row>
+                                <div class="title">culture environment</div>
+                            </ion-row>
+                            <ion-row>
+                                <div class="description">shrimp</div>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                         <button ion-button small disable class="view-btn" color="dark" clear>View</button>
+                    <ion-row>
+                    </ion-row>
+                </div>
+            </ion-col>
+            <ion-col col-3>
+                <button ion-button color="dark" class="edit-btn" clear><i class="icon edit"></i> Edit</button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
 
-  <ion-card>
-    <ion-card-content>
-      <ion-card-title>
-        Nine Inch Nails Live
-      </ion-card-title>
-      <p>
-        The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
-      </p>
-    </ion-card-content>
-  </ion-card>
+    <ion-card class="defective">
+        <!--<img src="img/nin-live.png"/>-->
+        <ion-row>
+            <ion-col class="site">
+                <ion-row>
+                    <ion-col>
+                        <div class="site-name">
+                            SITE NAME
+                        </div>
+                        <div class="device-number">
+                            DEV1234123
+                        </div>
+                    </ion-col>
+                    <ion-col class="hardware">
+                        <button ion-button small disable color="danger" class="hardware-status" outline>Defective</button>
+                    </ion-col>
+                </ion-row>
+                <div class="site-details">
+                    <ion-row>
+                        <ion-col col-4>
+                            <ion-row>
+                                <i class="icon fish"></i>
+                                <div class="fish-description">shrimp</div>
+                            </ion-row>
+                        </ion-col>
+                        <ion-col>
+                            <ion-row>
+                                <i class="icon placeholder"></i>
+                                <div class="location-description">9.894512, 123.971094</div>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row class="other-details">
+                        <ion-col col-4>
+                            <ion-row>
+                                <div class="title">culture type</div>
+                            </ion-row>
+                            <ion-row>
+                                <div class="description">shrimp</div>
+                            </ion-row>
+                        </ion-col>
+                        <ion-col>
+                            <ion-row>
+                                <div class="title">culture environment</div>
+                            </ion-row>
+                            <ion-row>
+                                <div class="description">shrimp</div>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                         <button ion-button small disable class="view-btn" color="dark" clear>View</button>
+                    <ion-row>
+                    </ion-row>
+                </div>
+            </ion-col>
+            <ion-col col-3>
+                <button ion-button color="dark" class="edit-btn" clear><i class="icon edit"></i> Edit</button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
 
 
 

@@ -11,28 +11,128 @@
 
 	<h2>readings</h2>
 
-	<ion-card>
+	<ion-card class="critical">
 		<!--<img src="img/nin-live.png"/>-->
 		<ion-row>
 			<ion-col col-4 class="warning-color">
-				CRITICAL
+				<h2 text-center>CRITICAL</h2>
+				<div class="readings">
+					<p class="PH">PH: 6.5</p>
+					<p class="salinity">Salinity: 9 ppm</p>
+					<p class="temp">Temp: 24 °C</p>
+					<p class="DO">DO: 4.5 mg/L</p>
+				</div>
 			</ion-col>
 			<ion-col class="reading-details">
-				Nine Inch Nails Live The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
+				<div class="site-name">
+					SITE NAME
+				</div>
+				<div class="device-number">
+					DEV1234123
+				</div>
+				<div class="site-details">
+					<ion-row>
+						<ion-col col-4>
+							<ion-row>
+								<i class="icon fish"></i>
+								<div class="fish-description">shrimp</div>
+							</ion-row>
+						</ion-col>
+						<ion-col>
+							<ion-row>
+								<i class="icon placeholder"></i>
+								<div class="location-description">9.894512, 123.971094</div>
+							</ion-row>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<button ion-button class="mitigation-button" outline>Read Mitigating Action</button>
+					</ion-row>
+				</div>
 			</ion-col>
 		</ion-row>
 	</ion-card>
 
-	<ion-card>
+	<ion-card class="optimal">
 		<!--<img src="img/nin-live.png"/>-->
-		<ion-card-content>
-			<ion-card-title>
-				Nine Inch Nails Live
-			</ion-card-title>
-			<p>
-				The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
-			</p>
-		</ion-card-content>
+		<ion-row>
+			<ion-col col-4 class="warning-color">
+				<h2 text-center>OPTIMAL</h2>
+				<div class="readings">
+					<p class="PH">PH: 6.5</p>
+					<p class="salinity">Salinity: 9 ppm</p>
+					<p class="temp">Temp: 24 °C</p>
+					<p class="DO">DO: 4.5 mg/L</p>
+				</div>
+			</ion-col>
+			<ion-col class="reading-details">
+				<div class="site-name">
+					SITE NAME
+				</div>
+				<div class="device-number">
+					DEV1234123
+				</div>
+				<div class="site-details">
+					<ion-row>
+						<ion-col col-4>
+							<ion-row>
+								<i class="icon fish"></i>
+								<div class="fish-description">shrimp</div>
+							</ion-row>
+						</ion-col>
+						<ion-col>
+							<ion-row>
+								<i class="icon placeholder"></i>
+								<div class="location-description">9.894512, 123.971094</div>
+							</ion-row>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-col>
+		</ion-row>
 	</ion-card>
+
+	<ion-card class="warning">
+		<!--<img src="img/nin-live.png"/>-->
+		<ion-row>
+			<ion-col col-4 class="warning-color">
+				<h2 text-center>WARNING</h2>
+				<div class="readings">
+					<p class="PH">PH: 6.5</p>
+					<p class="salinity">Salinity: 9 ppm</p>
+					<p class="temp">Temp: 24 °C</p>
+					<p class="DO">DO: 4.5 mg/L</p>
+				</div>
+			</ion-col>
+			<ion-col class="reading-details">
+				<div class="site-name">
+					SITE NAME
+				</div>
+				<div class="device-number">
+					DEV1234123
+				</div>
+				<div class="site-details">
+					<ion-row>
+						<ion-col col-4>
+							<ion-row>
+								<i class="icon fish"></i>
+								<div class="fish-description">shrimp</div>
+							</ion-row>
+						</ion-col>
+						<ion-col>
+							<ion-row>
+								<i class="icon placeholder"></i>
+								<div class="location-description">9.894512, 123.971094</div>
+							</ion-row>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<button ion-button class="mitigation-button" outline>Read Mitigating Action</button>
+					</ion-row>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-card>
+
 
 </ion-content>

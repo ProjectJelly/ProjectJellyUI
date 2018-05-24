@@ -7,9 +7,9 @@ import { ManagePondsPage } from '../ponds/manage-ponds';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+ 
   constructor(public navCtrl: NavController) {
-  
+
   }
 
 }

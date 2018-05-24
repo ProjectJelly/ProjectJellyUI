@@ -27,7 +27,7 @@ ion-content{
 }
 
 .toolbar-title {
-    font-size: 2.0rem;
+    font-size: 2.5rem;
     color: #FFF;
     font-family: "Segoe UI Semibold";
 }
@@ -45,6 +45,7 @@ ion-menu{
     }
     .item{
         color: #26C0C8;
+        border-bottom: 0px !important;
     }
     .item-inner{
         border-bottom: 0px !important;
@@ -55,9 +56,43 @@ ion-menu{
     color: #FFF;
 }
 
-.card { border-radius : 15px; }
+.card { 
+    border-radius : 15px;
+    border-color: #7F7F7F; 
+    .site-name{
+        padding-top:5px;
+        font-size: 15px;
+    }
+    .device-number{
+            font-size: 11px;
+            margin-top: -4px !important;
+        }
+        .site-details{
+            padding-top:2px;
+            font-size: 12px;
+            .fish-description{
+                margin-left: 1.6px;
+            }
+        }
+        
+}
 
 h2{
     font-family: "Segoe UI Semibold";
     color: #26C0C8;
+}
+
+.fish {
+    content: url('../assets/icon/fish.png') !important;
+    height: 20px;
+} 
+
+.placeholder {
+    content: url('../assets/icon/placeholder.png') !important;
+    height: 18px;
+}
+
+.edit {
+    content: url('../assets/icon/edit.png') !important;
+    height: 18px;
 }

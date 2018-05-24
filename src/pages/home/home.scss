@@ -7,9 +7,81 @@ page-home {
 
 .card { 
     .warning-color{
-        background: #C00000;
+        h2{
+            padding-top: 14px;
+            font-family: "Segoe UI Semibold";
+            color: #FFF;
+            padding-bottom: 8px;
+        }
+        p{
+            color:#FFF;
+            font-size: 12px;
+            margin-top: -5px;
+        }
+
+        .readings{
+            padding-left: 5px;
+            padding-bottom: 14px;
+        }
+
         color:#FFF;
-        font-family: "Segoe UI Semibold";
-        font-size: 20px;
+    }
+    .reading-details{
+         padding-left: 7px;
+        
+        .device-number{
+            font-size: 11px;
+            margin-top: -4px !important;
+        }
+
+        .site-details{
+            font-size: 12px;
+            button{
+                height: 1.6em;
+                font-size: 14px;
+                width: 100%;
+                border-radius: 2px;
+            }
+
+            button.activated{
+                color:#FFF;
+            }
+        }
     }
 }
+
+ .critical{
+        .warning-color{
+            background: #C00000;
+        }
+        button{
+                color: #C00000;
+                border-color: #C00000;
+            }
+
+            button.activated{
+                background:#C00000;
+                //color:#FFF;
+            }
+    }
+
+    .warning{
+        .warning-color{
+            background: #FE9901;
+        }
+        button{
+                color: #FE9901;
+                border-color: #FE9901;
+            }
+
+            button.activated{
+                background:#FE9901;
+            }
+    }
+
+    .optimal{
+        .warning-color{
+            background: #008001;
+        }
+    }    
+  
