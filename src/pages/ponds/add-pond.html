@@ -11,13 +11,28 @@
 <ion-content padding>
 
   <ion-item>
+    <ion-label>Site Name</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
     <ion-label>Device ID</ion-label>
     <ion-input type="text"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Site Name</ion-label>
+    <ion-label>Location</ion-label>
     <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Species</ion-label>
+    <ion-select [(ngModel)]="gaming">
+      <ion-option value="tilapia">Tilapia</ion-option>
+      <ion-option value="shrimp">Shrimp</ion-option>
+      <ion-option value="milkfish">Milkfish</ion-option>
+      <ion-option value="crab">Crab</ion-option>
+    </ion-select>
   </ion-item>
 
   <ion-item>
@@ -41,21 +56,11 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Species</ion-label>
-    <ion-select [(ngModel)]="gaming">
-      <ion-option value="tilapia">Tilapia</ion-option>
-      <ion-option value="shrimp">Shrimp</ion-option>
-      <ion-option value="milkfish">Milkfish</ion-option>
-      <ion-option value="crab">Crab</ion-option>
-    </ion-select>
-  </ion-item>
-
-  <ion-item>
     <ion-label>Customize Reading Interval</ion-label>
-    <ion-toggle [(ngModel)]="isCustomize" [checked]="isCustomize"></ion-toggle>
+    <ion-toggle [(ngModel)]="isCustomizeReading" [checked]="isCustomizeReading"></ion-toggle>
   </ion-item>
 
-  <ion-item *ngIf="!isCustomize">
+  <ion-item *ngIf="!isCustomizeReading">
       <ion-label>Reading Interval</ion-label>
       <ion-select [(ngModel)]="interval">
         <ion-option value="3">3 HOURS</ion-option>
@@ -65,11 +70,23 @@
       </ion-select>
   </ion-item>
 
-  <ion-item *ngIf="isCustomize">
+  <ion-item *ngIf="isCustomizeReading">
     <ion-label>Reading Interval Hours</ion-label>
     <ion-input type="text"></ion-input>
   </ion-item>
 
-  <button ion-button full>Add Pond</button>
+  <ion-item>
+    <ion-label>Customize Water Thresholds</ion-label>
+    <ion-toggle [(ngModel)]="isCustomizeThresh" [checked]="isCustomizeThresh"></ion-toggle>
+  </ion-item>
+  
+  <ion-row>
+    <ion-col>
+      <button ion-button outline class="cancel-btn">cancel</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button class="add-btn">Add Pond</button>
+    </ion-col>
+  </ion-row>
 
 </ion-content>
