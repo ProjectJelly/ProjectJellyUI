@@ -8,12 +8,76 @@ add-pond {
             background:#26C0C8 !important;
         }
     }
-
+    .toggle-inner{
+        background-color:#FFF;
+    }
+    .button{
+        font-family: "Segoe UI Semibold";
+        font-size:20px;
+        height: 2.3em;
+    }
     .cancel-btn{
         width:100%;
+        border-color:#433F40;
+        color:#433F40;
+    }
+    .cancel-btn.activated{
+        width:100%;
+        background:#433F40;
+        color:#FFF;
     }
 
     .add-btn{
         width:100%;
+        background:#26C0C8;
+        color:#FFF;
     }
+
+    .add-btn.activated{
+        width:100%;
+        background:#05AEF1;
+        color:#FFF;
+    }
+
+    .item-inner {
+        border-bottom: 1px solid #FFF;
+    }
+
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+        color: #433F40;
+    }
+
+    .item-md{
+        color: #433F40;
+    }
+    ion-item.item-md.item-input.input-has-focus .item-inner,
+    ion-item.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner,
+    ion-item.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
+        border-bottom-color: #26C0C8;
+        box-shadow: none;
+    }
+
+    .text-input-md {
+        color: #000;
+    }
+
+    .select-text {
+        color: #000;
+    }
+        
+
+    .toggle-md.toggle-checked .toggle-inner {
+        background-color: #FFF;
+    }
+
+    .alert-md .alert-radio-icon {
+        border-color: #26C0C8 !important;
+    }
+
+    .alert-md .alert-button {
+        color: #26C0C8;
+
+    }
+
+    
 }
