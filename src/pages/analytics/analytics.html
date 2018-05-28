@@ -6,3 +6,27 @@
     <ion-title>Analytics</ion-title>
   </ion-navbar>
 </ion-header>
+
+<ion-content padding>
+  <ion-item>
+        <ion-label>Trend</ion-label>
+        <ion-select [(ngModel)]="trend">
+          <ion-option value="salinity">See All</ion-option>
+            <ion-option value="salinity">Salinity</ion-option>
+            <ion-option value="temperature">Temperature</ion-option>
+            <ion-option value="do">Dissolved Oxygen</ion-option>
+            <ion-option value="ph">pH Activity</ion-option>
+            <ion-option value="fishkill">Fish Kill Risk</ion-option>
+            <ion-option value="maps">Intensity/Concentration Maps</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-card>
+      <ion-card-header>
+        Salinity
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

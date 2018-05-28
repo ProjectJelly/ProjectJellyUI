@@ -1,4 +1,4 @@
-add-pond {
+add-pond, edit-pond, view-pond {
     .item{
         font-size:14px;
     }
@@ -79,5 +79,15 @@ add-pond {
 
     }
 
-    
+    .threshold-title{
+        padding-left: 16px;
+        margin-top: 10px;
+        font-size: 19px;
+        color: #26C0C8;
+        margin-bottom: -3px;
+    }
+
+    .label-right{
+        order: 2
+    }
 }

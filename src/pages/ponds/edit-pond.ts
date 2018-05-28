@@ -9,11 +9,11 @@ import { IonicPage, NavParams, ViewController } from 'ionic-angular';
  */
 @IonicPage()
 @Component({
-  selector: 'add-pond',
-  templateUrl: 'add-pond.html',
+  selector: 'edit-pond',
+  templateUrl: 'edit-pond.html',
   styleUrls: ['/pages/ponds/modal-ponds.scss']
 })
-export class AddPond {
+export class EditPond {
 
   public isCustomizeReading: boolean;
   public isCustomizeThresh: boolean;

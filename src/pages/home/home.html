@@ -18,7 +18,7 @@
 				<h2 text-center>CRITICAL</h2>
 				<div class="readings">
 					<p class="PH">PH: 6.5</p>
-					<p class="salinity">Salinity: 9 ppm</p>
+					<p class="salinity">Salinity: 9 mg/L</p>
 					<p class="temp">Temp: 24 °C</p>
 					<p class="DO">DO: 4.5 mg/L</p>
 				</div>
@@ -32,7 +32,7 @@
 				</div>
 				<div class="site-details">
 					<ion-row>
-						<ion-col col-4>
+						<ion-col>
 							<ion-row>
 								<i class="icon fish"></i>
 								<div class="fish-description">shrimp</div>
@@ -41,12 +41,12 @@
 						<ion-col>
 							<ion-row>
 								<i class="icon placeholder"></i>
-								<div class="location-description">9.894512, 123.971094</div>
+								<div class="location-description">Lake Sebu</div>
 							</ion-row>
 						</ion-col>
 					</ion-row>
 					<ion-row>
-						<button ion-button class="mitigation-button" outline>Read Mitigating Action</button>
+						<button ion-button class="mitigation-button" outline (click)="mitigatingActionPopUp('critical-alert')">Read Mitigating Action</button>
 					</ion-row>
 				</div>
 			</ion-col>
@@ -60,7 +60,7 @@
 				<h2 text-center>OPTIMAL</h2>
 				<div class="readings">
 					<p class="PH">PH: 6.5</p>
-					<p class="salinity">Salinity: 9 ppm</p>
+					<p class="salinity">Salinity: 9 mg/L</p>
 					<p class="temp">Temp: 24 °C</p>
 					<p class="DO">DO: 4.5 mg/L</p>
 				</div>
@@ -74,7 +74,7 @@
 				</div>
 				<div class="site-details">
 					<ion-row>
-						<ion-col col-4>
+						<ion-col>
 							<ion-row>
 								<i class="icon fish"></i>
 								<div class="fish-description">shrimp</div>
@@ -83,7 +83,7 @@
 						<ion-col>
 							<ion-row>
 								<i class="icon placeholder"></i>
-								<div class="location-description">9.894512, 123.971094</div>
+								<div class="location-description">Lake Sebu</div>
 							</ion-row>
 						</ion-col>
 					</ion-row>
@@ -99,7 +99,7 @@
 				<h2 text-center>WARNING</h2>
 				<div class="readings">
 					<p class="PH">PH: 6.5</p>
-					<p class="salinity">Salinity: 9 ppm</p>
+					<p class="salinity">Salinity: 9 mg/L</p>
 					<p class="temp">Temp: 24 °C</p>
 					<p class="DO">DO: 4.5 mg/L</p>
 				</div>
@@ -113,7 +113,7 @@
 				</div>
 				<div class="site-details">
 					<ion-row>
-						<ion-col col-4>
+						<ion-col>
 							<ion-row>
 								<i class="icon fish"></i>
 								<div class="fish-description">shrimp</div>
@@ -122,12 +122,12 @@
 						<ion-col>
 							<ion-row>
 								<i class="icon placeholder"></i>
-								<div class="location-description">9.894512, 123.971094</div>
+								<div class="location-description">Lake Sebu</div>
 							</ion-row>
 						</ion-col>
 					</ion-row>
 					<ion-row>
-						<button ion-button class="mitigation-button" outline>Read Mitigating Action</button>
+						<button ion-button class="mitigation-button" outline (click)="mitigatingActionPopUp('warning-alert')">Read Mitigating Action</button>
 					</ion-row>
 				</div>
 			</ion-col>

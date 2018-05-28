@@ -44,7 +44,7 @@ page-home {
             }
 
             button.activated{
-                color:#FFF;
+                color:#FFF !important;
             }
         }
     }
@@ -52,36 +52,62 @@ page-home {
 
  .critical{
         .warning-color{
-            background: #C00000;
+            background: #C00000 !important;
         }
         button{
-                color: #C00000;
-                border-color: #C00000;
+                color: #C00000 !important;
+                border-color: #C00000 !important;
             }
 
             button.activated{
-                background:#C00000;
+                background:#C00000 !important;
                 //color:#FFF;
             }
     }
 
     .warning{
         .warning-color{
-            background: #FE9901;
+            background: #FE9901 !important;
         }
         button{
-                color: #FE9901;
-                border-color: #FE9901;
+                color: #FE9901 !important;
+                border-color: #FE9901 !important ;
             }
 
             button.activated{
-                background:#FE9901;
+                background:#FE9901 !important;
             }
     }
 
     .optimal{
         .warning-color{
-            background: #008001;
+            background: #008001 !important;
         }
     }    
+  
+  .alert-md .alert-wrapper {
+    border-radius: 23px;
+    max-width: 328px;
+  }
+
+  .critical-alert { 
+      h2{
+        color:#C00000 !important;
+      }
+
+      .alert-button{
+          color:#C00000 !important;
+      }
+      
+  }
+
+  .warning-alert { 
+      h2{
+        color:#FE9901 !important;
+      }
+
+      .alert-button{
+          color:#FE9901 !important;
+      }
+  }
   

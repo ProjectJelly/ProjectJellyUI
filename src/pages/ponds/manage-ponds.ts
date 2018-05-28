@@ -5,25 +5,20 @@ import { Modal, ModalController, ModalOptions } from 'ionic-angular';
 
 @Component({
   selector: 'page-manage-ponds',
-  templateUrl: 'manage-ponds.html'
+  templateUrl: 'manage-ponds.html',
 })
 export class ManagePondsPage {
     constructor(private modal: ModalController) {
 
   }
 
-  openModal() {
+  openModal(page: any) {
 
     const myModalOptions: ModalOptions = {
       enableBackdropDismiss: false
     };
 
-    const myModalData = {
-      name: 'Paul Halliday',
-      occupation: 'Developer'
-    };
-
-    const myModal: Modal = this.modal.create('AddPond');
+    const myModal: Modal = this.modal.create(page);
 
     myModal.present();
 

@@ -1,6 +1,6 @@
 <ion-header no-border>
     <ion-navbar>
-        <ion-title>add pond</ion-title>
+        <ion-title>view pond</ion-title>
         <ion-buttons end>
             <button ion-button (click)="closeModal()">Close</button>
         </ion-buttons>
@@ -12,22 +12,22 @@
 
     <ion-item>
         <ion-label>Site Name</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [readonly]="true" value="Isda Ni Apor"></ion-input>
     </ion-item>
 
     <ion-item>
         <ion-label>Device ID</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [readonly]="true" value="DEV1234123"></ion-input>
     </ion-item>
 
     <ion-item>
         <ion-label>Location</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [readonly]="true" value="Lake Sebu"></ion-input>
     </ion-item>
 
     <ion-item>
         <ion-label>Species</ion-label>
-        <ion-select [(ngModel)]="gaming">
+        <ion-select [(ngModel)]="species" disabled="true">
             <ion-option value="tilapia">Tilapia</ion-option>
             <ion-option value="shrimp">Shrimp</ion-option>
             <ion-option value="milkfish">Milkfish</ion-option>
@@ -37,17 +37,17 @@
 
     <ion-item>
         <ion-label>Site Size</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [readonly]="true" value="2 Hectares"></ion-input>
     </ion-item>
 
     <ion-item>
         <ion-label>Water Depth</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [readonly]="true" value="12 meters"></ion-input>
     </ion-item>
 
     <ion-item>
         <ion-label>Culture Environment</ion-label>
-        <ion-select [(ngModel)]="env">
+        <ion-select [(ngModel)]="env" disabled="true">
             <ion-option value="fw">Fresh Water</ion-option>
             <ion-option value="bw">Brackish Water</ion-option>
             <ion-option value="mc">Mariculture</ion-option>
@@ -56,7 +56,7 @@
 
     <ion-item>
         <ion-label>Culture Type</ion-label>
-        <ion-select [(ngModel)]="type">
+        <ion-select [(ngModel)]="type" disabled="true">
             <ion-option value="pond">Pond</ion-option>
             <ion-option value="tank">Tank</ion-option>
             <ion-option value="raft">Raft</ion-option>
@@ -66,7 +66,7 @@
 
     <ion-item>
         <ion-label>Customize Reading Interval</ion-label>
-        <ion-toggle [(ngModel)]="isCustomizeReading" [checked]="isCustomizeReading"></ion-toggle>
+        <ion-toggle [(ngModel)]="isCustomizeReading" [checked]="isCustomizeReading" disabled="true"></ion-toggle>
     </ion-item>
 
     <ion-item *ngIf="!isCustomizeReading">
@@ -81,13 +81,13 @@
 
     <ion-item *ngIf="isCustomizeReading">
         <ion-label>Reading Interval Hours</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" text-right [readonly]="true" value="1"></ion-input>
         <ion-label class="label-right">hour/s</ion-label>
     </ion-item>
 
     <ion-item>
         <ion-label>Customize Water Thresholds</ion-label>
-        <ion-toggle [(ngModel)]="isCustomizeThresh" [checked]="isCustomizeThresh"></ion-toggle>
+        <ion-toggle [(ngModel)]="isCustomizeThresh" [checked]="isCustomizeThresh" disabled="true"></ion-toggle>
     </ion-item>
 
     <div *ngIf="isCustomizeThresh">
@@ -97,19 +97,19 @@
             </div>
             <ion-item>
                 <ion-label>Deadly Low</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Deadly High</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Optimal Low</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Optimal High</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
             </ion-item>
         </ion-row>
 
@@ -119,22 +119,22 @@
             </div>
             <ion-item>
                 <ion-label>Deadly Low</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">mg/L</ion-label>
             </ion-item>
             <ion-item>
                 <ion-label>Deadly High</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">mg/L</ion-label>
             </ion-item>
             <ion-item>
                 <ion-label>Optimal Low</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">mg/L</ion-label>
             </ion-item>
             <ion-item>
                 <ion-label>Optimal High</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">mg/L</ion-label>
             </ion-item>
         </ion-row>
@@ -145,22 +145,22 @@
             </div>
             <ion-item>
                 <ion-label>Deadly Low</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">mg/L</ion-label>
             </ion-item>
             <ion-item>
                 <ion-label>Deadly High</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">mg/L</ion-label>
             </ion-item>
             <ion-item>
                 <ion-label>Optimal Low</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">mg/L</ion-label>
             </ion-item>
             <ion-item>
                 <ion-label>Optimal High</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">mg/L</ion-label>
             </ion-item>
         </ion-row>
@@ -171,34 +171,24 @@
             </div>
             <ion-item>
                 <ion-label>Deadly Low</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">°C</ion-label>
             </ion-item>
             <ion-item>
                 <ion-label>Deadly High</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">°C</ion-label>
             </ion-item>
             <ion-item>
                 <ion-label>Optimal Low</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">°C</ion-label>
             </ion-item>
             <ion-item>
                 <ion-label>Optimal High</ion-label>
-                <ion-input text-right type="text"></ion-input>
+                <ion-input text-right type="text" [readonly]="true" value="24"></ion-input>
                 <ion-label class="label-right">°C</ion-label>
             </ion-item>
         </ion-row>
     </div>
-
-    <ion-row>
-        <ion-col>
-            <button ion-button outline class="cancel-btn">cancel</button>
-        </ion-col>
-        <ion-col>
-            <button ion-button class="add-btn">add pond</button>
-        </ion-col>
-    </ion-row>
-
 </ion-content>

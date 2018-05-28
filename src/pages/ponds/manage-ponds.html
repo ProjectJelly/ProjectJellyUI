@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button full class="confirm" (click)="openModal()">
+  <button ion-button full class="confirm" (click)="openModal('AddPond')">
       <ion-icon name="md-add-circle"></ion-icon>&nbsp; Add Pond
     </button>
 
@@ -31,7 +31,7 @@
                 </ion-row>
                 <div class="site-details">
                     <ion-row>
-                        <ion-col col-4>
+                        <ion-col>
                             <ion-row>
                                 <i class="icon fish"></i>
                                 <div class="fish-description">shrimp</div>
@@ -40,13 +40,13 @@
                         <ion-col>
                             <ion-row>
                                 <i class="icon placeholder"></i>
-                                <div class="location-description">9.894512, 123.971094</div>
+                                <div class="location-description">Lake Sebu</div>
                             </ion-row>
                         </ion-col>
                     </ion-row>
 
                     <ion-row class="other-details">
-                        <ion-col col-4>
+                        <ion-col>
                             <ion-row>
                                 <div class="title">culture type</div>
                             </ion-row>
@@ -63,13 +63,13 @@
                             </ion-row>
                         </ion-col>
                     </ion-row>
-                         <button ion-button small disable class="view-btn" color="dark" clear>View</button>
+                         <button ion-button small disable class="view-btn" color="dark" clear (click)="openModal('ViewPond')">View</button>
                     <ion-row>
                     </ion-row>
                 </div>
             </ion-col>
-            <ion-col col-3>
-                <button ion-button color="dark" class="edit-btn" clear><i class="icon edit"></i> Edit</button>
+            <ion-col col-2>
+                <button ion-button color="dark" class="edit-btn" clear (click)="openModal('EditPond')"><i class="icon edit"></i> Edit</button>
             </ion-col>
         </ion-row>
     </ion-card>
@@ -93,7 +93,7 @@
                 </ion-row>
                 <div class="site-details">
                     <ion-row>
-                        <ion-col col-4>
+                        <ion-col>
                             <ion-row>
                                 <i class="icon fish"></i>
                                 <div class="fish-description">shrimp</div>
@@ -102,13 +102,13 @@
                         <ion-col>
                             <ion-row>
                                 <i class="icon placeholder"></i>
-                                <div class="location-description">9.894512, 123.971094</div>
+                                <div class="location-description">Lake Sebu</div>
                             </ion-row>
                         </ion-col>
                     </ion-row>
 
                     <ion-row class="other-details">
-                        <ion-col col-4>
+                        <ion-col>
                             <ion-row>
                                 <div class="title">culture type</div>
                             </ion-row>
@@ -125,19 +125,14 @@
                             </ion-row>
                         </ion-col>
                     </ion-row>
-                         <button ion-button small disable class="view-btn" color="dark" clear>View</button>
+                         <button ion-button small disable class="view-btn" color="dark" clear (click)="openModal('ViewPond')">View</button>
                     <ion-row>
                     </ion-row>
                 </div>
             </ion-col>
-            <ion-col col-3>
-                <button ion-button color="dark" class="edit-btn" clear><i class="icon edit"></i> Edit</button>
+            <ion-col col-2>
+                <button ion-button color="dark" class="edit-btn" clear><i class="icon edit" (click)="openModal('EditPond')"></i> Edit</button>
             </ion-col>
         </ion-row>
     </ion-card>
-
-
-
-
-
 </ion-content>
