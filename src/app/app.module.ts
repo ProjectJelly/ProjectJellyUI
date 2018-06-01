@@ -10,6 +10,13 @@ import { ManagePondsPage } from '../pages/ponds/manage-ponds';
 import { AddPond } from '../pages/ponds/add-pond';
 import { AnalyticsPage } from '../pages/analytics/analytics';
 import { HistoryPage } from '../pages/history/history';
+import { EditProfilePage } from '../pages/profile/edit-profile';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { WeatherServiceProvider } from '../providers/weather-service/weather-service';
+import { AppConstantsProvider } from '../providers/app-constants/app-constants';
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -17,11 +24,15 @@ import { HistoryPage } from '../pages/history/history';
     HomePage,
     ManagePondsPage,
     AnalyticsPage,
-    HistoryPage
+    HistoryPage,
+    EditProfilePage,
+    LoginPage,
+    SignupPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,12 +40,18 @@ import { HistoryPage } from '../pages/history/history';
     HomePage,
     ManagePondsPage,
     AnalyticsPage,
-    HistoryPage
+    HistoryPage,
+    EditProfilePage,
+    LoginPage,
+    SignupPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthServiceProvider,
+    WeatherServiceProvider,
+    AppConstantsProvider
   ]
 })
 export class AppModule {}

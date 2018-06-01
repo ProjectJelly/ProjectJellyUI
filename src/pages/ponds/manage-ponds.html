@@ -1,138 +1,166 @@
 <ion-header no-border>
-  <ion-navbar text-center>
-    <button ion-button menuToggle>
+    <ion-navbar text-center>
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Ponds</ion-title>
-  </ion-navbar>
+        <ion-title>Ponds</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <button ion-button full class="confirm" (click)="openModal('AddPond')">
-      <ion-icon name="md-add-circle"></ion-icon>&nbsp; Add Pond
+    <button ion-button full class="confirm" (click)="openModal('AddPond')">
+      add pond
     </button>
 
-    <ion-card class="functional">
-        <!--<img src="img/nin-live.png"/>-->
-        <ion-row>
-            <ion-col class="site">
-                <ion-row>
-                    <ion-col>
-                        <div class="site-name">
-                            SITE NAME
-                        </div>
-                        <div class="device-number">
-                            DEV1234123
-                        </div>
-                    </ion-col>
-                    <ion-col class="hardware">
-                        <button ion-button small disable color="danger" class="hardware-status" outline>Functional</button>
-                    </ion-col>
-                </ion-row>
-                <div class="site-details">
+    <ion-list>
+        <ion-item-sliding (ionSwipe)="delete()">
+            <ion-item>
+                <ion-card class='functional'>
                     <ion-row>
-                        <ion-col>
+                        <ion-col class="site">
                             <ion-row>
-                                <i class="icon fish"></i>
-                                <div class="fish-description">shrimp</div>
+                                <ion-col>
+                                    <div class="site-name">
+                                        SITE NAME
+                                    </div>
+                                    <div class="device-number">
+                                        DEV1234123
+                                    </div>
+                                </ion-col>
+                                <ion-col class="hardware">
+                                    <button ion-button small disable color="danger" class="hardware-status" outline>Functional</button>
+                                </ion-col>
                             </ion-row>
-                        </ion-col>
-                        <ion-col>
-                            <ion-row>
-                                <i class="icon placeholder"></i>
-                                <div class="location-description">Lake Sebu</div>
-                            </ion-row>
-                        </ion-col>
-                    </ion-row>
+                            <div class="site-details">
+                                <ion-row>
+                                    <ion-col>
+                                        <ion-row>
+                                            <i class="icon fish"></i>
+                                            <div class="fish-description">shrimp</div>
+                                        </ion-row>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-row>
+                                            <i class="icon placeholder"></i>
+                                            <div class="location-description">Lake Sebu</div>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
 
-                    <ion-row class="other-details">
-                        <ion-col>
-                            <ion-row>
-                                <div class="title">culture type</div>
-                            </ion-row>
-                            <ion-row>
-                                <div class="description">shrimp</div>
-                            </ion-row>
+                                <ion-row class="other-details">
+                                    <ion-col>
+                                        <ion-row>
+                                            <div class="title">culture type</div>
+                                        </ion-row>
+                                        <ion-row>
+                                            <div class="description">shrimp</div>
+                                        </ion-row>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-row>
+                                            <div class="title">culture environment</div>
+                                        </ion-row>
+                                        <ion-row>
+                                            <div class="description">shrimp</div>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                                <button ion-button small disable class="view-btn" color="dark" clear (click)="openModal('ViewPond')">view</button>
+                                <ion-row>
+                                </ion-row>
+                            </div>
                         </ion-col>
-                        <ion-col>
-                            <ion-row>
-                                <div class="title">culture environment</div>
-                            </ion-row>
-                            <ion-row>
-                                <div class="description">shrimp</div>
-                            </ion-row>
+                        <ion-col col-2>
+                            <button ion-button color="dark" class="edit-btn" clear (click)="openModal('EditPond')"><i class="icon edit"></i> edit</button>
                         </ion-col>
-                    </ion-row>
-                         <button ion-button small disable class="view-btn" color="dark" clear (click)="openModal('ViewPond')">View</button>
-                    <ion-row>
-                    </ion-row>
-                </div>
-            </ion-col>
-            <ion-col col-2>
-                <button ion-button color="dark" class="edit-btn" clear (click)="openModal('EditPond')"><i class="icon edit"></i> Edit</button>
-            </ion-col>
-        </ion-row>
-    </ion-card>
 
-    <ion-card class="defective">
-        <!--<img src="img/nin-live.png"/>-->
-        <ion-row>
-            <ion-col class="site">
-                <ion-row>
-                    <ion-col>
-                        <div class="site-name">
-                            SITE NAME
-                        </div>
-                        <div class="device-number">
-                            DEV1234123
-                        </div>
-                    </ion-col>
-                    <ion-col class="hardware">
-                        <button ion-button small disable color="danger" class="hardware-status" outline>Defective</button>
-                    </ion-col>
-                </ion-row>
-                <div class="site-details">
-                    <ion-row>
-                        <ion-col>
-                            <ion-row>
-                                <i class="icon fish"></i>
-                                <div class="fish-description">shrimp</div>
-                            </ion-row>
-                        </ion-col>
-                        <ion-col>
-                            <ion-row>
-                                <i class="icon placeholder"></i>
-                                <div class="location-description">Lake Sebu</div>
-                            </ion-row>
-                        </ion-col>
                     </ion-row>
+                </ion-card>
+            </ion-item>
+            <ion-item-options>
+                <button ion-button expandable class="delete-btn"><i class="icon trash"></i>delete</button>
+            </ion-item-options>
+        </ion-item-sliding>
 
-                    <ion-row class="other-details">
-                        <ion-col>
-                            <ion-row>
-                                <div class="title">culture type</div>
-                            </ion-row>
-                            <ion-row>
-                                <div class="description">shrimp</div>
-                            </ion-row>
-                        </ion-col>
-                        <ion-col>
-                            <ion-row>
-                                <div class="title">culture environment</div>
-                            </ion-row>
-                            <ion-row>
-                                <div class="description">shrimp</div>
-                            </ion-row>
-                        </ion-col>
-                    </ion-row>
-                         <button ion-button small disable class="view-btn" color="dark" clear (click)="openModal('ViewPond')">View</button>
+        <ion-item-sliding (ionSwipe)="delete()">
+            <ion-item>
+                <ion-card class="defective">
                     <ion-row>
+                        <ion-col class="site">
+                            <ion-row>
+                                <ion-col>
+                                    <div class="site-name">
+                                        SITE NAME
+                                    </div>
+                                    <div class="device-number">
+                                        DEV1234123
+                                    </div>
+                                </ion-col>
+                                <ion-col class="hardware">
+                                    <button ion-button small disable color="danger" class="hardware-status" outline>Defective</button>
+                                </ion-col>
+                            </ion-row>
+                            <div class="site-details">
+                                <ion-row>
+                                    <ion-col>
+                                        <ion-row>
+                                            <i class="icon fish"></i>
+                                            <div class="fish-description">shrimp</div>
+                                        </ion-row>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-row>
+                                            <i class="icon placeholder"></i>
+                                            <div class="location-description">Lake Sebu</div>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+
+                                <ion-row class="other-details">
+                                    <ion-col>
+                                        <ion-row>
+                                            <div class="title">culture type</div>
+                                        </ion-row>
+                                        <ion-row>
+                                            <div class="description">shrimp</div>
+                                        </ion-row>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-row>
+                                            <div class="title">culture environment</div>
+                                        </ion-row>
+                                        <ion-row>
+                                            <div class="description">shrimp</div>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                                <button ion-button small disable class="view-btn" color="dark" clear (click)="openModal('ViewPond')">view</button>
+                                <ion-row>
+                                </ion-row>
+                            </div>
+                        </ion-col>
+                        <ion-col col-2>
+                            <button ion-button color="dark" class="edit-btn" clear (click)="openModal('EditPond')"><i class="icon edit"></i> edit</button>
+                        </ion-col>
                     </ion-row>
-                </div>
-            </ion-col>
-            <ion-col col-2>
-                <button ion-button color="dark" class="edit-btn" clear><i class="icon edit" (click)="openModal('EditPond')"></i> Edit</button>
-            </ion-col>
-        </ion-row>
-    </ion-card>
+                </ion-card>
+            </ion-item>
+            <ion-item-options>
+                <button ion-button expandable class="delete-btn"><i class="icon trash"></i>delete</button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <!--
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of items" (ionSwipe)="delete(item)">
+            <ion-item (click)="itemDetails($event, item)">
+                {{item.name}}
+            </ion-item>
+
+            <ion-item-options>
+                <button ion-button expandable (click)="removeItem(item.id)">Delete</button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>-->
+
 </ion-content>

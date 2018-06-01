@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,6 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { ManagePondsPage } from '../pages/ponds/manage-ponds';
 import { AnalyticsPage } from '../pages/analytics/analytics';
 import { HistoryPage } from '../pages/history/history';
+import { LoginPage } from '../pages/login/login';
+import { EditProfilePage } from '../pages/profile/edit-profile';
+import { WeatherServiceProvider } from '../providers/weather-service/weather-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,23 +18,25 @@ import { HistoryPage } from '../pages/history/history';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
   
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public app: App, public weatherServiceProvider: WeatherServiceProvider) {
     this.initializeApp();
+    this.getLocationKey();
     this.pages = [
       { title: 'Stream', component: HomePage },
       { title: 'Manage Ponds/Devices', component: ManagePondsPage },
       { title: 'Analytics', component: AnalyticsPage },
-      { title: 'History', component: HistoryPage }
+      { title: 'History', component: HistoryPage },
+      { title: 'Edit Profile', component: EditProfilePage },
     ];
   }
 
   openPage(page) {
     this.nav.setRoot(page.component);
-  }
+  } 
 
   initializeApp(){
     this.platform.ready().then(() => {
@@ -41,5 +46,24 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
+
+  backToLogin() {
+    const root = this.app.getRootNav();
+    root.popToRoot();
+  }
+
+  logout() {
+    //Api Token Logout
+    localStorage.clear();
+    setTimeout(() => this.backToLogin(), 1000);
+  }
+
+  getLocationKey(){
+    this.weatherServiceProvider.getLocationKey()
+    .then(data => {
+
+    });
+  }
+
 }
 

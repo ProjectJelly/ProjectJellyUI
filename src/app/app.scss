@@ -30,6 +30,7 @@ ion-content{
     font-size: 2.5rem;
     color: #FFF;
     font-family: "Segoe UI Semibold";
+    margin-left: -18px;
 }
 
 ion-menu{
@@ -37,7 +38,7 @@ ion-menu{
         background-color: #FFF !important;
     }
     .menu-title{
-        padding-left: 15px;
+        padding-left: 15px !important;
         padding-top: 60px;
     }
     .toolbar-background {
@@ -95,4 +96,57 @@ h2{
 .edit {
     content: url('../assets/icon/edit.png') !important;
     height: 18px;
+}
+
+.trash {
+    content: url('../assets/icon/trash.png') !important;
+    height: 25px;
+}
+
+.username {
+    content: url('../assets/icon/user.png') !important;
+    height: 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.email {
+    content: url('../assets/icon/message.png') !important;
+    height: 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.password {
+    content: url('../assets/icon/password.png') !important;
+    height: 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.phone {
+    content: url('../assets/icon/phone.png') !important;
+    height: 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.jelly {
+    content: url('../assets/icon/project-jelly.png') !important;
+    height: 114px;
+}
+
+.button-md{
+        -webkit-box-shadow:  0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+    }
+.card-md{
+-webkit-box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+    border-color:#D0CECF;
+    border: 1px solid #D0CECF;
+
+}
+.button{
+    text-transform: none;
 }

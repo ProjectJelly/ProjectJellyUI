@@ -1,0 +1,34 @@
+<ion-content padding>
+
+    <ion-row class="logo">
+        <ion-col text-center>
+            <i class="icon jelly"></i>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col text-center class="title">
+            project jelly
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-item>
+            <ion-label><i class="icon username placeholder-icon"></i> username</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label><i class="icon password placeholder-icon"></i> password</ion-label>
+            <ion-input type="password"></ion-input>
+        </ion-item>
+        <ion-col float-right>
+            <button ion-button clear class="forgot-password" float-right>forgot password?</button>
+        </ion-col>
+        <button ion-button full medium class="login-btn" (click)="login()">login</button>
+
+    </ion-row>
+
+    <ion-buttons text-center>
+        <button ion-button clear class="create-btn" text-center (click)="signUp()">sign up</button>
+    </ion-buttons>
+</ion-content>
