@@ -1,0 +1,165 @@
+
+    .site{
+        padding-top:10px !important;
+        padding-left:20px !important;
+    }
+
+    .confirm{
+        background-color:#26C0C8;
+        border-radius:7px;
+        font-size:18px;
+        font-family:"Segoe UI Semibold";
+    }
+    .confirm.activated{
+        background-color:#05AEF1;
+    }
+
+    .confirm{
+        background-color:#26C0C8;
+        border-radius:7px;
+        font-size:18px;
+        font-family:"Segoe UI Semibold";
+    }
+    .confirm.activated{
+        background-color:#05AEF1;
+    }
+
+    .edit-btn{
+        font-size:12px;
+        margin-left: -14px;
+    }
+
+    .view-btn{
+        margin-left:-6px;
+        color:#05AEF1;
+        margin-top: -3px;
+    }
+
+    .device-number{
+        font-size: 20px;
+    }
+
+    .other-details{
+        margin-top:-5px;
+        .title{
+            color:#7F7F7F;
+        }
+        .description{
+            margin-top: -7px;
+            font-size: 14px;
+        }
+    }
+
+    .hardware{
+        .hardware-status{
+            height: 1.8em !important;
+            border-radius: 0px;
+            font-size: 15px;
+        }
+    }
+
+    .defective{
+        .hardware-status{
+            color: #C00000;
+            border-color: #C00000;
+        }
+
+        .hardware-status.activated{
+            background:#C00000;
+        }
+    }
+
+    .functional{
+        .hardware-status{
+            color: #008001;
+            border-color: #008001;
+        }
+
+        .hardware-status.activated{
+            background:#008001;
+        }
+    }
+
+    .delete-btn{
+        background: #C00000;
+        height: 86% !important;
+        border-radius: 0px 15px 15px 0px !important;
+        margin-top: 10px !important;
+    }
+
+    ion-item-sliding  .item-md {
+        padding-left: 0;
+    }
+
+    .list-md .item-block .item-inner {
+        border-bottom: 0px solid #000;
+        //padding-right: 0px;
+    }
+    
+    .list-md ion-item-options{
+        border: 0px solid #000;
+    }
+
+    .label-md {
+    margin: 0px !important;
+}
+
+.item-wrapper .active-slide .active-options-right .card{
+    border-radius:0px !important; 
+}
+
+
+view-pond{
+    .site-profile{
+        background: #238C90;
+        margin:20px;
+        margin-top: -16px;
+        width: 115%;
+        margin-left: -16px;
+        height: 45%;
+        color: #FFF;
+        .site-name{
+            margin-top:10px;
+            font-size:30px;
+            font-family:"Segoe UI Semibold";
+        }
+         .card-md{
+            background: #238C90;
+            border-radius: 15px;
+            width: calc(90%);
+            height: 70px;   
+            margin: 0px;
+            width:100%;
+            color: #FFF;
+            border: 1px solid #FFF;
+            p{
+                color:#FFF !important;
+            }
+         }
+
+         .other-details{
+             margin-top:10px;
+            margin-left:0px;
+            width:95%;
+
+            .header{
+                padding:2px;
+                font-size: 12px;
+            }
+
+            .description{
+                padding-top: 14px;
+                font-family:"Segoe UI Semibold";
+                
+            }
+         }
+            
+        ion-row{
+            margin-top:-5px;    
+        }
+    }
+
+    .delete-btn{
+        height: 75% !important;
+    }
+}

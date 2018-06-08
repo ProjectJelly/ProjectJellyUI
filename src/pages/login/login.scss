@@ -1,0 +1,80 @@
+login{
+    ion-content {
+        font-family: "Segoe UI Light";
+        background: #26C0C8 !important;
+    }
+
+    .item-md{
+        background: #26C0C8 !important;
+        padding-left:0px;
+    }
+
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+        color: #FFF;
+    }
+    .login-btn{
+        background:#FFF;
+        font-family: "Segoe UI Semibold";
+        color: #26C0C8;
+        text-transform: none;
+        border-radius:5px;
+    }
+
+    .login-btn.activated{
+        background:#7F7F7F !important;
+        color:#FFF;
+            
+    }
+    
+    .login-btn:hover{
+        background:#D0CECF !important;
+        color:#26C0C8;     
+    }
+
+    .button-md{
+        -webkit-box-shadow:  0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+    }
+
+    .title{
+        font-family: "Segoe UI Light";
+        font-size:30px;
+        color: #FFF;
+        margin-top:-15px;
+        margin-bottom: 30px;
+    }
+
+    .logo{
+        margin-top:80px;
+    }
+
+    .forgot-password{
+        color:#FFF;
+        text-transform: none;
+        margin-top: -4px;
+        padding-right: 0px;
+        font-size: 12px;
+    }
+
+    .create-btn{
+        margin-top:60px;
+        font-size: 14px;
+        text-transform: none;
+        color: #FFF;
+    }
+
+    ion-item.item-md.item-input.input-has-focus .item-inner,
+    ion-item.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner,
+    ion-item.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
+        border-bottom-color: #FFF;
+        box-shadow: none;
+    }
+
+    .text-input-md {
+        color: #FFF;
+    }
+
+    .select-text {
+        color: #FFF;
+    }
+}
