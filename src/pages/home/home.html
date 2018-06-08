@@ -10,8 +10,105 @@
 
 
 <ion-content padding>
-	<ion-row class="weather">
+	<ion-grid class="weather">
+		<ion-row class="weather-temp-icon">
+			<ion-col class="weather-icon" justify-content-center align-items-center>
+				<i class="icon showers" float-right></i>
+			</ion-col>
+			<ion-col class="weather-temp" justify-content-center align-items-center>
+				33°
+			</ion-col>
+		</ion-row>
+		<ion-row text-center justify-content-center align-items-center>
+			<ion-col class="weather-desc">
+				sunny
+			</ion-col>
+		</ion-row>
+		<ion-row text-center>
+			<ion-col class="weather-location" float-center justify-content-center align-items-center>
+				Lake Sebu
+			</ion-col>
+		</ion-row>
+
+	</ion-grid>
+
+	<ion-row class="site-dropdown-header">
+		<ion-item class="site-dropdown">
+			<ion-label>Site</ion-label>
+			<ion-select [(ngModel)]="trend">
+				<ion-option value="seeall">See All</ion-option>
+				<ion-option value="salinity">Salinity</ion-option>
+				<ion-option value="temperature">Temperature</ion-option>
+				<ion-option value="do">Dissolved Oxygen</ion-option>
+				<ion-option value="ph">pH Activity</ion-option>
+				<ion-option value="fishkill">Fish Kill Risk</ion-option>
+				<ion-option value="maps">Intensity/Concentration Maps</ion-option>
+			</ion-select>
+		</ion-item>
 	</ion-row>
+
+	<ion-row class="average-health critical">
+		<ion-col col-4 class="ave-status-text">
+			<h2 class="">optimal</h2>
+		</ion-col>
+		<ion-col class="ave-reading-text" float-right>
+			<h3 text-right>AVERAGE READING</h3>
+		</ion-col>
+
+		<ion-row class="ave-status">
+			<ion-col col-3>
+				<ion-card class="critical">
+					<div class="readings" text-center>
+						<ion-row justify-content-center align-items-center>
+							<p class="PH">6.5</p>
+						</ion-row>
+					</div>
+					<h2 text-center>pH</h2>
+				</ion-card>
+			</ion-col>
+			<ion-col col-3>
+				<ion-card class="critical">
+					<div class="readings" text-center>
+						<ion-row justify-content-center align-items-center>
+							<p class="salinity">9</p>
+							<p class="measurement">mg/L</p>
+						</ion-row>
+					</div>
+					<h2 text-center>salinity</h2>
+				</ion-card>
+			</ion-col>
+
+			<ion-col col-3>
+				<ion-card class="critical">
+					<div class="readings" text-center>
+						<ion-row justify-content-center align-items-center>
+							<p class="temp">24</p>
+							<p class="measurement">°C</p>
+						</ion-row>
+					</div>
+					<h2 text-center>Temp</h2>
+				</ion-card>
+			</ion-col>
+
+			<ion-col col-3>
+				<ion-card class="critical">
+					<div class="readings" text-center>
+						<ion-row justify-content-center align-items-center>
+							<p class="DO">4.5</p>
+							<p class="measurement">mg/L</p>
+						</ion-row>
+					</div>
+					<h2 text-center>DO</h2>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+		<ion-row class="critical">
+			<!--if optimal set to invisible-->
+			<button ion-button class="mitigation-button" outline (click)="mitigatingActionPopUp('critical-alert')">Read Mitigating Action</button>
+		</ion-row>
+
+	</ion-row>
+
 	<h2>readings</h2>
 
 	<ion-card class="critical">
@@ -27,9 +124,6 @@
 				</div>
 			</ion-col>
 			<ion-col class="reading-details">
-				<div class="site-name">
-					SITE NAME
-				</div>
 				<div class="device-number">
 					DEV1234123
 				</div>
@@ -47,9 +141,6 @@
 								<div class="location-description">Lake Sebu</div>
 							</ion-row>
 						</ion-col>
-					</ion-row>
-					<ion-row>
-						<button ion-button class="mitigation-button" outline (click)="mitigatingActionPopUp('critical-alert')">Read Mitigating Action</button>
 					</ion-row>
 				</div>
 			</ion-col>
@@ -69,9 +160,6 @@
 				</div>
 			</ion-col>
 			<ion-col class="reading-details">
-				<div class="site-name">
-					SITE NAME
-				</div>
 				<div class="device-number">
 					DEV1234123
 				</div>
@@ -108,9 +196,6 @@
 				</div>
 			</ion-col>
 			<ion-col class="reading-details">
-				<div class="site-name">
-					SITE NAME
-				</div>
 				<div class="device-number">
 					DEV1234123
 				</div>
@@ -128,9 +213,6 @@
 								<div class="location-description">Lake Sebu</div>
 							</ion-row>
 						</ion-col>
-					</ion-row>
-					<ion-row>
-						<button ion-button class="mitigation-button" outline (click)="mitigatingActionPopUp('warning-alert')">Read Mitigating Action</button>
 					</ion-row>
 				</div>
 			</ion-col>

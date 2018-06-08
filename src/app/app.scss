@@ -61,16 +61,12 @@ ion-menu{
     border-radius : 15px;
     border-color: #7F7F7F; 
     .site-name{
-        padding-top:5px;
-        font-size: 15px;
+        font-size: 20px;
     }
-    .device-number{
-            font-size: 11px;
-            margin-top: -4px !important;
-        }
         .site-details{
             padding-top:2px;
             font-size: 12px;
+            margin-bottom:5px;
             .fish-description{
                 margin-left: 1.6px;
             }
@@ -88,10 +84,21 @@ h2{
     height: 20px;
 } 
 
+.fish-white {
+    content: url('../assets/icon/fish-white .png') !important;
+    height: 20px;
+} 
+
 .placeholder {
     content: url('../assets/icon/placeholder.png') !important;
-    height: 18px;
+    height: 20px;
 }
+
+.placeholder-white {
+    content: url('../assets/icon/placeholder-white.png') !important;
+    height: 20px;
+}
+
 
 .edit {
     content: url('../assets/icon/edit.png') !important;
@@ -136,12 +143,104 @@ h2{
     height: 114px;
 }
 
+
+.sunny {
+    content: url('../assets/icon/weather/sunny.png') !important;
+    height: 110px;
+}
+
+.mostly-sunny {
+    content: url('../assets/icon/weather/mostly sunny.png') !important;
+    height: 110px;
+}
+
+.partly-sunny {
+    content: url('../assets/icon/weather/partly sunny.png') !important;
+    height: 110px;
+}
+
+.hazy {
+    content: url('../assets/icon/weather/hazy.png') !important;
+    height: 110px;
+}
+
+.mostly-cloudy {
+    content: url('../assets/icon/weather/mostly cloudy.png') !important;
+    height: 110px;
+}
+
+.overcast {
+    content: url('../assets/icon/weather/overcast.png') !important;
+    height: 110px;
+}
+
+.fog {
+    content: url('../assets/icon/weather/fog.png') !important;
+    height: 110px;
+}
+
+.showers {
+    content: url('../assets/icon/weather/showers.png') !important;
+    height: 110px;
+}
+
+.chance-showers {
+    content: url('../assets/icon/weather/chance of showers.png') !important;
+    height: 110px;
+}
+
+.slight-drizzle {
+    content: url('../assets/icon/weather/slight drizzle.png') !important;
+    height: 110px;
+}
+
+.thunderstorm {
+    content: url('../assets/icon/weather/thunderstorm.png') !important;
+    height: 110px;
+}
+
+.flurries {
+    content: url('../assets/icon/weather/flurries.png') !important;
+    height: 110px;
+}
+
+.rain {
+    content: url('../assets/icon/weather/rain.png') !important;
+    height: 110px;
+}
+
+.snow {
+    content: url('../assets/icon/weather/snow.png') !important;
+    height: 110px;
+}
+
+.rain-snow {
+    content: url('../assets/icon/weather/rain snow.png') !important;
+    height: 110px;
+}
+
+.clear {
+    content: url('../assets/icon/weather/clear.png') !important;
+    height: 110px;
+}
+
+.cloudy{
+    content: url('../assets/icon/weather/cloudy.png') !important;
+    height: 110px;
+}
+
+.partly-cloudy{
+    content: url('../assets/icon/weather/partly cloudy.png') !important;
+    height: 110px;
+}
+
 .button-md{
         -webkit-box-shadow:  0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
         box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
     }
+
 .card-md{
--webkit-box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+    -webkit-box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
     box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
     border-color:#D0CECF;
     border: 1px solid #D0CECF;
@@ -150,3 +249,5 @@ h2{
 .button{
     text-transform: none;
 }
+
+

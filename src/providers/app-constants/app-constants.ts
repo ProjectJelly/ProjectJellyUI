@@ -16,8 +16,9 @@ export class AppConstantsProvider {
 
   constructor(public http: HttpClient) {
     this.locationKeyAPI = 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
-    this.hourlyForecastAPI = 'http://dataservice.accuweather.com/forecasts/v1/currentconditions/';
+    this.hourlyForecastAPI = 'http://dataservice.accuweather.com/currentconditions/v1/';
     this.accuweatherAPIKey = '16SLfHQ5l8Sw7iS1YaphhIXqXmjy19CW'
+    //this.accuweatherAPIKey = 'Dx1w4JTGShA7hweafeV4L79fIvct0kaG';
   }
 
   getLocationKeyAPI(){

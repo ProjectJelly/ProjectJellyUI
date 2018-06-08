@@ -15,7 +15,7 @@
     <ion-list>
         <ion-item-sliding (ionSwipe)="delete()">
             <ion-item>
-                <ion-card class='functional'>
+                <ion-card class='functional' (click)="goToSite()">
                     <ion-row>
                         <ion-col class="site">
                             <ion-row>
@@ -23,12 +23,6 @@
                                     <div class="site-name">
                                         SITE NAME
                                     </div>
-                                    <div class="device-number">
-                                        DEV1234123
-                                    </div>
-                                </ion-col>
-                                <ion-col class="hardware">
-                                    <button ion-button small disable color="danger" class="hardware-status" outline>Functional</button>
                                 </ion-col>
                             </ion-row>
                             <div class="site-details">
@@ -36,7 +30,7 @@
                                     <ion-col>
                                         <ion-row>
                                             <i class="icon fish"></i>
-                                            <div class="fish-description">shrimp</div>
+                                            <div class="fish-description"> shrimp</div>
                                         </ion-row>
                                     </ion-col>
                                     <ion-col>
@@ -64,9 +58,6 @@
                                             <div class="description">shrimp</div>
                                         </ion-row>
                                     </ion-col>
-                                </ion-row>
-                                <button ion-button small disable class="view-btn" color="dark" clear (click)="openModal('ViewPond')">view</button>
-                                <ion-row>
                                 </ion-row>
                             </div>
                         </ion-col>
@@ -92,12 +83,6 @@
                                     <div class="site-name">
                                         SITE NAME
                                     </div>
-                                    <div class="device-number">
-                                        DEV1234123
-                                    </div>
-                                </ion-col>
-                                <ion-col class="hardware">
-                                    <button ion-button small disable color="danger" class="hardware-status" outline>Defective</button>
                                 </ion-col>
                             </ion-row>
                             <div class="site-details">
@@ -133,9 +118,6 @@
                                             <div class="description">shrimp</div>
                                         </ion-row>
                                     </ion-col>
-                                </ion-row>
-                                <button ion-button small disable class="view-btn" color="dark" clear (click)="openModal('ViewPond')">view</button>
-                                <ion-row>
                                 </ion-row>
                             </div>
                         </ion-col>

@@ -5,20 +5,38 @@ import { ManagePondsPage } from '../ponds/manage-ponds';
 import { WeatherServiceProvider } from '../../providers/weather-service/weather-service';
 
 @Component({
-  selector: 'page-home',
+  selector: 'home',
   templateUrl: 'home.html'
 })
 export class HomePage {
   public hourlyWeatherStatus: any;
+  public weatherIcon: any;
+  public weatherLocation: any;
+  public weatherTemperature: any;
+  public weatherDescription: any;
+  private locationDetails: any;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public weatherServiceProvider: WeatherServiceProvider) {
-   this.loadHourlyForecast();
+     
+     //this.weatherLocation = this.locationDetails.ParentCity.EnglishName;
+  }
+
+  ionViewCanEnter  (){
+    this.locationDetails = this.weatherServiceProvider.locationKey
+    this.loadHourlyForecast(); 
+  }
+
+  ngOnInit(){
+    
+    console.log("hourlyng:",this.hourlyWeatherStatus);
+    
+    //this.weatherTemperature = this.hourlyWeatherStatus.Temperature.Metric.Value;
+    //this.weatherIcon = this.weatherServiceProvider.getWeatherClassIcon(this.weatherDescription);
   }
 
   mitigatingActionPopUp(className: string){
-    console.log("this.hourlyWeatherStatus", this.hourlyWeatherStatus);
     let alert = this.alertCtrl.create({
-        title: 'MITIGATING ACTION',
+        title: 'MITIGATING ACTION', 
         subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
         buttons: ['Ok'],
         cssClass: className
@@ -30,8 +48,12 @@ export class HomePage {
   loadHourlyForecast(){
     this.weatherServiceProvider.getHourlyForecast()
     .then(data => {
-      console.log(data);
+      this.hourlyWeatherStatus = data;
+      console.log("hourly:",this.hourlyWeatherStatus);
+      console.log("hourly:",this.hourlyWeatherStatus[0]);
     });
   }
+
+  
 
 }

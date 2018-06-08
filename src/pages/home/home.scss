@@ -31,8 +31,9 @@ page-home {
          padding-left: 7px;
         
         .device-number{
-            font-size: 11px;
-            margin-top: -4px !important;
+            font-size: 20px;
+            margin-top: 15px !important;
+            margin-bottom:5px;
         }
 
         .site-details{
@@ -58,12 +59,17 @@ page-home {
         button{
                 color: #C00000 !important;
                 border-color: #C00000 !important;
+                width:100%;
             }
 
             button.activated{
                 background:#C00000 !important;
                 //color:#FFF;
             }
+             h2{
+                color:#C00000;
+            }
+            width:100%;
     }
 
     .warning{
@@ -78,12 +84,21 @@ page-home {
             button.activated{
                 background:#FE9901 !important;
             }
+            h2{
+                color:#FE9901;
+            }
+            width:100%;
     }
 
     .optimal{
         .warning-color{
             background: #008001 !important;
         }
+
+        h2{
+             color:#008001;
+        }
+        width:100%;
     }    
   
   .alert-md .alert-wrapper {
@@ -116,6 +131,97 @@ page-home {
       background: #238C90;
       font-size:30px;
       margin:20px;
+      margin-top: -16px;
+      width: 115%;
+      margin-left: -16px;
+      height: 40%;
+      color: #FFF;
+
+      .weather-temp-icon{
+          margin-top: 10px;
+      }
+      .weather-icon{
+        margin-left:-10px; 
+        margin-top: -10px;
+      }
+
+      .weather-temp{
+          font-size: 73px;
+          margin-left:-10px;
+      }
+
+      .weather-desc{
+          font-size:20px;
+              margin-top: -25px;
+      }
+
+      .weather-location{
+          font-size: 20px;
+          font-family: "Segoe UI Semibold";
+          margin-top: -19px;
+      }
   }
-  
-  
+
+    .site-dropdown{
+        margin-top:-15px;
+        border-bottom: 1px solid #1DA893;
+        color:#1DA893;
+        background:#D9D9D9;
+        font-family:"Segoe UI Semibold"
+    } 
+
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md, .select-md .select-icon .select-icon-inner {
+        color: #1DA893;
+        font-family:"Segoe UI Light";
+    }
+
+    .site-dropdown-header {
+        background: #D9D9D9;
+        margin-left: -16px;
+        width: 110%;    
+        padding-bottom: 10px;
+        margin-top: -5px;
+    }
+
+    .average-health{
+        margin-top:13px;
+        
+        .card-md {
+            border-radius: 15px;
+            width: calc(100%);
+            height: 90px;
+        }
+
+        .card-md p {
+            color:#FFF !important;
+            font-size: 2.4rem;
+            padding-top: 18px;
+        }
+
+        .ave-status{
+            width:100%;
+            margin-left: -8px;
+            margin-top: -25px;
+            h2{
+                color:#FFF !important;
+            }
+            .measurement{
+                font-size:14px;
+                padding-top: 27px;
+            }
+
+            .critical{
+                background:#C00000 !important;
+            }
+
+            .optimal{
+                background: #008001 !important;
+            }
+
+            .warning{
+                background:#FE9901 !important;
+            }
+            
+        }
+    }
+ 

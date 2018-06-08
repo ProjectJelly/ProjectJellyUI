@@ -7,6 +7,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ManagePondsPage } from '../pages/ponds/manage-ponds';
+import { ViewPondModule } from '../pages/ponds/view-pond.module';
+import { ViewPond } from '../pages/ponds/view-pond';
 import { AddPond } from '../pages/ponds/add-pond';
 import { AnalyticsPage } from '../pages/analytics/analytics';
 import { HistoryPage } from '../pages/history/history';
@@ -32,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    ViewPondModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     HistoryPage,
     EditProfilePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    ViewPond
   ],
   providers: [
     StatusBar,

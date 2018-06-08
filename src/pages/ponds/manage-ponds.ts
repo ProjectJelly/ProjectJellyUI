@@ -2,6 +2,7 @@ import { Component, Input, ViewChild, ElementRef, Renderer } from "@angular/core
 import {NavController, NavParams} from 'ionic-angular';
 import { JELLY_PROPERTIES } from '../../../config/jelly.properties';
 import { Modal, ModalController, ModalOptions } from 'ionic-angular';
+import { ViewPond } from './view-pond';
 
 
 
@@ -11,7 +12,7 @@ import { Modal, ModalController, ModalOptions } from 'ionic-angular';
 })
 export class ManagePondsPage {
   public items = [{'name': 1} ,{'name': 2},{'name': 3}];
-    constructor(private modal: ModalController) {}
+    constructor(private modal: ModalController, public navCtrl: NavController) {}
 
   openModal(page: any) {
 
@@ -25,15 +26,9 @@ export class ManagePondsPage {
 
   }
 
-  itemDetails() 
-  {
-    console.log("item details");
+  goToSite(){
+    this.navCtrl.push(ViewPond);
   }
-  
-  removeItem() 
-  {
-    console.log("remove item");
-  }
-  
+
 }
 

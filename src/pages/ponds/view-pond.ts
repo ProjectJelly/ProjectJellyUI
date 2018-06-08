@@ -11,7 +11,7 @@ import { IonicPage, NavParams, ViewController } from 'ionic-angular';
 @Component({
   selector: 'view-pond',
   templateUrl: 'view-pond.html',
-  styleUrls: ['/pages/ponds/modal-ponds.scss']
+  styleUrls: ['/pages/ponds/manage-ponds.scss']
 })
 export class ViewPond {
 
@@ -25,13 +25,5 @@ export class ViewPond {
 
   ionViewWillLoad() {
     
-  }
-
-  closeModal() {
-    const data = {
-      name: 'John Doe',
-      occupation: 'Milkman'
-    };
-    this.view.dismiss(data);
   }
 }
