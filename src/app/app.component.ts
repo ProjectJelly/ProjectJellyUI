@@ -10,6 +10,8 @@ import { HistoryPage } from '../pages/history/history';
 import { LoginPage } from '../pages/login/login';
 import { EditProfilePage } from '../pages/profile/edit-profile';
 import { WeatherServiceProvider } from '../providers/weather-service/weather-service';
+import { ProjectJellyServiceProvider } from '../providers/project-jelly-service/project-jelly-service';
+import { AppConstantsProvider } from '../providers/app-constants/app-constants';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,14 +19,16 @@ import { WeatherServiceProvider } from '../providers/weather-service/weather-ser
 
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  
-  rootPage:any = LoginPage;
-  
-  pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public app: App, public weatherServiceProvider: WeatherServiceProvider) {
+  rootPage: any = LoginPage;
+  pages: Array<{ title: string, component: any }>;
+  user: any;
+  token:any;
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public app: App, public weatherServiceProvider: WeatherServiceProvider, public projectJellyService: ProjectJellyServiceProvider, public appConstants: AppConstantsProvider) {
     this.initializeApp();
-    this.getLocationKey();
+    this.getUser();
+    this.weatherServiceProvider.loadLocationKey();
     this.pages = [
       { title: 'Stream', component: HomePage },
       { title: 'Manage Ponds/Devices', component: ManagePondsPage },
@@ -36,9 +40,9 @@ export class MyApp {
 
   openPage(page) {
     this.nav.setRoot(page.component);
-  } 
+  }
 
-  initializeApp(){
+  initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -59,11 +63,17 @@ export class MyApp {
     setTimeout(() => this.backToLogin(), 1000);
   }
 
-  getLocationKey(){
-    this.weatherServiceProvider.getLocationKey()
-    .then(data => {
 
-    });
+  getUser() {
+    let body = new FormData();
+    body.append('email', 'email');
+    body.append('password', 'password');
+    this.projectJellyService.editUserPut('token', 'body')
+      .subscribe(data => {
+        this.user = data
+        console.log("post", this.user);
+      }    
+    );
   }
 
 }

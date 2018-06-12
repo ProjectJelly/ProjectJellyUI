@@ -15,9 +15,9 @@ export class WeatherServiceProvider {
   public latitude: any;
 
   constructor(public http: HttpClient, public appConstants: AppConstantsProvider) {
-    this.apiKey = appConstants.getAccuweatherAPI();
-    this.hourlyForecastAPI = appConstants.getHourlyForecastAPI();
-    this.locationKeyAPI = appConstants.getLocationKeyAPI();
+    this.apiKey = appConstants.accuweatherAPIKey;
+    this.hourlyForecastAPI = appConstants.hourlyForecastAPI;
+    this.locationKeyAPI = appConstants.locationKeyAPI;
     this.longitude = '6.2447';
     this.latitude = '124.5528';
     this.locationKey = this.loadLocationKey();
@@ -25,7 +25,6 @@ export class WeatherServiceProvider {
 
   getLocationKey() {
     if (this.locationKey) {
-      // already loaded data
       return Promise.resolve(this.locationKey);
     }
     return new Promise(resolve => {
@@ -65,6 +64,7 @@ export class WeatherServiceProvider {
       this.locationKey = data;
     });
   }
+  
 
   getWeatherClassIcon(weather: String){
     var weatherClass: any;
