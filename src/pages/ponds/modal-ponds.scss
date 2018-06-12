@@ -80,7 +80,7 @@ add-pond, edit-pond{
 
     }
 
-    .threshold-title{
+    .threshold-title, .devices-title{
         padding-left: 16px;
         margin-top: 10px;
         font-size: 19px;
@@ -88,7 +88,34 @@ add-pond, edit-pond{
         margin-bottom: -3px;
     }
 
+    .devices{
+        margin-top: 12px;
+    }
+
+    .devices-title{
+        margin-top:7px !important;
+    }
+
+    .device-fields{
+        width:100%;
+        margin-top: -9px;
+    }
+
     .label-right{
         order: 2
+    }
+
+    .add-device, .remove-device-btn{
+        font-size: 15px;
+        height: 1.8em;
+    }
+
+    .remove-device-btn{
+        //background: #C00000 !importan
+        border-color: #C00000 !important;
+        color:#C00000;
+        width:90%;
+        margin-top: 15px;
+
     }
 }

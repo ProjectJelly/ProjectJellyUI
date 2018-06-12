@@ -48,12 +48,13 @@ export class MyApp {
   }
 
   backToLogin() {
+    this.nav.setRoot(this.rootPage);
     const root = this.app.getRootNav();
     root.popToRoot();
   }
 
   logout() {
-    //Api Token Logout
+    //Api Token Logout 
     localStorage.clear();
     setTimeout(() => this.backToLogin(), 1000);
   }

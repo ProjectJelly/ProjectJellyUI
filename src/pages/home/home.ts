@@ -37,7 +37,7 @@ export class HomePage {
   mitigatingActionPopUp(className: string){
     let alert = this.alertCtrl.create({
         title: 'MITIGATING ACTION', 
-        subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
+        subTitle: 'You must pump your water to increase the pond oxygen',
         buttons: ['Ok'],
         cssClass: className
       });
