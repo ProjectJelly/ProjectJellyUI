@@ -1,0 +1,72 @@
+{
+    "species": [
+        {
+            "code": "TLP",
+            "display": "Tilapia"
+        },
+        {
+            "code": "CRP",
+            "display": "Common Carp"
+        },
+        {
+            "code": "MF",
+            "display": "Milkfish"
+        },
+        {
+            "code": "AC",
+            "display": "African Catfish"
+        },
+        {
+            "code": "BC",
+            "display": "Bighead Carp"
+        },
+        {
+            "code": "SB",
+            "display": "Seabass"
+        },
+        {
+            "code": "PP",
+            "display": "Pompano "
+        },
+        {
+            "code": "RF",
+            "display": "Rabbit Fish"
+        },
+        {
+            "code": "GPR",
+            "display": "Grouper"
+        },
+        {
+            "code": "FOF",
+            "display": "Freshwater Ornamental Fish (Koi, Guppy, Goldfish)"
+        },
+        {
+            "code": "GFP",
+            "display": "Giant Freshwater Prawn"
+        },
+        {
+            "code": "OYR",
+            "display": "Oyster"
+        },
+        {
+            "code": "MSL",
+            "display": "Mussel"
+        },
+        {
+            "code": "TP",
+            "display": "Tiger Prawn"
+        },
+        {
+            "code": "WS",
+            "display": "White Shrimp"
+        },
+        {
+            "code": "SW",
+            "display": "Seaweed"
+        },
+        {
+            "code": "MC",
+            "display": "Mudcrab"
+        }
+    ]
+}

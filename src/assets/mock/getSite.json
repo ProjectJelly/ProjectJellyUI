@@ -1,0 +1,100 @@
+{
+    "status": "Ok",
+    "data": [
+        {
+            "dateCreated": "2018-06-05T16:00:00.000+0000",
+            "dateModified": null,
+            "id": 1,
+            "user": {
+                "dateCreated": "2018-06-05T16:00:00.000+0000",
+                "dateModified": null,
+                "id": 1,
+                "username": "nelson.d.bendigosa",
+                "password": "$2a$11$tBquSX.eZwWeT0RGSYKCDeAjgOe20nt6Jd3mlp72DvAMuCKJSiIya",
+                "email": "nelson.d.bendigosa@accenture.com",
+                "contactNo": "0989009888",
+                "roles": [
+                    {
+                        "dateCreated": "2018-06-05T16:00:00.000+0000",
+                        "dateModified": null,
+                        "id": 1,
+                        "roleName": "ADMIN",
+                        "description": "admin account"
+                    }
+                ]
+            },
+            "siteName": "Lake Sebu",
+            "latitude": 10.315699,
+            "longitude": 123.885437,
+            "siteSize": "2 acres",
+            "waterDepth": "12 m",
+            "cultureEnvironment": "FW",
+            "cultureType": "PND",
+            "species": {
+                "dateCreated": "2018-06-05T16:00:00.000+0000",
+                "dateModified": null,
+                "id": 1,
+                "type": "FSH",
+                "code": "TLP",
+                "commonName": "Tilapia",
+                "scientificName": "Tilapiases "
+            },
+            "readingInterval": 3,
+            "devices": [
+                {
+                    "dateCreated": "2018-06-05T16:00:00.000+0000",
+                    "dateModified": null,
+                    "id": 1,
+                    "deviceNo": "123456789"
+                },
+                {
+                    "dateCreated": "2018-06-07T05:58:00.000+0000",
+                    "dateModified": null,
+                    "id": 5,
+                    "deviceNo": "111111111"
+                }
+            ]
+        },
+        {
+            "dateCreated": null,
+            "dateModified": "2018-06-08T07:24:02.000+0000",
+            "id": 3,
+            "user": {
+                "dateCreated": "2018-06-05T16:00:00.000+0000",
+                "dateModified": null,
+                "id": 1,
+                "username": "nelson.d.bendigosa",
+                "password": "$2a$11$tBquSX.eZwWeT0RGSYKCDeAjgOe20nt6Jd3mlp72DvAMuCKJSiIya",
+                "email": "nelson.d.bendigosa@accenture.com",
+                "contactNo": "0989009888",
+                "roles": [
+                    {
+                        "dateCreated": "2018-06-05T16:00:00.000+0000",
+                        "dateModified": null,
+                        "id": 1,
+                        "roleName": "ADMIN",
+                        "description": "admin account"
+                    }
+                ]
+            },
+            "siteName": "Davao Ponds",
+            "latitude": 7.190708,
+            "longitude": 125.455341,
+            "siteSize": "2 acres",
+            "waterDepth": "12 m",
+            "cultureEnvironment": "FW",
+            "cultureType": "PND",
+            "species": {
+                "dateCreated": "2018-06-05T16:00:00.000+0000",
+                "dateModified": null,
+                "id": 1,
+                "type": "FSH",
+                "code": "TLP",
+                "commonName": "Tilapia",
+                "scientificName": "Tilapiases "
+            },
+            "readingInterval": 3,
+            "devices": []
+        }
+    ]
+}

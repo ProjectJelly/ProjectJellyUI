@@ -1,0 +1,23 @@
+{
+    "status": "Ok",
+    "data": [
+        {
+            "dateCreated": "2018-06-05T16:00:00.000+0000",
+            "dateModified": null,
+            "id": 1,
+            "username": "nelson.d.bendigosa",
+            "password": "$2a$11$tBquSX.eZwWeT0RGSYKCDeAjgOe20nt6Jd3mlp72DvAMuCKJSiIya",
+            "email": "nelson.d.bendigosa@accenture.com",
+            "contactNo": "0989009888",
+            "roles": [
+                {
+                    "dateCreated": "2018-06-05T16:00:00.000+0000",
+                    "dateModified": null,
+                    "id": 1,
+                    "roleName": "ADMIN",
+                    "description": "admin account"
+                }
+            ]
+        }
+    ]
+}

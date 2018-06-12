@@ -1,0 +1,36 @@
+{
+    "cultureType": [
+        {
+            "code": "CG",
+            "display": "Cage"
+        },
+        {
+            "code": "PN",
+            "display": "Pen"
+        },
+        {
+            "code": "PND",
+            "display": "Pond"
+        },
+        {
+            "code": "TNK",
+            "display": "Tank"
+        },
+        {
+            "code": "WR",
+            "display": "Water Receptacle"
+        },
+        {
+            "code": "STK",
+            "display": "Stake"
+        },
+        {
+            "code": "LN",
+            "display": "Line"
+        },
+        {
+            "code": "RFT",
+            "display": "Raft"
+        }
+    ]
+}

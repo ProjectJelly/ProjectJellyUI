@@ -1,0 +1,16 @@
+{
+    "cultureEnv": [
+        {
+            "code": "FW",
+            "display": "Fresh Water"
+        },
+        {
+            "code": "BW",
+            "display": "Brackish                                                                                                                                                                         Water"
+        },
+        {
+            "code": "MC",
+            "display": "Mariculture"
+        }
+    ]
+}

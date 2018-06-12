@@ -103,7 +103,7 @@ export class ProjectJellyServiceProvider {
     headers.append('Token', token);
 
     return this.http
-      .put(this.appConstants.deleteSiteAPI, requestBody, headers)
+      .delete(this.appConstants.deleteSiteAPI)
       .map(res => res);
   }
 
@@ -112,7 +112,7 @@ export class ProjectJellyServiceProvider {
     headers.append('Token', token);
 
     return this.http
-      .put(this.appConstants.deleteDeviceAPI, requestBody, headers)
+      .delete(this.appConstants.deleteSiteAPI)
       .map(res => res);
   }
 
