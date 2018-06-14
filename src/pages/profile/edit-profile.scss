@@ -13,4 +13,15 @@ edit-profile{
     .contact{
         color:#26C0C8;
     }
+
+    .error-msg .item-block .item-inner {
+    border-bottom: 0px solid #FFF !important;
+}
+
+.error-msg p{
+    color: #C00000;
+    padding-left: 15px;
+    margin-top: 5px;
+}
+
 }

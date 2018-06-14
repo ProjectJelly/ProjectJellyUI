@@ -27,7 +27,6 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public app: App, public weatherServiceProvider: WeatherServiceProvider, public projectJellyService: ProjectJellyServiceProvider, public appConstants: AppConstantsProvider) {
     this.initializeApp();
-    this.getUser();
     this.weatherServiceProvider.loadLocationKey();
     this.pages = [
       { title: 'Stream', component: HomePage },
@@ -44,8 +43,6 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
@@ -63,18 +60,6 @@ export class MyApp {
     setTimeout(() => this.backToLogin(), 1000);
   }
 
-
-  getUser() {
-    let body = new FormData();
-    body.append('email', 'email');
-    body.append('password', 'password');
-    this.projectJellyService.editUserPut('token', 'body')
-      .subscribe(data => {
-        this.user = data
-        console.log("post", this.user);
-      }    
-    );
-  }
 
 }
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams, ViewController } from 'ionic-angular';
+import { Toast } from '@ionic-native/toast';
 
 /**
  * Generated class for the ModalPage page.
@@ -18,7 +19,7 @@ export class EditPond {
   public isCustomizeReading: boolean;
   public isCustomizeThresh: boolean;
 
-  constructor(private navParams: NavParams, private view: ViewController) {
+  constructor(private navParams: NavParams, private view: ViewController, private toast: Toast) {
     this.isCustomizeReading = false;
     this.isCustomizeThresh=false;
   }
