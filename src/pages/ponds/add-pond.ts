@@ -22,41 +22,49 @@ export class AddPond {
   // public isCustomizeThresh: boolean;
   public form: FormGroup;
 
-  constructor(private navParams: NavParams, private view: ViewController, private _FB: FormBuilder,  public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
+  constructor(private navParams: NavParams, private view: ViewController, private formBuilder: FormBuilder, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
     // this. = false;
     //this.isCustomizeThresh=false;
 
     // this.form = this.formBuilder.group({
     //   devices: this.formBuilder.array([this.initDeviceFields()])
     // });
-    this.form = this._FB.group({
-         devices     : this._FB.array([
-            
-         ])
-      });
+    this.form = this.formBuilder.group({
+
+      devices: this.formBuilder.array([
+
+      ]),
+      siteName: ['', Validators.required],
+      location: ['', Validators.required],
+      siteSize: ['', Validators.required],
+      waterDepth: ['', Validators.required],
+      cultureEnvironment: ['', ''],
+      cultureType: ['', ''],
+      readingInterval: ['', ''],
+      species: ['', ''],
+    });
   }
 
-  initDeviceFields(): FormGroup{
-    return this._FB.group({
+  initDeviceFields(): FormGroup {
+    return this.formBuilder.group({
       device: ['', Validators.required]
     });
-  }  
-  
-  addNewDeviceField() : void {
-      const control = <FormArray>this.form.controls.devices;
-      control.push(this.initDeviceFields());
-   }
-   
-   removeDeviceField(i : number) : void
-   {
-      const control = <FormArray>this.form.controls.devices;
-      control.removeAt(i);
-   }
+  }
+
+  addNewDeviceField(): void {
+    const control = <FormArray>this.form.controls.devices;
+    control.push(this.initDeviceFields());
+  }
+
+  removeDeviceField(i: number): void {
+    const control = <FormArray>this.form.controls.devices;
+    control.removeAt(i);
+  }
 
 
-   manage(val: any): void{
-     console.dir(val);
-   }
+  manage(val: any): void {
+    console.dir(val);
+  }
 
   closeModal() {
     console.log("form:", this.form);
@@ -70,7 +78,7 @@ export class AddPond {
   getUser() {
     this.projectJellyService.userGet(localStorage.getItem('access_token'), localStorage.getItem('username'))
       .subscribe(data => {
-        
+
       }
       );
   }
