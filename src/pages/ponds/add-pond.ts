@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams, ViewController } from 'ionic-angular';
 import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
+import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the ModalPage page.
@@ -20,7 +22,7 @@ export class AddPond {
   // public isCustomizeThresh: boolean;
   public form: FormGroup;
 
-  constructor(private navParams: NavParams, private view: ViewController, private _FB: FormBuilder) {
+  constructor(private navParams: NavParams, private view: ViewController, private _FB: FormBuilder,  public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
     // this. = false;
     //this.isCustomizeThresh=false;
 
@@ -63,5 +65,44 @@ export class AddPond {
       occupation: 'Milkman'
     };
     this.view.dismiss(data);
+  }
+
+  getUser() {
+    this.projectJellyService.userGet(localStorage.getItem('access_token'), localStorage.getItem('username'))
+      .subscribe(data => {
+        
+      }
+      );
+  }
+
+  editProfile() {
+    let requestBody = new FormData();
+    let formObj = this.form.getRawValue();
+    let serializedForm = JSON.stringify(formObj);
+    this.projectJellyService.editUserPut(localStorage.getItem('access_token'), serializedForm)
+      .subscribe(data => {
+        this.presentSuccessToast();
+      }, (err) => {
+        this.presentErrorToast();
+      }
+      );
+  }
+
+  presentSuccessToast() {
+    let toast = this.toast.create({
+      message: 'You have edited your profile successfully!',
+      position: 'middle',
+      duration: 3000
+    });
+    toast.present();
+  }
+
+  presentErrorToast() {
+    let toast = this.toast.create({
+      message: 'Hmmm. There seems to be something wrong. Please try again.',
+      position: 'middle',
+      duration: 3000
+    });
+    toast.present();
   }
 }

@@ -11,21 +11,22 @@
             project jelly
         </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="form">
+        <form [formGroup]="form" col-12 text-center>
         <ion-item>
             <ion-label><i class="icon username placeholder-icon"></i> username</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input formControlName="username" type="text"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label><i class="icon password placeholder-icon"></i> password</ion-label>
-            <ion-input type="password"></ion-input>
+            <ion-input formControlName="password" type="password"></ion-input>
         </ion-item>
         <ion-col float-right>
             <button ion-button clear class="forgot-password" float-right>forgot password?</button>
         </ion-col>
         <button ion-button full medium class="login-btn" (click)="login()">login</button>
-
+         </form>
     </ion-row>
 
     <ion-buttons text-center>

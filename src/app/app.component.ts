@@ -12,6 +12,7 @@ import { EditProfilePage } from '../pages/profile/edit-profile';
 import { WeatherServiceProvider } from '../providers/weather-service/weather-service';
 import { ProjectJellyServiceProvider } from '../providers/project-jelly-service/project-jelly-service';
 import { AppConstantsProvider } from '../providers/app-constants/app-constants';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,9 +26,9 @@ export class MyApp {
   user: any;
   token:any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public app: App, public weatherServiceProvider: WeatherServiceProvider, public projectJellyService: ProjectJellyServiceProvider, public appConstants: AppConstantsProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public app: App, public weatherServiceProvider: WeatherServiceProvider, public projectJellyService: ProjectJellyServiceProvider, public appConstants: AppConstantsProvider, public authServiceProvider: AuthServiceProvider) {
     this.initializeApp();
-    this.weatherServiceProvider.loadLocationKey();
+    //this.weatherServiceProvider.loadLocationKey();
     this.pages = [
       { title: 'Stream', component: HomePage },
       { title: 'Manage Ponds/Devices', component: ManagePondsPage },
@@ -56,7 +57,8 @@ export class MyApp {
 
   logout() {
     //Api Token Logout 
-    localStorage.clear();
+    this.authServiceProvider.logout();
+    //localStorage.clear();
     setTimeout(() => this.backToLogin(), 1000);
   }
 

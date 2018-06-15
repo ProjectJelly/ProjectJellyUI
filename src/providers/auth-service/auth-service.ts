@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AppConstantsProvider } from '../../providers/app-constants/app-constants';
 
 /*
   Generated class for the AuthServiceProvider provider.
@@ -10,18 +11,19 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthServiceProvider {
 
-  constructor(private httpClient: HttpClient) { }
-/*
+  private isValidLogIn: any;
+  constructor(private httpClient: HttpClient, public appConstants: AppConstantsProvider) { }
+
   isAuthenticated() {
     if (localStorage.getItem('loggedIn') === 'true' && this.accessTokenIsValid()) {
-      return false;
-    } else {
       return true;
+    } else {
+      return false;
     }
   }
 
-  accessTokenIsValid() {
-    this.httpClient.get('http://localhost:8080/api/v1/users', {
+  accessTokenIsValid():Promise<void> {
+    return new Promise<void>(resolve => { this.httpClient.get('https://jelly-ws.azurewebsites.net/api/v1/users', {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
         'Content-Type': 'application/json'
@@ -29,11 +31,10 @@ export class AuthServiceProvider {
     }).subscribe(res => { //access token is still valid
       return true;
     }, err => { //access token is no longer valid
-      console.log("Invalid");
       if (err.error.error_description.includes("Access token expired")) {
         return false;
       }
-    });
+    })})
   }
 
   login(username: string, password: string) {
@@ -45,21 +46,39 @@ export class AuthServiceProvider {
       })
     };
 
-    let params = new HttpParams();
-    params = params.set('username', username);
-    params = params.set('password', password);
-    params = params.set('grant_type', 'password');
+    let params = new HttpParams()
+    .set('username', username)
+    .set('password', password)
+    .set('grant_type', 'password');
 
-    this.httpClient.post('http://localhost:8080/oauth/token', params, httpOptions)
+    return new Promise<void>(resolve => { this.httpClient.post('https://jelly-ws.azurewebsites.net/oauth/token', params.toString(), httpOptions)
       .subscribe(response => {
-        authItems = [
-          // { key: 'access_token', value: response.access_token },
-          // { key: 'refresh_token', value: response.refresh_token },
-          // { key: 'expires_in', value: response.expires_in },
-          { key: 'loggedIn', value: 'true' },
-        ];
-        this._setSession(authItems);
-      });
+        console.log('post taken', response)
+        // var res = response;
+         if(response){
+
+        localStorage.setItem('access_token', response.access_token);
+        localStorage.setItem('refresh_token', response.refresh_token);
+        localStorage.setItem('expires_in', response.expires_in);
+        localStorage.setItem('loggedIn', 'true');
+     
+        // var
+        // authItems = [
+        //   { key: 'access_token', value: response.access_token },
+        //   { key: 'refresh_token', value: response.refresh_token },
+        //   { key: 'expires_in', value: response.expires_in },
+        //   { key: 'loggedIn', value: 'true' },
+        //   { key: 'username', value: username }
+        // ];
+        //this._setSession(authItems);
+         }
+        return true;
+        
+      }, (err) => {
+        return false;
+      })});
+
+      
   }
 
   logout() {
@@ -72,7 +91,8 @@ export class AuthServiceProvider {
   private _setSession(storageItems: any[]) {
     storageItems.forEach(item => {
       localStorage.setItem(item.key, item.value);
+      console.log('saved local storage');
     });
-  }*/
+  }
 
 }

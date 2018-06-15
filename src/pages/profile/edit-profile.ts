@@ -18,15 +18,12 @@ export class EditProfilePage {
   private username: any;
   private successMessage: 'You have edited your profile successfully!';
   private errorMessage: 'Hmmm. There seems to be something wrong. Please try again.';
+  
   constructor(public navCtrl: NavController, public projectJellyService: ProjectJellyServiceProvider, public appConstants: AppConstantsProvider, private formBuilder: FormBuilder, private toast: ToastController) {
-    console.log("editprofile");
-
-
   }
 
   ionViewWillEnter() {
     this.getUser();
-
   }
 
   setForm() {
@@ -44,10 +41,9 @@ export class EditProfilePage {
   }
 
   getUser() {
-    this.projectJellyService.userGet('token', 'jem.m.t.donato')
+    this.projectJellyService.userGet(localStorage.getItem('access_token'), localStorage.getItem('username'))
       .subscribe(data => {
         this.user = data;
-        console.log('HELLO USER', this.user);
         this.setForm();
       }
       );
@@ -56,10 +52,8 @@ export class EditProfilePage {
   editProfile() {
     let requestBody = new FormData();
     let formObj = this.form.getRawValue();
-    console.log("formObj", formObj);
     let serializedForm = JSON.stringify(formObj);
-    console.log("serializedForm", serializedForm)
-    this.projectJellyService.editUserPut('token', serializedForm)
+    this.projectJellyService.editUserPut(localStorage.getItem('access_token'), serializedForm)
       .subscribe(data => {
         this.presentSuccessToast(this.successMessage);
       }, (err) => {

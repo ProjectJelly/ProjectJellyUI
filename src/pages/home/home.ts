@@ -3,6 +3,9 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { ManagePondsPage } from '../ponds/manage-ponds';
 import { WeatherServiceProvider } from '../../providers/weather-service/weather-service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'home',
@@ -16,22 +19,18 @@ export class HomePage {
   public weatherDescription: any;
   private locationDetails: any;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public weatherServiceProvider: WeatherServiceProvider) {
-     
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public weatherServiceProvider: WeatherServiceProvider, public authServiceProvider: AuthServiceProvider) {
      //this.weatherLocation = this.locationDetails.ParentCity.EnglishName;
   }
 
   ionViewCanEnter  (){
-    this.locationDetails = this.weatherServiceProvider.locationKey
-    this.loadHourlyForecast(); 
-  }
-
-  ngOnInit(){
+    //this.locationDetails = this.weatherServiceProvider.locationKey
+    //this.loadHourlyForecast(); 
     
-    console.log("hourlyng:",this.hourlyWeatherStatus);
-    
-    //this.weatherTemperature = this.hourlyWeatherStatus.Temperature.Metric.Value;
-    //this.weatherIcon = this.weatherServiceProvider.getWeatherClassIcon(this.weatherDescription);
+    console.log("authen:",this.authServiceProvider.isAuthenticated());
+    if(!this.authServiceProvider.isAuthenticated()) {
+      this.navCtrl.push(LoginPage);
+    } 
   }
 
   mitigatingActionPopUp(className: string){
