@@ -14,35 +14,36 @@ export class LoginPage {
 
   private form: FormGroup;
 
-  constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider,  private formBuilder: FormBuilder, private toast: ToastController) {}
+  constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider, private formBuilder: FormBuilder, private toast: ToastController) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.setLoginForm()
-    if(this.authServiceProvider.isAuthenticated()) {
+    if (this.authServiceProvider.isAuthenticated()) {
       this.navCtrl.push(HomePage);
-    } 
+    }
   }
 
-  login(){
+  login() {
     var username = this.form.value['username'];
     var password = this.form.value['password'];
-    if(!this.authServiceProvider.login(username,password)){
+
+    if (!this.authServiceProvider.login(username, password)) {
       this.presentErrorToast();
     } else {
       this.navCtrl.push(HomePage);
     }
-    
+
   }
 
-  signUp(){
+  signUp() {
     this.navCtrl.push(SignupPage);
   }
 
-  setLoginForm(){
+  setLoginForm() {
     this.form = this.formBuilder.group({
-        username: ['', ''],
-        password: ['', '']
-      });
+      username: ['', ''],
+      password: ['', '']
+    });
   }
 
   presentErrorToast() {
@@ -53,6 +54,6 @@ export class LoginPage {
     });
     toast.present();
   }
-  
+
 }
 

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConstantsProvider } from '../../providers/app-constants/app-constants';
 import { RequestMethod, RequestOptions, Headers } from '@angular/http';
+import { ToastController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/Rx';
@@ -32,23 +33,25 @@ export class ProjectJellyServiceProvider {
   }
 
   cultureEnvtGet() {
-    return this.http.get(this.appConstants.getCultureEnvironmentAPI)
-      .map(res => console.log(res));
+    return this.http.get(this.appConstants.getCultureEnvironmentAPI);
   }
 
   cultureTypeGet() {
-    return this.http.get(this.appConstants.getCultureTypeAPI)
-      .map(res => console.log(res));
+    return this.http.get(this.appConstants.getCultureTypeAPI);
   }
 
   hoursGet() {
-    return this.http.get(this.appConstants.getHoursAPI)
-      .map(res => console.log(res));
+    return this.http.get(this.appConstants.getHoursAPI);
   }
 
-  speciesGet() {
-    return this.http.get(this.appConstants.getSpeciesAPI)
-      .map(res => console.log(res));
+  speciesGet(token:any) {
+    console.log('speciesgetotke,', token);
+    return this.http.get(this.appConstants.getSpeciesAPI, { 
+        headers: new HttpHeaders({
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        })
+     });
   }
 
   readingGet(token: any, username: any) {
@@ -101,7 +104,7 @@ export class ProjectJellyServiceProvider {
 
   addSitePost(token: any, requestBody: any) {
     return this.http
-      .post(this.appConstants.addUserAPI, requestBody, { 
+      .post(this.appConstants.addSiteAPI, requestBody, { 
         headers: new HttpHeaders({
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -141,6 +144,24 @@ export class ProjectJellyServiceProvider {
         })
      });
   }
+
+  // presentSuccessToast() {
+  //   let toast = this.toast.create({
+  //     message: 'You have added a pond successfully!',
+  //     position: 'middle',
+  //     duration: 3000
+  //   });
+  //   toast.present();
+  // }
+
+  // presentErrorToast() {
+  //   let toast = this.toast.create({
+  //     message: 'Hmmm. There seems to be something wrong. Please try again.',
+  //     position: 'middle',
+  //     duration: 3000
+  //   });
+  //   toast.present();
+  // }
 
  
 

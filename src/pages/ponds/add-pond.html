@@ -8,91 +8,82 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="form">
     <form [formGroup]="form" (ngSubmit)="manage(form.value)">
         <ion-item>
             <ion-label>Site/Pond Name</ion-label>
-            <ion-input type="text" text-right></ion-input>
+            <ion-input formControlName="siteName" type="text" text-right></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>Address</ion-label>
-            <ion-input type="text" text-right></ion-input>
+            <ion-input formControlName="location" type="text" text-right></ion-input>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="speciesList">
             <ion-label>Species</ion-label>
             <!--<ion-select [(ngModel)]="gaming">-->
-            <ion-select>
-                <ion-option value="tilapia">Tilapia</ion-option>
-                <ion-option value="shrimp">Shrimp</ion-option>
-                <ion-option value="milkfish">Milkfish</ion-option>
-                <ion-option value="crab">Crab</ion-option>
+            <ion-select formControlName="species">
+                <ion-option *ngFor="let species of speciesList" value="{{species.id}}">{{species.commonName}}</ion-option>
             </ion-select>
         </ion-item>
 
         <ion-item>
             <ion-label>Site Size</ion-label>
-            <ion-input type="text" text-right></ion-input>
+            <ion-input formControlName="siteSize" type="text" text-right></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>Water Depth</ion-label>
-            <ion-input type="text" text-right></ion-input>
+            <ion-input formControlName="waterDepth" type="text" text-right></ion-input>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="cultureEnvironmentList">
             <ion-label>Culture Environment</ion-label>
             <!--<ion-select [(ngModel)]="env">-->
-            <ion-select>
-                <ion-option value="fw">Fresh Water</ion-option>
-                <ion-option value="bw">Brackish Water</ion-option>
-                <ion-option value="mc">Mariculture</ion-option>
+            <ion-select formControlName="cultureEnvironment">
+                <ion-option *ngFor="let cultureEnvironment of cultureEnvironmentList" value="{{cultureEnvironment.code}}">{{cultureEnvironment.display}}</ion-option>
+                <!--<ion-option value="bw">Brackish Water</ion-option>
+                <ion-option value="mc">Mariculture</ion-option>-->
             </ion-select>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="cultureTypeList">
             <ion-label>Culture Type</ion-label>
-            <ion-select>
+            <ion-select formControlName="cultureType">
                 <!--<ion-select [(ngModel)]="type">-->
-                <ion-option value="pond">Pond</ion-option>
-                <ion-option value="tank">Tank</ion-option>
-                <ion-option value="raft">Raft</ion-option>
-                <ion-option value="line">Line</ion-option>
+                <ion-option *ngFor="let cultureType of cultureTypeList" value="{{cultureType.code}}">{{cultureType.display}}</ion-option>
             </ion-select>
         </ion-item>
 
         <ion-item>
             <ion-label>Customize Reading Interval</ion-label>
             <!--<ion-toggle [(ngModel)]="isCustomizeReading" [checked]="isCustomizeReading"></ion-toggle>-->
-            <ion-toggle></ion-toggle>
+            <ion-toggle [checked]="isCustomizeReading" (ionChange)="toggleReading()"></ion-toggle>
 
         </ion-item>
 
-        <ion-item *ngIf="!isCustomizeReading">
+        <ion-item *ngIf="!isCustomizeReading && hoursList">
             <ion-label>Reading Interval</ion-label>
-            <!--<ion-select [(ngModel)]="interval">-->
-            <ion-select>
-                <ion-option value="3">3 HOURS</ion-option>
-                <ion-option value="6">6 HOURS</ion-option>
-                <ion-option value="9">9 HOURS</ion-option>
-                <ion-option value="12">12 HOURS</ion-option>
+            <ion-select formControlName="readingInterval">
+                <ion-option *ngFor="let hour of hoursList" value="{{hour.code}}">{{hour.display}}</ion-option>
             </ion-select>
         </ion-item>
 
-        <ion-item *ngIf="isCustomizeReading">
+        <ion-item *ngIf="isCustomizeReading && hoursList">
             <ion-label>Reading Interval Hours</ion-label>
-            <ion-input type="text" text-right></ion-input>
+            <ion-input formControlName="readingInterval" type="text" text-right></ion-input>
             <ion-label class="label-right">hour/s</ion-label>
         </ion-item>
 
-        <ion-item>
-            <ion-label>Customize Water Thresholds</ion-label>
-            <!--<ion-toggle [(ngModel)]="isCustomizeThresh" [checked]="isCustomizeThresh"></ion-toggle>-->
-            <ion-toggle></ion-toggle>
-        </ion-item>
 
-        <div *ngIf="isCustomizeThresh">
+        <!--<ion-item>
+            <ion-label>Customize Water Thresholds</ion-label>
+            <ion-toggle [(ngModel)]="isCustomizeThresh" [checked]="isCustomizeThresh"></ion-toggle>
+            <ion-toggle></ion-toggle>
+        </ion-item>-->
+
+        <!--<div *ngIf="isCustomizeThresh">
             <ion-row>
                 <div class="threshold-title">
                     pH
@@ -192,7 +183,7 @@
                     <ion-label class="label-right">°C</ion-label>
                 </ion-item>
             </ion-row>
-        </div>
+        </div>-->
 
         <ion-row class="devices">
             <div class="devices-title">
@@ -225,7 +216,7 @@
                 <button ion-button outline class="cancel-btn">cancel</button>
             </ion-col>
             <ion-col>
-                <button ion-button class="add-btn" [disabled]="!form.valid">add pond</button>
+                <button ion-button class="add-btn" [disabled]="!form.valid" (click)="addPond()">add pond</button>
             </ion-col>
         </ion-row>
     </form>

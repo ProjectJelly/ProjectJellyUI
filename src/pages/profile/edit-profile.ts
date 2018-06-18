@@ -43,6 +43,7 @@ export class EditProfilePage {
   getUser() {
     this.projectJellyService.userGet(localStorage.getItem('access_token'), localStorage.getItem('username'))
       .subscribe(data => {
+        console.log('user', data);
         this.user = data;
         this.setForm();
       }

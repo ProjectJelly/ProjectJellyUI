@@ -48,7 +48,7 @@ export class AppConstantsProvider {
     this.getCultureEnvironmentAPI = '../../assets/mock/getCultureEnvironment.json';
     this.getCultureTypeAPI = '../../assets/mock/getCultureType.json';
     this.getHoursAPI = '../../assets/mock/getHours.json';
-    this.getSpeciesAPI = '../../assets/mock/getSpecies.json';
+    this.getSpeciesAPI = this.baseAPI + 'api/v1/species';
     this.getReadingAPI = '';
     this.addDeviceAPI = this.baseAPI + 'api/v1/devices';
     this.addSiteAPI = this.baseAPI + 'api/v1/sites';

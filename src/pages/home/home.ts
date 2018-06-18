@@ -24,13 +24,7 @@ export class HomePage {
   }
 
   ionViewCanEnter  (){
-    //this.locationDetails = this.weatherServiceProvider.locationKey
-    //this.loadHourlyForecast(); 
     
-    console.log("authen:",this.authServiceProvider.isAuthenticated());
-    if(!this.authServiceProvider.isAuthenticated()) {
-      this.navCtrl.push(LoginPage);
-    } 
   }
 
   mitigatingActionPopUp(className: string){
