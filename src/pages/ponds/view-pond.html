@@ -2,26 +2,26 @@
     <ion-navbar>
         <ion-title>view pond</ion-title>
         <ion-buttons end>
-            <button ion-button (click)="openModal('EditPond')">Edit</button>
+            <button ion-button (click)="openModal('EditPond', site)">Edit</button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="site">
     <ion-grid class="site-profile">
         <ion-row text-center>
             <ion-col class="site-name" float-center justify-content-center align-items-center>
-                Lake Sebu
+                {{site.siteName}}
             </ion-col>
         </ion-row>
         <ion-row text-center>
             <ion-col col-1>
             </ion-col>
-            <ion-col  float-center justify-content-center align-items-center>
+            <ion-col float-center justify-content-center align-items-center>
                 <ion-row>
                     <i class="icon fish-white"></i>
-                    <div class="fish-description">shrimp</div>
+                    <div class="fish-description">{{site.species.commonName}}</div>
                 </ion-row>
             </ion-col>
             <ion-col float-center justify-content-center align-items-center>
@@ -36,14 +36,14 @@
         <ion-row text-center>
             <ion-col col-1>
             </ion-col>
-            <ion-col  float-center justify-content-center align-items-center>
+            <ion-col float-center justify-content-center align-items-center>
                 <ion-row>
-                    <div class="site-description">site size: 120 Hectares</div>
+                    <div class="site-description">site size: {{site.siteSize}}</div>
                 </ion-row>
             </ion-col>
             <ion-col float-center justify-content-center align-items-center>
                 <ion-row>
-                    <div class="site-description">water depth: 12 Meters</div>
+                    <div class="site-description">water depth: {{site.waterDepth}}</div>
                 </ion-row>
             </ion-col>
             <ion-col col-1>
@@ -52,53 +52,57 @@
 
 
         <ion-row class="other-details">
-			<ion-col col-3>
-				<ion-card>
+            <ion-col col-3>
+                <ion-card>
                     <div text-center class="header">culture type</div>
-					<div class="description" text-center>
-						<ion-row justify-content-center align-items-center>
-							<p>shrimps</p>
-						</ion-row>
-					</div>		
-				</ion-card>
-			</ion-col>
-			<ion-col col-3>
-				<ion-card>
+                    <div class="description" text-center>
+                        <ion-row justify-content-center align-items-center>
+                            <ng-container *ngFor="let cultureType of cultureTypeList">
+                                <p *ngIf="cultureType.code == site.cultureType">{{cultureType.display}}</p>
+                            </ng-container>
+                        </ion-row>
+                    </div>
+                </ion-card>
+            </ion-col>
+            <ion-col col-3>
+                <ion-card>
                     <div text-center class="header">culture environment</div>
-					<div class="description" text-center>
-						<ion-row justify-content-center align-items-center>
-							<p>shrimps</p>
-						</ion-row>
-					</div>
-				</ion-card>
-			</ion-col>
+                    <div class="description" text-center>
+                        <ion-row justify-content-center align-items-center>
+                            <ng-container *ngFor="let cultureEnvironment of cultureEnvironmentList">
+                                <p *ngIf="cultureEnvironment.code == site.cultureEnvironment">{{cultureEnvironment.display}}</p>
+                            </ng-container>
+                        </ion-row>
+                    </div>
+                </ion-card>
+            </ion-col>
 
-			<ion-col col-3>
-				<ion-card>
+            <ion-col col-3>
+                <ion-card>
                     <div text-center class="header">reading interval</div>
-					<div class="description" text-center>
-						<ion-row justify-content-center align-items-center>
-							<p>3 hours</p>
-						</ion-row>
-					</div>
-				</ion-card>
-			</ion-col>
+                    <div class="description" text-center>
+                        <ion-row justify-content-center align-items-center>
+                            <p>{{site.readingInterval}} hour/s</p>
+                        </ion-row>
+                    </div>
+                </ion-card>
+            </ion-col>
 
-			<ion-col col-3>
-				<ion-card>
+            <ion-col col-3>
+                <ion-card>
                     <div text-center class="header">thresholds</div>
-					<div class="description" text-center>
-						<ion-row justify-content-center align-items-center>
-							<p>default</p>
-						</ion-row>
-					</div>
-				</ion-card>
-			</ion-col>
-		</ion-row>
+                    <div class="description" text-center>
+                        <ion-row justify-content-center align-items-center>
+                            <p>default</p>
+                        </ion-row>
+                    </div>
+                </ion-card>
+            </ion-col>
+        </ion-row>
     </ion-grid>
     <h2>devices</h2>
     <ion-list>
-        <ion-item-sliding (ionSwipe)="delete()">
+        <!--<ion-item-sliding (ionSwipe)="delete()">
             <ion-item>
                 <ion-card class='functional'>
                     <ion-row>
@@ -120,29 +124,31 @@
             <ion-item-options>
                 <button ion-button expandable class="delete-btn"><i class="icon trash"></i>delete</button>
             </ion-item-options>
-        </ion-item-sliding>
+        </ion-item-sliding>-->
 
-        <ion-item-sliding (ionSwipe)="delete()">
+        <p text-align="center" *ngIf="deviceList.length == 0">there are no device registered for this pond</p>
+
+        <ion-item-sliding (ionSwipe)="delete(device)"  *ngFor="let device of deviceList">
             <ion-item>
-                <ion-card class="defective">
+                <ion-card class="devices-card">
                     <ion-row>
                         <ion-col class="site">
                             <ion-row>
                                 <ion-col>
                                     <div class="device-number">
-                                        DEV1234123
+                                        <h2>{{device.deviceNo}}</h2>
                                     </div>
                                 </ion-col>
-                                <ion-col class="hardware">
+                                <!--<ion-col class="hardware">
                                     <button ion-button small disable color="danger" class="hardware-status" outline>Defective</button>
-                                </ion-col>
+                                </ion-col>-->
                             </ion-row>
                         </ion-col>
                     </ion-row>
                 </ion-card>
             </ion-item>
             <ion-item-options>
-                <button ion-button expandable class="delete-btn"><i class="icon trash"></i>delete</button>
+                <button ion-button expandable class="delete-btn" (click)="delete(device)"><i class="icon trash"></i>delete</button>
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>

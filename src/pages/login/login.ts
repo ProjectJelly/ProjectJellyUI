@@ -5,6 +5,7 @@ import { SignupPage } from '../signup/signup';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from 'ionic-angular';
+import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
 
 @Component({
   selector: 'login',
@@ -14,7 +15,7 @@ export class LoginPage {
 
   private form: FormGroup;
 
-  constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider, private formBuilder: FormBuilder, private toast: ToastController) { }
+  constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider, private formBuilder: FormBuilder, private toast: ToastController, public projectJellyService: ProjectJellyServiceProvider,) { }
 
   ngOnInit() {
     this.setLoginForm()
@@ -27,11 +28,13 @@ export class LoginPage {
     var username = this.form.value['username'];
     var password = this.form.value['password'];
 
+    this.projectJellyService.showLoading();
     if (!this.authServiceProvider.login(username, password)) {
       this.presentErrorToast();
     } else {
       this.navCtrl.push(HomePage);
     }
+    this.projectJellyService.dismissLoading();
 
   }
 

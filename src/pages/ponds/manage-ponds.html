@@ -8,20 +8,20 @@
 </ion-header>
 
 <ion-content padding>
-    <button ion-button full class="confirm" (click)="openModal('AddPond')">
+    <button ion-button full class="confirm" (click)="openModal('AddPond', null)">
       add pond
     </button>
 
     <ion-list>
-        <ion-item-sliding (ionSwipe)="delete()">
+        <ion-item-sliding (ionSwipe)="delete()"  *ngFor="let site of siteList">
             <ion-item>
-                <ion-card class='functional' (click)="goToSite()">
+                <ion-card class='functional' (click)="goToSite(site.id)">
                     <ion-row>
                         <ion-col class="site">
                             <ion-row>
                                 <ion-col>
                                     <div class="site-name">
-                                        Lake Sebu
+                                        {{site.siteName}}
                                     </div>
                                 </ion-col>
                             </ion-row>
@@ -30,7 +30,7 @@
                                     <ion-col>
                                         <ion-row>
                                             <i class="icon fish"></i>
-                                            <div class="fish-description"> shrimp</div>
+                                            <div class="fish-description"> {{site.species.commonName}} </div>
                                         </ion-row>
                                     </ion-col>
                                     <ion-col>
@@ -43,20 +43,25 @@
 
                                 <ion-row class="other-details">
                                     <ion-col>
+                                        
+                                    <ng-container *ngFor="let cultureType of cultureTypeList">
                                         <ion-row>
-                                            <div class="title">culture type</div>
+                                            <div class="title" *ngIf="cultureType.code == site.cultureType">culture type</div>
                                         </ion-row>
-                                        <ion-row>
-                                            <div class="description">shrimp</div>
+                                        <ion-row *ngIf="cultureType.code == site.cultureType">
+                                            <div class="description">{{cultureType.display}}</div>
                                         </ion-row>
+                                        </ng-container>
                                     </ion-col>
                                     <ion-col>
-                                        <ion-row>
+                                        <ng-container *ngFor="let cultureEnvironment of cultureEnvironmentList">
+                                        <ion-row *ngIf="cultureEnvironment.code == site.cultureEnvironment">
                                             <div class="title">culture environment</div>
                                         </ion-row>
-                                        <ion-row>
-                                            <div class="description">shrimp</div>
+                                        <ion-row *ngIf="cultureEnvironment.code == site.cultureEnvironment">
+                                            <div class="description">{{cultureEnvironment.display}}</div>
                                         </ion-row>
+                                        </ng-container> 
                                     </ion-col>
                                 </ion-row>
                             </div>
@@ -65,65 +70,6 @@
                             <button ion-button color="dark" class="edit-btn" clear (click)="openModal('EditPond')"><i class="icon edit"></i> edit</button>
                         </ion-col>
 
-                    </ion-row>
-                </ion-card>
-            </ion-item>
-            <ion-item-options>
-                <button ion-button expandable class="delete-btn"><i class="icon trash"></i>delete</button>
-            </ion-item-options>
-        </ion-item-sliding>
-
-        <ion-item-sliding (ionSwipe)="delete()">
-            <ion-item>
-                <ion-card class="defective">
-                    <ion-row>
-                        <ion-col class="site">
-                            <ion-row>
-                                <ion-col>
-                                    <div class="site-name">
-                                        SITE NAME
-                                    </div>
-                                </ion-col>
-                            </ion-row>
-                            <div class="site-details">
-                                <ion-row>
-                                    <ion-col>
-                                        <ion-row>
-                                            <i class="icon fish"></i>
-                                            <div class="fish-description">shrimp</div>
-                                        </ion-row>
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-row>
-                                            <i class="icon placeholder"></i>
-                                            <div class="location-description">Lake Sebu</div>
-                                        </ion-row>
-                                    </ion-col>
-                                </ion-row>
-
-                                <ion-row class="other-details">
-                                    <ion-col>
-                                        <ion-row>
-                                            <div class="title">culture type</div>
-                                        </ion-row>
-                                        <ion-row>
-                                            <div class="description">shrimp</div>
-                                        </ion-row>
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-row>
-                                            <div class="title">culture environment</div>
-                                        </ion-row>
-                                        <ion-row>
-                                            <div class="description">shrimp</div>
-                                        </ion-row>
-                                    </ion-col>
-                                </ion-row>
-                            </div>
-                        </ion-col>
-                        <ion-col col-2>
-                            <button ion-button color="dark" class="edit-btn" clear (click)="openModal('EditPond')"><i class="icon edit"></i> edit</button>
-                        </ion-col>
                     </ion-row>
                 </ion-card>
             </ion-item>
@@ -132,17 +78,4 @@
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>
-    <!--
-    <ion-list>
-        <ion-item-sliding *ngFor="let item of items" (ionSwipe)="delete(item)">
-            <ion-item (click)="itemDetails($event, item)">
-                {{item.name}}
-            </ion-item>
-
-            <ion-item-options>
-                <button ion-button expandable (click)="removeItem(item.id)">Delete</button>
-            </ion-item-options>
-        </ion-item-sliding>
-    </ion-list>-->
-
 </ion-content>

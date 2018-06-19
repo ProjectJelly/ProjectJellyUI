@@ -113,7 +113,8 @@ view-pond{
     .site-profile{
         background: #238C90;
         margin:20px;
-        margin-top: -16px;
+        margin-top: 41px;
+        //margin-top: -16px;
         width: 115%;
         margin-left: -16px;
         height: 45%;
@@ -158,6 +159,10 @@ view-pond{
             
         ion-row{
             margin-top:-5px;    
+        }
+
+        .devices-card {
+            padding: 10px !important;
         }
     }
 

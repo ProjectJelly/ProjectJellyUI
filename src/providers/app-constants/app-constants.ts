@@ -43,7 +43,7 @@ export class AppConstantsProvider {
     //this.baseAPI = 'http://demo0424663.mockable.io/';
     this.getUsersAPI = this.baseAPI + 'api/v1/users';
     this.getUserAPI = this.baseAPI + 'api/v1/users/username/';
-    this.getSitesAPI = this.baseAPI + 'api/v1/ites/username/';
+    this.getSitesAPI = this.baseAPI + 'api/v1/sites/username/';
     this.getSiteAPI = this.baseAPI + 'api/v1/sites/';
     this.getCultureEnvironmentAPI = '../../assets/mock/getCultureEnvironment.json';
     this.getCultureTypeAPI = '../../assets/mock/getCultureType.json';
@@ -55,7 +55,7 @@ export class AppConstantsProvider {
     this.addUserAPI = this.baseAPI + 'api/v1/users';
     this.editUserAPI = this.baseAPI + 'api/v1/users';
     this.editSiteAPI = this.baseAPI + 'api/v1/sites';
-    this.deleteDeviceAPI = this.baseAPI + 'api/v1/devices';
+    this.deleteDeviceAPI = this.baseAPI + 'api/v1/devices/';
     this.deleteSiteAPI = this.baseAPI + 'api/v1/sites';
     this.refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiamVsbHl3c3Jlc291cmNlIl0sInVzZXJfbmFtZSI6ImphbWVlbGEubC5hLnRvcnJlcyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiI5ZDdiYzIxZS1mYTExLTRkY2UtODhkZC01N2I4NTRiYjAzNzAiLCJleHAiOjE1MzE0Njg1NTYsImF1dGhvcml0aWVzIjpbIkFETUlOIl0sImp0aSI6IjJjYmZjMjI1LWNlNjUtNDE5MS1hMzQ0LTg3YmMyYjQ0NDhkNSIsImNsaWVudF9pZCI6ImplbGx5V2ViQXBwIn0.GDI0Dti7WwQA595cgpTaxr2sQxuuZmBeRKkJS0DopfA';
     this.accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiamVsbHl3c3Jlc291cmNlIl0sInVzZXJfbmFtZSI6ImphbWVlbGEubC5hLnRvcnJlcyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1MjkwMzkwOTIsImF1dGhvcml0aWVzIjpbIkFETUlOIl0sImp0aSI6IjM2ZTA4OTVmLTI3ZDctNDExYy1hOWI5LTI0OTM0MWYwMmRiYyIsImNsaWVudF9pZCI6ImplbGx5V2ViQXBwIn0.bQJDdWsxhhmB1gY_NIhD1iBCbd0EPParManmeSO_734';

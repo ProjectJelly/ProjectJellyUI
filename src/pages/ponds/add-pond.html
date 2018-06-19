@@ -213,7 +213,7 @@
 
         <ion-row>
             <ion-col>
-                <button ion-button outline class="cancel-btn">cancel</button>
+                <button ion-button outline class="cancel-btn" (click)="closeModal()">cancel</button>
             </ion-col>
             <ion-col>
                 <button ion-button class="add-btn" [disabled]="!form.valid" (click)="addPond()">add pond</button>

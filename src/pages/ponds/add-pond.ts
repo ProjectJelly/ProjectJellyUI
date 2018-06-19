@@ -33,8 +33,6 @@ export class AddPond {
   }
 
   ionViewWillEnter() {
-
-    console.log('GET');
     this.getCultureTypeList();
     this.getCultureEnvtList();
     this.getHoursList();
@@ -146,6 +144,7 @@ export class AddPond {
     requestBody.devices = [];
 
     let serializedForm = JSON.stringify(requestBody);
+    this.projectJellyService.showLoading();
     this.projectJellyService.addSitePost(localStorage.getItem('access_token'), requestBody)
       .subscribe(data => {
         var siteResponseData = data['data']
@@ -160,6 +159,7 @@ export class AddPond {
           this.projectJellyService.addDevicePost(localStorage.getItem('access_token'), reqBody)
             .subscribe(data => {
               console.log('data', data);
+              this.projectJellyService.dismissLoading();
             }, (err) => {
               this.presentErrorDeviceToast();
             }
