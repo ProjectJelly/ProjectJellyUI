@@ -30,7 +30,12 @@ export class ManagePondsPage {
       enableBackdropDismiss: false
     };
 
-    const myModal: Modal = this.modal.create(page);
+    console.log('param edit',param);
+    let requestBody: any = {};
+    requestBody = {};
+    requestBody = param;
+    console.log('requestBody',requestBody);
+    const myModal: Modal = this.modal.create(page, {data: requestBody});
     myModal.present();
   }
 

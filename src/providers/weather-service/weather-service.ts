@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConstantsProvider } from '../../providers/app-constants/app-constants';
 
@@ -21,6 +21,10 @@ export class WeatherServiceProvider {
     this.longitude = '6.2447';
     this.latitude = '124.5528';
     this.locationKey = this.loadLocationKey();
+  }
+
+  getCurrentWeather(param: any){
+    return this.http.get(this.appConstants.darkSkyAPI + param);
   }
 
   getLocationKey() {

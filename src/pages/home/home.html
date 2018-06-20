@@ -20,26 +20,22 @@
 			</ion-col>
 		</ion-row>
 		<ion-row text-center justify-content-center align-items-center>
-			<ion-col class="weather-desc">
-				sunny
+			<ion-col class="weather-desc" *ngIf="weather"> 
+				{{weather.currently.summary}}
 			</ion-col>
 		</ion-row>
 		<ion-row text-center>
-			<ion-col class="weather-location" float-center justify-content-center align-items-center>
-				Lake Sebu
+			<ion-col class="weather-location" float-center justify-content-center align-items-center *ngIf="site">
+				{{site.siteName}}
 			</ion-col>
 		</ion-row>
 
 	</ion-grid>
-
 	<ion-row class="site-dropdown-header">
-		<ion-item class="site-dropdown">
+		<ion-item class="site-dropdown" *ngIf="siteList">
 			<ion-label>Site</ion-label>
-			<ion-select [(ngModel)]="trend">
-				<ion-option value="seeall">Lake Buhi</ion-option>
-				<ion-option value="salinity">Fish Pen 1</ion-option>
-				<ion-option value="temperature">Fish Pen 2</ion-option>
-				<ion-option value="do">Taal Lake</ion-option>
+			<ion-select [(ngModel)]="siteId" (ionChange)="siteFilter(site);">
+				<ion-option *ngFor="let site of siteList" value="{{site.id}}">{{site.siteName}}</ion-option>
 			</ion-select>
 		</ion-item>
 	</ion-row>

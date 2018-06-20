@@ -18,7 +18,7 @@ import { ToastController } from 'ionic-angular';
 })
 export class EditPond {
 
- private isCustomizeReading: boolean = false;
+  private isCustomizeReading: boolean = false;
   // public isCustomizeThresh: boolean;
   private form: FormGroup;
   private cultureTypeList: any;
@@ -30,11 +30,13 @@ export class EditPond {
 
   constructor(private navParams: NavParams, private view: ViewController, private formBuilder: FormBuilder, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
     let requestBodyData = navParams.get('data');
+    console.log('requestBodyData', requestBodyData);
     this.site = requestBodyData;
+    console.log('this.site', this.site);
     this.setForm();
     // console.log('data in edit',navParams.get('data'));
   }
-
+  
   ionViewWillEnter() {
     this.getCultureTypeList();
     this.getCultureEnvtList();
@@ -54,19 +56,27 @@ export class EditPond {
       cultureEnvironment: [this.site.cultureEnvironment, Validators.required],
       cultureType: [this.site.cultureType, Validators.required],
       readingInterval: [this.site.readingInterval, Validators.required],
-      species: [this.site.species, Validators.required],
+      species: [this.site.species.id, Validators.required]
     });
+
+    for (let i = 0; i < this.site.devices.length; i++) {
+      const control = <FormArray>this.form.controls.devices;
+      control.push(this.initDeviceFields(this.site.devices[i].deviceNo));
+    }
   }
 
-  initDeviceFields(): FormGroup {
+  initDeviceFields(device: any): FormGroup {
+    if (!device) {
+      device = '';
+    }
     return this.formBuilder.group({
-      device: ['', Validators.required]
+      device: [device, Validators.required]
     });
   }
 
   addNewDeviceField(): void {
     const control = <FormArray>this.form.controls.devices;
-    control.push(this.initDeviceFields());
+    control.push(this.initDeviceFields(null));
   }
 
   removeDeviceField(i: number): void {
@@ -79,11 +89,7 @@ export class EditPond {
   }
 
   closeModal() {
-    const data = {
-      name: 'John Doe',
-      occupation: 'Milkman'
-    };
-    this.view.dismiss(data);
+    this.view.dismiss();
   }
 
 
@@ -132,6 +138,7 @@ export class EditPond {
     let siteId: any;
     let requestBody: any = {};
     requestBody = {};
+    requestBody.id = this.site.id;
     requestBody.user = {}
     requestBody.user.id = this.user.data.id;
     requestBody.siteName = this.form.value.siteName;
@@ -148,35 +155,61 @@ export class EditPond {
 
     let serializedForm = JSON.stringify(requestBody);
     this.projectJellyService.showLoading();
-    this.projectJellyService.addSitePost(localStorage.getItem('access_token'), requestBody)
-      .subscribe(data => {
-        var siteResponseData = data['data']
-        siteId = siteResponseData['id'];
-        for (let i = 0; i < this.form.value.devices.length; i++) {
-          let reqBody: any = {};
-          reqBody = {};
-          reqBody.deviceNo = this.form.value.devices[i].device;
-          reqBody.site = {};
-          reqBody.site.id = siteId;
-          console.log('psotdevice', reqBody);
+
+    console.log('this.form.value.devices', this.form.value.devices);
+    for (let i = 0; i < this.form.value.devices.length; i++) {
+      let reqBody: any = {};
+      reqBody = {};
+      reqBody.deviceNo = this.form.value.devices[i].device;
+      reqBody.site = {};
+      reqBody.site.id = this.site.id;
+      console.log('this.form.value.devices[i].device', this.form.value.devices[i].device);
+      let deviceFound: boolean = false;
+      for (let j = 0; j < this.site.devices.length; j++) {
+        console.log('this.site.device[j].deviceNo', this.site.devices[j].deviceNo);
+        if (this.form.value.devices[i].device == this.site.devices[j].deviceNo) {
+          console.log('devicc is true');
+          deviceFound = true;
+          let req: any = {};
+          req.id = this.site.devices[j].id;
+          req.deviceNo = this.site.devices[j].deviceNo;
+          requestBody.devices.push(req);
+        }
+      }
+
+      if (!deviceFound) {
+        console.log('device request', reqBody);
           this.projectJellyService.addDevicePost(localStorage.getItem('access_token'), reqBody)
             .subscribe(data => {
-              console.log('data', data);
-              this.projectJellyService.dismissLoading();
+              let newDevice = data['data'];
+              console.log('data', newDevice);
+              let req: any = {};
+              req.id = newDevice.id;
+              req.deviceNo = newDevice.deviceNo;
+              requestBody.devices.push(req);
             }, (err) => {
               this.presentErrorDeviceToast();
+              this.projectJellyService.dismissLoading();
             }
             );
         }
+    }
+
+    console.log('requsetBody', requestBody);
+    this.projectJellyService.editSitePut(localStorage.getItem('access_token'), requestBody)
+      .subscribe(data => {
+        var siteResponseData = data['data']
+        siteId = siteResponseData['id'];
+
+
         this.presentSuccessToast();
         this.closeModal();
+        this.projectJellyService.dismissLoading();
       }, (err) => {
         this.presentErrorToast();
+        this.projectJellyService.dismissLoading();
       }
       );
-
-
-
   }
 
   addDevice() {
@@ -194,7 +227,7 @@ export class EditPond {
 
   presentSuccessToast() {
     let toast = this.toast.create({
-      message: 'You have added a pond successfully!',
+      message: 'You have edited this pond successfully!',
       position: 'middle',
       duration: 3000
     });
@@ -213,7 +246,7 @@ export class EditPond {
   toggleReading() {
     this.isCustomizeReading = !this.isCustomizeReading;
   }
-  
+
   presentErrorDeviceToast() {
     let toast = this.toast.create({
       message: 'Hmmm. There seems to be something wrong with your device details. Please try again.',

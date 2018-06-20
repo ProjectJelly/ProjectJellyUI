@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ViewController } from 'ionic-angular';
-import { Modal, ModalController, ModalOptions } from 'ionic-angular';
+import { NavController, IonicPage, NavParams, ViewController, Modal, ModalController, ModalOptions } from 'ionic-angular';
 import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
 import { ToastController } from 'ionic-angular';
 
@@ -25,7 +24,7 @@ export class ViewPond {
   private cultureEnvironmentList: any;
   private deviceList: any;
 
-  constructor(private navParams: NavParams, private view: ViewController, private modal: ModalController, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
+  constructor(private navParams: NavParams, public navCtrl: NavController, private view: ViewController, private modal: ModalController, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
     this.isCustomizeReading = false;
     this.isCustomizeThresh = false;
   }
@@ -36,6 +35,7 @@ export class ViewPond {
     this.getCultureTypeList();
   }
 
+  
   openModal(page: any, param: any) {
     const myModalOptions: ModalOptions = {
       enableBackdropDismiss: false
@@ -43,10 +43,9 @@ export class ViewPond {
     console.log('param edit',param);
     let requestBody: any = {};
     requestBody = {};
-    requestBody.data = param;
+    requestBody = param;
     console.log('requestBody',requestBody);
-    const myModal: Modal = this.modal.create(page, requestBody);
-
+    const myModal: Modal = this.modal.create(page, {data: requestBody});
     myModal.present();
 
   }
@@ -100,5 +99,15 @@ export class ViewPond {
       duration: 3000
     });
     toast.present();
+  }
+
+  doRefresh(refresher){
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      this.getSiteById();
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
   }
 }

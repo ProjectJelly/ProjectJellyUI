@@ -9,6 +9,14 @@
 
 
 <ion-content padding *ngIf="site">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
     <ion-grid class="site-profile">
         <ion-row text-center>
             <ion-col class="site-name" float-center justify-content-center align-items-center>
@@ -66,7 +74,7 @@
             </ion-col>
             <ion-col col-3>
                 <ion-card>
-                    <div text-center class="header">culture environment</div>
+                    <div text-center class="header">culture env't</div>
                     <div class="description" text-center>
                         <ion-row justify-content-center align-items-center>
                             <ng-container *ngFor="let cultureEnvironment of cultureEnvironmentList">
