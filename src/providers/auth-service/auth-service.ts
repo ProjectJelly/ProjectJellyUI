@@ -11,32 +11,27 @@ import { AppConstantsProvider } from '../../providers/app-constants/app-constant
 @Injectable()
 export class AuthServiceProvider {
 
-  private isValidLogIn: any;
+  private isAccessTokenValid: any;
   constructor(private httpClient: HttpClient, public appConstants: AppConstantsProvider) { }
+
 
   isAuthenticated() {
     if (localStorage.getItem('loggedIn') === 'true' && this.accessTokenIsValid()) {
+      console.log('is valid');
       return true;
     } else {
+      console.log('is not');
       return false;
     }
   }
 
-  accessTokenIsValid(): Promise<void> {
-    return new Promise<void>(resolve => {
-      this.httpClient.get('https://jelly-ws.azurewebsites.net/api/v1/users', {
+  accessTokenIsValid() {
+    return this.httpClient.get('https://jelly-ws.azurewebsites.net/api/v1/users', {
         headers: new HttpHeaders({
           'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
           'Content-Type': 'application/json'
         })
-      }).subscribe(res => { //access token is still valid
-        return true;
-      }, err => { //access token is no longer valid
-        if (err.error.error_description.includes("Access token expired")) {
-          return false;
-        }
-      })
-    })
+      }); 
   }
 
   login(username: string, password: string) {
@@ -62,16 +57,6 @@ export class AuthServiceProvider {
           localStorage.setItem('refresh_token', response["refresh_token"]);
           localStorage.setItem('expires_in', response["expires_in"]);
           localStorage.setItem('loggedIn', 'true');
-
-          // var
-          // authItems = [
-          //   { key: 'access_token', value: response.access_token },
-          //   { key: 'refresh_token', value: response.refresh_token },
-          //   { key: 'expires_in', value: response.expires_in },
-          //   { key: 'loggedIn', value: 'true' },
-          //   { key: 'username', value: username }
-          // ];
-          //this._setSession(authItems);
         }
         return true;
 

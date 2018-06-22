@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpModule } from '@angular/http'; 
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -19,7 +20,11 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { WeatherServiceProvider } from '../providers/weather-service/weather-service';
 import { AppConstantsProvider } from '../providers/app-constants/app-constants';
 import { HttpClientModule } from '@angular/common/http';
-import { ProjectJellyServiceProvider } from '../providers/project-jelly-service/project-jelly-service'; 
+import { ProjectJellyServiceProvider } from '../providers/project-jelly-service/project-jelly-service';
+import { GeocodingServiceProvider } from '../providers/geocoding-service/geocoding-service'; 
+import { NativeGeocoder,
+         NativeGeocoderReverseResult,
+         NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,8 @@ import { ProjectJellyServiceProvider } from '../providers/project-jelly-service/
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    ViewPondModule
+    ViewPondModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -57,7 +63,9 @@ import { ProjectJellyServiceProvider } from '../providers/project-jelly-service/
     AuthServiceProvider,
     WeatherServiceProvider,
     AppConstantsProvider,
-    ProjectJellyServiceProvider
+    ProjectJellyServiceProvider,
+    GeocodingServiceProvider,
+    NativeGeocoder
   ]
 })
 export class AppModule {}

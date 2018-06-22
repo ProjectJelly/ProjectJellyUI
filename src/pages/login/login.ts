@@ -14,15 +14,18 @@ import { ProjectJellyServiceProvider } from '../../providers/project-jelly-servi
 export class LoginPage {
 
   private form: FormGroup;
+  private isAuthenticatedToken: boolean;
 
-  constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider, private formBuilder: FormBuilder, private toast: ToastController, public projectJellyService: ProjectJellyServiceProvider,) { }
+  constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider, private formBuilder: FormBuilder, private toast: ToastController, public projectJellyService: ProjectJellyServiceProvider, ) { }
 
   ngOnInit() {
-    this.setLoginForm()
-    if (this.authServiceProvider.isAuthenticated()) {
-      this.navCtrl.push(HomePage);
-    }
   }
+
+  ionViewCanEnter() {
+    this.setLoginForm()
+    this.getAuthentication();
+  }
+
 
   login() {
     var username = this.form.value['username'];
@@ -31,10 +34,11 @@ export class LoginPage {
     this.projectJellyService.showLoading();
     if (!this.authServiceProvider.login(username, password)) {
       this.presentErrorToast();
+      this.projectJellyService.dismissLoading();
     } else {
       this.navCtrl.push(HomePage);
+      this.projectJellyService.dismissLoading();
     }
-    this.projectJellyService.dismissLoading();
 
   }
 
@@ -56,6 +60,22 @@ export class LoginPage {
       duration: 3000
     });
     toast.present();
+  }
+
+  getAuthentication() {
+
+    this.authServiceProvider.accessTokenIsValid().subscribe(res => { //access token is still valid
+      if (localStorage.getItem('loggedIn') === 'true') {
+
+          this.navCtrl.push(HomePage);
+       
+
+      } 
+    }, err => { //access token is no longer valid
+      if (err.error.error_description.includes("Access token expired")) {
+        this.isAuthenticatedToken = false;
+      }
+    });
   }
 
 }

@@ -10,22 +10,22 @@
 
 
 <ion-content padding>
-	<ion-grid class="weather">
+	<ion-grid class="weather" *ngIf="weather">
 		<ion-row class="weather-temp-icon">
-			<ion-col class="weather-icon" justify-content-center align-items-center>
-				<i class="icon showers" float-right></i>
+			<ion-col class="weather-icon"  justify-content-center align-items-center>
+				<canvas height="84" width="84" id="partly-cloudy-day"></canvas>
 			</ion-col>
 			<ion-col class="weather-temp" justify-content-center align-items-center>
-				33°
+				{{weather.currently.temperature}}°
 			</ion-col>
 		</ion-row>
 		<ion-row text-center justify-content-center align-items-center>
-			<ion-col class="weather-desc" *ngIf="weather"> 
+			<ion-col class="weather-desc" *ngIf="weather" text-lowercase> 
 				{{weather.currently.summary}}
 			</ion-col>
 		</ion-row>
 		<ion-row text-center>
-			<ion-col class="weather-location" float-center justify-content-center align-items-center *ngIf="site">
+			<ion-col class="weather-location" float-center justify-content-center align-items-center *ngIf="site" text-lowercase>
 				{{site.siteName}}
 			</ion-col>
 		</ion-row>
@@ -211,6 +211,6 @@
 			</ion-col>
 		</ion-row>
 	</ion-card>
-
-
 </ion-content>
+
+

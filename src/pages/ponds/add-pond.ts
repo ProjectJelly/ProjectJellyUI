@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController, Platform } from 'ionic-angular';
+import { Http, HttpModule } from '@angular/http';
 import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
 import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
-import { ToastController } from 'ionic-angular';
+import { ToastController, AlertController  } from 'ionic-angular';
+import { NativeGeocoder,
+         NativeGeocoderReverseResult,
+         NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 
 /**
  * Generated class for the ModalPage page.
@@ -27,7 +31,7 @@ export class AddPond {
   private speciesList: any;
   private user: any;
 
-  constructor(private navParams: NavParams, private view: ViewController, private formBuilder: FormBuilder, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
+  constructor(private platform: Platform, private alertCtrl: AlertController, public geocoder: NativeGeocoder, public http : Http, private navParams: NavParams, private view: ViewController, private formBuilder: FormBuilder, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
     this.setForm();
 
   }
@@ -126,6 +130,10 @@ export class AddPond {
   }
 
   addPond() {
+    
+    if (this.platform.is('cordova')) {
+      console.log('geocoding service:',this.forwardGeocode(this.form.value.location));
+    }
     let siteId: any;
     let requestBody: any = {};
     requestBody = {};
@@ -162,6 +170,7 @@ export class AddPond {
               this.projectJellyService.dismissLoading();
             }, (err) => {
               this.presentErrorDeviceToast();
+              this.projectJellyService.dismissLoading();
             }
             );
         }
@@ -171,10 +180,8 @@ export class AddPond {
         this.presentErrorToast();
       }
       );
-
-
-
   }
+
 
   addDevice() {
     let requestBody = new FormData();
@@ -219,4 +226,30 @@ export class AddPond {
     });
     toast.present();
   }
+
+  forwardGeocode(keyword : string) : Promise<any>
+{
+   return new Promise((resolve, reject) =>
+   {
+      this.geocoder.forwardGeocode(keyword)
+      .then((coordinates : NativeGeocoderForwardResult) =>
+      {
+         let str : string   = `The coordinates are latitude=${coordinates.latitude} and longitude=${coordinates.longitude}`;
+         alert('coordinates' + coordinates.latitude + '&' + coordinates.longitude);
+         let alert2 = this.alertCtrl.create({
+            title: 'Low battery',
+            subTitle: 'longitiude' + coordinates.longitude,
+            buttons: ['Dismiss']
+          });
+          alert2.present();
+         
+         resolve(str);
+         return coordinates;
+      })
+      .catch((error: any) =>
+      {
+         reject(error);
+      });
+   });
+}
 }

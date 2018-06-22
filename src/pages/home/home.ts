@@ -61,7 +61,6 @@ export class HomePage {
       .subscribe(data => {
         this.site = data['data'];
         this.getWeather();
-        this.projectJellyService.dismissLoading();
       }
       );
   }
@@ -72,6 +71,7 @@ export class HomePage {
       .subscribe(data => {
         console.log('weather', data);
         this.weather = data;
+        this.projectJellyService.dismissLoading();
       }
       );
   }
