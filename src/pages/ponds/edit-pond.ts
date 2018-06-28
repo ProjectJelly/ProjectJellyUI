@@ -36,7 +36,7 @@ export class EditPond {
     this.setForm();
     // console.log('data in edit',navParams.get('data'));
   }
-  
+
   ionViewWillEnter() {
     this.getCultureTypeList();
     this.getCultureEnvtList();
@@ -50,7 +50,7 @@ export class EditPond {
       devices: this.formBuilder.array([
       ]),
       siteName: [this.site.siteName, Validators.required],
-      location: ['', Validators.required],
+      location: [this.site.address, Validators.required],
       siteSize: [this.site.siteSize, Validators.required],
       waterDepth: [this.site.waterDepth, Validators.required],
       cultureEnvironment: [this.site.cultureEnvironment, Validators.required],
@@ -59,9 +59,11 @@ export class EditPond {
       species: [this.site.species.id, Validators.required]
     });
 
-    for (let i = 0; i < this.site.devices.length; i++) {
-      const control = <FormArray>this.form.controls.devices;
-      control.push(this.initDeviceFields(this.site.devices[i].deviceNo));
+    if (this.site.devicesDto) {
+      for (let i = 0; i < this.site.devicesDto.length; i++) {
+        const control = <FormArray>this.form.controls.devices;
+        control.push(this.initDeviceFields(this.site.devicesDto[i].deviceNo));
+      }
     }
   }
 
@@ -138,61 +140,24 @@ export class EditPond {
     let siteId: any;
     let requestBody: any = {};
     requestBody = {};
-    requestBody.id = this.site.id;
-    requestBody.user = {}
-    requestBody.user.id = this.user.data.id;
+    requestBody.user = this.user.data.id;
     requestBody.siteName = this.form.value.siteName;
+    requestBody.address = this.form.value.location;
     requestBody.longitude = 7.1231;
     requestBody.latitude = 7.1231;
     requestBody.siteSize = this.form.value.siteSize;
     requestBody.waterDepth = this.form.value.waterDepth;
     requestBody.cultureEnvironment = this.form.value.cultureEnvironment;
     requestBody.cultureType = this.form.value.cultureType;
-    requestBody.species = {};
-    requestBody.species.id = parseInt(this.form.value.species);
+    requestBody.species = parseInt(this.form.value.species);
     requestBody.readingInterval = parseInt(this.form.value.readingInterval);
     requestBody.devices = [];
 
     let serializedForm = JSON.stringify(requestBody);
     this.projectJellyService.showLoading();
 
-    console.log('this.form.value.devices', this.form.value.devices);
     for (let i = 0; i < this.form.value.devices.length; i++) {
-      let reqBody: any = {};
-      reqBody = {};
-      reqBody.deviceNo = this.form.value.devices[i].device;
-      reqBody.site = {};
-      reqBody.site.id = this.site.id;
-      console.log('this.form.value.devices[i].device', this.form.value.devices[i].device);
-      let deviceFound: boolean = false;
-      for (let j = 0; j < this.site.devices.length; j++) {
-        console.log('this.site.device[j].deviceNo', this.site.devices[j].deviceNo);
-        if (this.form.value.devices[i].device == this.site.devices[j].deviceNo) {
-          console.log('devicc is true');
-          deviceFound = true;
-          let req: any = {};
-          req.id = this.site.devices[j].id;
-          req.deviceNo = this.site.devices[j].deviceNo;
-          requestBody.devices.push(req);
-        }
-      }
-
-      if (!deviceFound) {
-        console.log('device request', reqBody);
-          this.projectJellyService.addDevicePost(localStorage.getItem('access_token'), reqBody)
-            .subscribe(data => {
-              let newDevice = data['data'];
-              console.log('data', newDevice);
-              let req: any = {};
-              req.id = newDevice.id;
-              req.deviceNo = newDevice.deviceNo;
-              requestBody.devices.push(req);
-            }, (err) => {
-              this.presentErrorDeviceToast();
-              this.projectJellyService.dismissLoading();
-            }
-            );
-        }
+      requestBody.devices.push(this.form.value.devices[i].device);
     }
 
     console.log('requsetBody', requestBody);
@@ -200,27 +165,12 @@ export class EditPond {
       .subscribe(data => {
         var siteResponseData = data['data']
         siteId = siteResponseData['id'];
-
-
         this.presentSuccessToast();
         this.closeModal();
         this.projectJellyService.dismissLoading();
       }, (err) => {
         this.presentErrorToast();
         this.projectJellyService.dismissLoading();
-      }
-      );
-  }
-
-  addDevice() {
-    let requestBody = new FormData();
-    let formObj = this.form.getRawValue();
-    let serializedForm = JSON.stringify(formObj);
-    this.projectJellyService.addDevicePost(localStorage.getItem('access_token'), serializedForm)
-      .subscribe(data => {
-        this.presentSuccessToast();
-      }, (err) => {
-        this.presentErrorToast();
       }
       );
   }

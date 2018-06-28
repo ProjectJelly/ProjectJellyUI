@@ -3,10 +3,12 @@ import { IonicPage, NavParams, ViewController, Platform } from 'ionic-angular';
 import { Http, HttpModule } from '@angular/http';
 import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
 import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
-import { ToastController, AlertController  } from 'ionic-angular';
-import { NativeGeocoder,
-         NativeGeocoderReverseResult,
-         NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { ToastController, AlertController } from 'ionic-angular';
+import {
+  NativeGeocoder,
+  NativeGeocoderReverseResult,
+  NativeGeocoderForwardResult
+} from '@ionic-native/native-geocoder';
 
 /**
  * Generated class for the ModalPage page.
@@ -31,7 +33,7 @@ export class AddPond {
   private speciesList: any;
   private user: any;
 
-  constructor(private platform: Platform, private alertCtrl: AlertController, public geocoder: NativeGeocoder, public http : Http, private navParams: NavParams, private view: ViewController, private formBuilder: FormBuilder, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
+  constructor(private platform: Platform, private alertCtrl: AlertController, public geocoder: NativeGeocoder, public http: Http, private navParams: NavParams, private view: ViewController, private formBuilder: FormBuilder, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
     this.setForm();
 
   }
@@ -130,26 +132,31 @@ export class AddPond {
   }
 
   addPond() {
-    
+
     if (this.platform.is('cordova')) {
-      console.log('geocoding service:',this.forwardGeocode(this.form.value.location));
+      console.log('geocoding service:', this.forwardGeocode(this.form.value.location));
     }
     let siteId: any;
     let requestBody: any = {};
     requestBody = {};
-    requestBody.user = {}
-    requestBody.user.id = this.user.data.id;
+    requestBody.user = this.user.data.id;
     requestBody.siteName = this.form.value.siteName;
+    requestBody.address = this.form.value.location;
     requestBody.longitude = 7.1231;
     requestBody.latitude = 7.1231;
     requestBody.siteSize = this.form.value.siteSize;
     requestBody.waterDepth = this.form.value.waterDepth;
     requestBody.cultureEnvironment = this.form.value.cultureEnvironment;
     requestBody.cultureType = this.form.value.cultureType;
-    requestBody.species = {};
-    requestBody.species.id = parseInt(this.form.value.species);
+    requestBody.species = parseInt(this.form.value.species);
     requestBody.readingInterval = parseInt(this.form.value.readingInterval);
     requestBody.devices = [];
+    for (let i = 0; i < this.form.value.devices.length; i++) {
+      requestBody.devices.push(this.form.value.devices[i].device);
+
+    }
+
+    console.log('requestBody addpond', requestBody);
 
     let serializedForm = JSON.stringify(requestBody);
     this.projectJellyService.showLoading();
@@ -157,27 +164,13 @@ export class AddPond {
       .subscribe(data => {
         var siteResponseData = data['data']
         siteId = siteResponseData['id'];
-        for (let i = 0; i < this.form.value.devices.length; i++) {
-          let reqBody: any = {};
-          reqBody = {};
-          reqBody.deviceNo = this.form.value.devices[i].device;
-          reqBody.site = {};
-          reqBody.site.id = siteId;
-          console.log('psotdevice', reqBody);
-          this.projectJellyService.addDevicePost(localStorage.getItem('access_token'), reqBody)
-            .subscribe(data => {
-              console.log('data', data);
-              this.projectJellyService.dismissLoading();
-            }, (err) => {
-              this.presentErrorDeviceToast();
-              this.projectJellyService.dismissLoading();
-            }
-            );
-        }
+
         this.presentSuccessToast();
         this.closeModal();
+        this.projectJellyService.dismissLoading();
       }, (err) => {
         this.presentErrorToast();
+        this.projectJellyService.dismissLoading();
       }
       );
   }
@@ -217,7 +210,7 @@ export class AddPond {
   toggleReading() {
     this.isCustomizeReading = !this.isCustomizeReading;
   }
-  
+
   presentErrorDeviceToast() {
     let toast = this.toast.create({
       message: 'Hmmm. There seems to be something wrong with your device details. Please try again.',
@@ -227,29 +220,25 @@ export class AddPond {
     toast.present();
   }
 
-  forwardGeocode(keyword : string) : Promise<any>
-{
-   return new Promise((resolve, reject) =>
-   {
+  forwardGeocode(keyword: string): Promise<any> {
+    return new Promise((resolve, reject) => {
       this.geocoder.forwardGeocode(keyword)
-      .then((coordinates : NativeGeocoderForwardResult) =>
-      {
-         let str : string   = `The coordinates are latitude=${coordinates.latitude} and longitude=${coordinates.longitude}`;
-         alert('coordinates' + coordinates.latitude + '&' + coordinates.longitude);
-         let alert2 = this.alertCtrl.create({
+        .then((coordinates: NativeGeocoderForwardResult) => {
+          let str: string = `The coordinates are latitude=${coordinates.latitude} and longitude=${coordinates.longitude}`;
+          alert('coordinates' + coordinates.latitude + '&' + coordinates.longitude);
+          let alert2 = this.alertCtrl.create({
             title: 'Low battery',
             subTitle: 'longitiude' + coordinates.longitude,
             buttons: ['Dismiss']
           });
           alert2.present();
-         
-         resolve(str);
-         return coordinates;
-      })
-      .catch((error: any) =>
-      {
-         reject(error);
-      });
-   });
-}
+
+          resolve(str);
+          return coordinates;
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+  }
 }

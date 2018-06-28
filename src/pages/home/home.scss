@@ -90,6 +90,7 @@ page-home {
             width:100%;
     }
 
+
     .optimal{
         .warning-color{
             background: #008001 !important;
@@ -99,7 +100,22 @@ page-home {
              color:#008001;
         }
         width:100%;
-    }    
+    }   
+
+    .mitigating-action{
+        button{
+                color: #238C90 !important;
+                border-color: #238C90 !important ;
+            }
+
+            button.activated{
+                background:#238C90 !important;
+            }
+            h2{
+                color:#238C90;
+            }
+            width:100%;
+    } 
   
   .alert-md .alert-wrapper {
     border-radius: 23px;
@@ -210,15 +226,15 @@ page-home {
                 padding-top: 27px;
             }
 
-            .critical{
+             [id="3"],.critical{
                 background:#C00000 !important;
             }
 
-            .optimal{
+            [id="1"],.optimal{
                 background: #008001 !important;
             }
 
-            .warning{
+            [id="2"],.warning{
                 background:#FE9901 !important;
             }
             

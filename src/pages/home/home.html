@@ -11,11 +11,11 @@
 
 <ion-content padding>
 	<ion-grid class="weather" *ngIf="weather">
-		<ion-row class="weather-temp-icon">
-			<ion-col class="weather-icon"  justify-content-center align-items-center>
+		<ion-row class="weather-temp-icon" text-center>
+			<!--<ion-col class="weather-icon"  justify-content-center align-items-center>
 				<canvas height="84" width="84" id="partly-cloudy-day"></canvas>
-			</ion-col>
-			<ion-col class="weather-temp" justify-content-center align-items-center>
+			</ion-col>-->
+			<ion-col class="weather-temp" text-center justify-content-center align-items-center>
 				{{weather.currently.temperature}}°
 			</ion-col>
 		</ion-row>
@@ -40,30 +40,31 @@
 		</ion-item>
 	</ion-row>
 
-	<ion-row class="average-health critical">
-		<ion-col col-4 class="ave-status-text">
+	<ion-row class="average-health">
+		<!--<ion-col col-4 class="ave-status-text">
 			<h2 class="">optimal</h2>
-		</ion-col>
-		<ion-col class="ave-reading-text" float-right>
-			<h3 text-right>AVERAGE READING</h3>
+		</ion-col>-->
+		<ion-col class="ave-reading-text" float-left>
+			<h3 text-left>AVERAGE READING</h3>
 		</ion-col>
 
-		<ion-row class="ave-status">
-			<ion-col col-3>
-				<ion-card class="critical">
+		<ion-row class="ave-status" *ngIf="stream">
+			 <ng-container *ngFor="let thresh of stream.readingResults">
+			<ion-col col-3 *ngIf="thresh.parameterCode == 'PH'">
+				<ion-card id="{{thresh.status}}">
 					<div class="readings" text-center>
 						<ion-row justify-content-center align-items-center>
-							<p class="PH">6.5</p>
+							<p class="PH">{{thresh.readingValue}}</p>
 						</ion-row>
 					</div>
 					<h2 text-center>pH</h2>
 				</ion-card>
 			</ion-col>
-			<ion-col col-3>
-				<ion-card class="critical">
+			<ion-col col-3 *ngIf="thresh.parameterCode == 'SN'">
+				<ion-card id="{{thresh.status}}">
 					<div class="readings" text-center>
 						<ion-row justify-content-center align-items-center>
-							<p class="salinity">9</p>
+							<p class="salinity">{{thresh.readingValue}}</p>
 							<p class="measurement">mg/L</p>
 						</ion-row>
 					</div>
@@ -71,11 +72,11 @@
 				</ion-card>
 			</ion-col>
 
-			<ion-col col-3>
-				<ion-card class="critical">
+			<ion-col col-3 *ngIf="thresh.parameterCode == 'TMP'">
+				<ion-card id="{{thresh.status}}">
 					<div class="readings" text-center>
 						<ion-row justify-content-center align-items-center>
-							<p class="temp">24</p>
+							<p class="temp">{{thresh.readingValue}}</p>
 							<p class="measurement">°C</p>
 						</ion-row>
 					</div>
@@ -83,21 +84,24 @@
 				</ion-card>
 			</ion-col>
 
-			<ion-col col-3>
-				<ion-card class="critical">
+			<ion-col col-3 *ngIf="thresh.parameterCode == 'DO'">
+				<ion-card id="{{thresh.status}}">
 					<div class="readings" text-center>
 						<ion-row justify-content-center align-items-center>
-							<p class="DO">4.5</p>
+							<p class="DO">{{thresh.readingValue}}</p>
 							<p class="measurement">mg/L</p>
 						</ion-row>
 					</div>
 					<h2 text-center>DO</h2>
 				</ion-card>
 			</ion-col>
+			</ng-container>
 		</ion-row>
-		<ion-row class="critical">
+		<ion-row class="mitigating-action">
 			<!--if optimal set to invisible-->
-			<button ion-button class="mitigation-button" outline (click)="mitigatingActionPopUp('critical-alert')">Read Mitigating Action</button>
+			
+			<!--<button ion-button class="mitigating-action" outline (click)="mitigatingActionPopUp('critical-alert')">Read Mitigating Action</button>-->
+			<button ion-button class="mitigating-action" outline (click)="openModal('MitigatingAction', mitigatingActions)">Read Mitigating Action</button>
 		</ion-row>
 
 	</ion-row>

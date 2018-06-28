@@ -15,6 +15,8 @@ export class ProjectJellyServiceProvider {
   }
 
   userGet(token: any, username: string) {
+    var url = this.appConstants.getUserAPI + username + '/';
+    console.log('url', url);
     return this.http.get(this.appConstants.getUserAPI + username, {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + token,
@@ -24,7 +26,9 @@ export class ProjectJellyServiceProvider {
   }
 
   siteGet(token: any, param: any) {
-    return this.http.get(this.appConstants.getSitesAPI + param, {
+    var url = this.appConstants.getSitesAPI + param + '/';
+    console.log('url', url);
+    return this.http.get(this.appConstants.getSitesAPI + param + '/', {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
@@ -62,8 +66,8 @@ export class ProjectJellyServiceProvider {
     });
   }
 
-  readingGet(token: any, username: any) {
-    return this.http.get(this.appConstants.getReadingAPI, {
+  streamGet(token: any, param: any) {
+    return this.http.get(this.appConstants.getStreamAPI + param, {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
@@ -135,7 +139,7 @@ export class ProjectJellyServiceProvider {
 
   siteDelete(token: any, requestBody: any) {
     return this.http
-      .delete(this.appConstants.deleteSiteAPI, {
+      .delete(this.appConstants.deleteSiteAPI + requestBody, {
         headers: new HttpHeaders({
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'

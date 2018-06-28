@@ -4,6 +4,7 @@ import { JELLY_PROPERTIES } from '../../../config/jelly.properties';
 import { Modal, ModalController, ModalOptions } from 'ionic-angular';
 import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
 import { ViewPond } from './view-pond';
+import { ToastController } from 'ionic-angular';
 
 
 
@@ -15,7 +16,7 @@ export class ManagePondsPage {
   private siteList: any;
   private cultureTypeList: any;
   private cultureEnvironmentList: any;
-  constructor(private modal: ModalController, public navCtrl: NavController, public projectJellyService: ProjectJellyServiceProvider) { }
+  constructor(private modal: ModalController, public navCtrl: NavController, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) { }
 
 
   ionViewWillEnter() {
@@ -55,10 +56,15 @@ export class ManagePondsPage {
       );
   }
 
-  deleteSite() {
-    this.projectJellyService.siteDelete(localStorage.getItem('access_token'), localStorage.getItem('username'))
+  deleteSite(id: any) {
+    this.projectJellyService.showLoading();
+    this.projectJellyService.siteDelete(localStorage.getItem('access_token'), id)
       .subscribe(data => {
-
+        console.log('data delete', data);
+        let index = this.siteList.findIndex(d => d.id === id); //find index in your array
+        this.siteList.splice(index, 1);//remove element from array
+        this.projectJellyService.dismissLoading();
+        this.presentSuccessToast();
       }
       );
   }
@@ -77,6 +83,24 @@ export class ManagePondsPage {
         this.cultureEnvironmentList = data['cultureEnv'];
       }
       );
+  }
+
+  presentSuccessToast() {
+    let toast = this.toast.create({
+      message: 'You have deleted this pond successfully!',
+      position: 'middle',
+      duration: 3000
+    });
+    toast.present();
+  }
+
+  presentErrorToast() {
+    let toast = this.toast.create({
+      message: 'Hmmm. There seems to be something wrong. Please try again.',
+      position: 'middle',
+      duration: 3000
+    });
+    toast.present();
   }
 
 }

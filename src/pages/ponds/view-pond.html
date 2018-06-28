@@ -35,7 +35,7 @@
             <ion-col float-center justify-content-center align-items-center>
                 <ion-row>
                     <i class="icon placeholder-white"></i>
-                    <div class="location-description">Lake Sebu</div>
+                    <div class="location-description">{{site.address}}</div>
                 </ion-row>
             </ion-col>
             <ion-col col-1>
@@ -134,7 +134,7 @@
             </ion-item-options>
         </ion-item-sliding>-->
 
-        <p text-align="center" *ngIf="deviceList.length == 0">there are no device registered for this pond</p>
+        <p text-align="center" *ngIf="!site.devicesDto">there are no device registered for this pond</p>
 
         <ion-item-sliding (ionSwipe)="delete(device)"  *ngFor="let device of deviceList">
             <ion-item>

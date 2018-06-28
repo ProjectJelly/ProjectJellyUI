@@ -54,8 +54,12 @@ export class ViewPond {
     this.projectJellyService.showLoading();
     this.projectJellyService.siteByIdGet(localStorage.getItem('access_token'), this.navParams.get('siteId'))
       .subscribe(data => {
+        console.log('getSiteById',data);
         this.site = data['data'];
-        this.deviceList = this.site.devices;
+        if(this.site.devicesDto){
+          this.deviceList = this.site.devicesDto;
+
+        }
         this.projectJellyService.dismissLoading();
       }
       );
@@ -82,10 +86,12 @@ export class ViewPond {
   delete(param: any) {
     this.projectJellyService.deviceDelete(localStorage.getItem('access_token'), param['id'])
       .subscribe(data => {
-        let index = this.deviceList.indexOf(param);
-        if (index > -1) {
-          this.deviceList.splice(index, 1);
-        }
+        let index = this.deviceList.findIndex(d => d.id === param['id']); //find index in your array
+        this.deviceList.splice(index, 1);//remove element from array
+        // let index = this.deviceList.indexOf(param);
+        // if (index > -1) {
+        //   this.deviceList.splice(index, 1);
+        // }
       }, (err) => {
         this.presentErrorToast();
       }

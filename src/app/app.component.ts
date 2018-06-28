@@ -58,7 +58,7 @@ export class MyApp {
   logout() {
     //Api Token Logout 
     this.authServiceProvider.logout();
-    //localStorage.clear();
+    localStorage.clear();
     setTimeout(() => this.backToLogin(), 1000);
   }
 

@@ -13,7 +13,7 @@
     </button>
 
     <ion-list>
-        <ion-item-sliding (ionSwipe)="delete()"  *ngFor="let site of siteList">
+        <ion-item-sliding (ionSwipe)="deleteSite(site.id)"  *ngFor="let site of siteList">
             <ion-item>
                 <ion-card class='functional' (click)="goToSite(site.id)">
                     <ion-row>
@@ -36,7 +36,7 @@
                                     <ion-col>
                                         <ion-row>
                                             <i class="icon placeholder"></i>
-                                            <div class="location-description">Lake Sebu</div>
+                                            <div class="location-description">{{site.address}}</div>
                                         </ion-row>
                                     </ion-col>
                                 </ion-row>
@@ -74,7 +74,7 @@
                 </ion-card>
             </ion-item>
             <ion-item-options>
-                <button ion-button expandable class="delete-btn"><i class="icon trash"></i>delete</button>
+                <button ion-button expandable class="delete-btn" (click)="deleteSite(site.id)"><i class="icon trash"></i>delete</button>
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>

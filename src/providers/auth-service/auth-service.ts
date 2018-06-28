@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConstantsProvider } from '../../providers/app-constants/app-constants';
 
+
 /*
   Generated class for the AuthServiceProvider provider.
 
@@ -26,7 +27,7 @@ export class AuthServiceProvider {
   }
 
   accessTokenIsValid() {
-    return this.httpClient.get('https://jelly-ws.azurewebsites.net/api/v1/users', {
+    return this.httpClient.get(this.appConstants.getUsersAPI, {
         headers: new HttpHeaders({
           'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
           'Content-Type': 'application/json'
@@ -48,22 +49,7 @@ export class AuthServiceProvider {
       .set('password', password)
       .set('grant_type', 'password');
 
-    return this.httpClient.post('https://jelly-ws.azurewebsites.net/oauth/token', params.toString(), httpOptions)
-      .subscribe(response => {
-        console.log('post taken', response)
-        if (response) {
-          console.log('store');
-          localStorage.setItem('access_token', response["access_token"]);
-          localStorage.setItem('refresh_token', response["refresh_token"]);
-          localStorage.setItem('expires_in', response["expires_in"]);
-          localStorage.setItem('loggedIn', 'true');
-        }
-        return true;
-
-      }, (err) => {
-        return false;
-      })
-    ;
+    return this.httpClient.post(this.appConstants.baseAPI + 'oauth/token', params.toString(), httpOptions);
 
 
   }
@@ -73,6 +59,7 @@ export class AuthServiceProvider {
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('expires_in');
     localStorage.setItem('loggedIn', 'false');
+    localStorage.removeItem('username');
   }
 
   private _setSession(storageItems: any[]) {

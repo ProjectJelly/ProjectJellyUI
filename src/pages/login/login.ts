@@ -22,7 +22,7 @@ export class LoginPage {
   }
 
   ionViewCanEnter() {
-    this.setLoginForm()
+    this.setLoginForm();
     this.getAuthentication();
   }
 
@@ -30,15 +30,36 @@ export class LoginPage {
   login() {
     var username = this.form.value['username'];
     var password = this.form.value['password'];
-
     this.projectJellyService.showLoading();
-    if (!this.authServiceProvider.login(username, password)) {
-      this.presentErrorToast();
-      this.projectJellyService.dismissLoading();
-    } else {
-      this.navCtrl.push(HomePage);
-      this.projectJellyService.dismissLoading();
-    }
+    
+    this.authServiceProvider.login(username, password)
+    .subscribe(response => {
+        console.log('post taken', response)
+        if (response) {
+          console.log('store');
+          localStorage.setItem('access_token', response["access_token"]);
+          localStorage.setItem('refresh_token', response["refresh_token"]);
+          localStorage.setItem('expires_in', response["expires_in"]);
+          localStorage.setItem('loggedIn', 'true');
+          localStorage.setItem('username', username);
+        }
+        this.navCtrl.push(HomePage); 
+        this.projectJellyService.dismissLoading();
+      }, (err) => {
+        this.presentErrorToast();
+        localStorage.clear();
+        this.projectJellyService.dismissLoading();
+      })
+    ;
+    // if (!this.authServiceProvider.login(username, password)) {
+    //   this.presentErrorToast();
+    //   localStorage.clear();
+    //   this.projectJellyService.dismissLoading();
+    // } else {
+    //   localStorage.setItem('username', username);
+    //   this.projectJellyService.dismissLoading();
+      
+    // }
 
   }
 
@@ -63,13 +84,10 @@ export class LoginPage {
   }
 
   getAuthentication() {
-
     this.authServiceProvider.accessTokenIsValid().subscribe(res => { //access token is still valid
       if (localStorage.getItem('loggedIn') === 'true') {
-
+        console.log('isValid');
           this.navCtrl.push(HomePage);
-       
-
       } 
     }, err => { //access token is no longer valid
       if (err.error.error_description.includes("Access token expired")) {
