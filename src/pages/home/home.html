@@ -11,12 +11,13 @@
 
 <ion-content padding>
 	<ion-grid class="weather" *ngIf="weather">
-		<ion-row class="weather-temp-icon" text-center>
-			<!--<ion-col class="weather-icon"  justify-content-center align-items-center>
-				<canvas height="84" width="84" id="partly-cloudy-day"></canvas>
-			</ion-col>-->
-			<ion-col class="weather-temp" text-center justify-content-center align-items-center>
-				{{weather.currently.temperature}}°
+		<ion-row class="weather-temp-icon" text-center>	
+			<ion-col text-center justify-content-center align-items-center>
+				<div style="display:inline"  class="weather-temp" >
+					<canvas id="icon1" width="120" height="120"></canvas>
+					<p class="weather-temp-text"style="display:inline" >{{weather.currently.temperature}}°</p>
+				</div>
+				<!--<div style="display:inline" class="weather-temp-text" justify-content-center>{{weather.currently.temperature}}°</div>-->
 			</ion-col>
 		</ion-row>
 		<ion-row text-center justify-content-center align-items-center>

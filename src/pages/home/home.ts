@@ -6,6 +6,10 @@ import { WeatherServiceProvider } from '../../providers/weather-service/weather-
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
 import { LoginPage } from '../login/login';
+import * as jQuery from 'jquery';
+
+declare var require: any;
+const example = require('../../assets/skycons/skycons');
 
 @Component({
   selector: 'home',
@@ -56,7 +60,7 @@ export class HomePage {
           this.siteId = this.siteList[0].id;
           this.getSiteById();
 
-        }else {
+        } else {
           this.projectJellyService.dismissLoading();
         }
       }
@@ -69,7 +73,6 @@ export class HomePage {
       .subscribe(data => {
         this.site = data['data'];
         console.log('this.site', this.site);
-        console.log('this.thresholds', this.site.species.thresholds);
         if (this.site) {
           this.getWeather();
           this.getStream();
@@ -81,11 +84,12 @@ export class HomePage {
   }
 
   getWeather() {
-    let param = this.site.latitude + ',' + this.site.longitude
+    let param = this.site.latitude + ',' + this.site.longitude + '?units=si'
     this.weatherServiceProvider.getCurrentWeather(param)
       .subscribe(data => {
         console.log('weather', data);
         this.weather = data;
+        this.runSkyCons();
       }
       );
   }
@@ -139,4 +143,24 @@ export class HomePage {
     const myModal: Modal = this.modal.create(page, { data: requestBody });
     myModal.present();
   }
+
+  runSkyCons() {
+    var weather = this.weather.currently.icon ;
+    console.log('weather', weather);
+    jQuery(function () {
+      var skycons = new example.Skycons({ "color": "white" },  {"resizeClear": true});
+      // on Android, a nasty hack is needed: {"resizeClear": true}
+
+      // you can add a canvas by it's ID...
+      skycons.add("icon1", weather);
+      // if you're using the Forecast API, you can also supply
+      // strings: "partly-cloudy-day" or "rain".
+      // start animation!
+      skycons.play();
+
+    })
+
+  }
+
+
 }

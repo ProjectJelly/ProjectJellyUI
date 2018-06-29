@@ -3,6 +3,7 @@ import { IonicPage, NavParams, ViewController } from 'ionic-angular';
 import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
 import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
 import { ToastController } from 'ionic-angular';
+import { GeocodingServiceProvider } from '../../providers/geocoding-service/geocoding-service';
 
 /**
  * Generated class for the ModalPage page.
@@ -28,7 +29,7 @@ export class EditPond {
   private user: any;
   private site: any;
 
-  constructor(private navParams: NavParams, private view: ViewController, private formBuilder: FormBuilder, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
+  constructor(private navParams: NavParams, private view: ViewController, private geocoder: GeocodingServiceProvider, private formBuilder: FormBuilder, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
     let requestBodyData = navParams.get('data');
     console.log('requestBodyData', requestBodyData);
     this.site = requestBodyData;
@@ -140,11 +141,10 @@ export class EditPond {
     let siteId: any;
     let requestBody: any = {};
     requestBody = {};
+    requestBody.id = this.site.id;
     requestBody.user = this.user.data.id;
     requestBody.siteName = this.form.value.siteName;
     requestBody.address = this.form.value.location;
-    requestBody.longitude = 7.1231;
-    requestBody.latitude = 7.1231;
     requestBody.siteSize = this.form.value.siteSize;
     requestBody.waterDepth = this.form.value.waterDepth;
     requestBody.cultureEnvironment = this.form.value.cultureEnvironment;
@@ -160,19 +160,25 @@ export class EditPond {
       requestBody.devices.push(this.form.value.devices[i].device);
     }
 
-    console.log('requsetBody', requestBody);
-    this.projectJellyService.editSitePut(localStorage.getItem('access_token'), requestBody)
+    this.geocoder.getGeocode(this.form.value.location)
       .subscribe(data => {
-        var siteResponseData = data['data']
-        siteId = siteResponseData['id'];
-        this.presentSuccessToast();
-        this.closeModal();
-        this.projectJellyService.dismissLoading();
-      }, (err) => {
-        this.presentErrorToast();
-        this.projectJellyService.dismissLoading();
-      }
-      );
+        var geocode = JSON.parse(data['_body']);
+        requestBody.longitude = geocode.results[0].geometry.location.lng;
+        requestBody.latitude = geocode.results[0].geometry.location.lat;
+        console.log('requsetBody', requestBody);
+        this.projectJellyService.editSitePut(localStorage.getItem('access_token'), requestBody)
+          .subscribe(data => {
+            var siteResponseData = data['data']
+            siteId = siteResponseData['id'];
+            this.presentSuccessToast();
+            this.closeModal();
+            this.projectJellyService.dismissLoading();
+          }, (err) => {
+            this.presentErrorToast();
+            this.projectJellyService.dismissLoading();
+          }
+          );
+      });
   }
 
   presentSuccessToast() {

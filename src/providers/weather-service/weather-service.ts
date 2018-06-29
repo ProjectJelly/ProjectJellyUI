@@ -15,60 +15,12 @@ export class WeatherServiceProvider {
   public latitude: any;
 
   constructor(public http: HttpClient, public appConstants: AppConstantsProvider) {
-    this.apiKey = appConstants.accuweatherAPIKey;
-    this.hourlyForecastAPI = appConstants.hourlyForecastAPI;
-    this.locationKeyAPI = appConstants.locationKeyAPI;
-    this.longitude = '6.2447';
-    this.latitude = '124.5528';
-    this.locationKey = this.loadLocationKey();
   }
 
   getCurrentWeather(param: any){
     return this.http.get(this.appConstants.darkSkyAPI + param);
   }
 
-  getLocationKey() {
-    if (this.locationKey) {
-      return Promise.resolve(this.locationKey);
-    }
-    return new Promise(resolve => {
-      this.http.get(this.locationKeyAPI + '?apikey=' + this.apiKey + '&q=' + this.longitude + '%2C' + this.latitude).subscribe(data => {
-        resolve(data);
-        this.locationKey = data;
-      }, err => {
-        console.log(err);
-      });
-    });
-  }
-
-  getHourlyForecast() {
-    if (this.hourlyStat) {
-      // already loaded data
-      return Promise.resolve(this.hourlyStat);
-    }
-
-    if(!this.locationKey){
-      this.loadLocationKey();
-    }
-    
-    return new Promise(resolve => {
-      this.http.get(this.hourlyForecastAPI + this.locationKey.Key + '?apikey=' + this.apiKey).subscribe(data => {
-        resolve(data);
-        this.hourlyStat = data;
-      }, err => {
-        console.log(err);
-      });
-    });
-  }
-
-
- loadLocationKey(){
-    this.getLocationKey()
-    .then(data => {
-      this.locationKey = data;
-    });
-  }
-  
 
   getWeatherClassIcon(weather: String){
     var weatherClass: any;

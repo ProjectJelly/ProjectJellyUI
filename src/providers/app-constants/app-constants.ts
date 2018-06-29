@@ -31,16 +31,12 @@ export class AppConstantsProvider {
   darkSkyAPI: any;
   darkSkyAPIKey:any;
   proxy: any;
+  geocoderAPI: any;
+  geocoderAPIKey: any;
 
   //DATA
   userData: any;
   constructor(public http: HttpClient) {
-    this.locationKeyAPI = 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
-    this.hourlyForecastAPI = 'http://dataservice.accuweather.com/currentconditions/v1/';
-    this.accuweatherAPIKey = '16SLfHQ5l8Sw7iS1YaphhIXqXmjy19CW'
-    //this.accuweatherAPIKey = 'Dx1w4JTGShA7hweafeV4L79fIvct0kaG';
-    //this.baseAPI = 'https://jelly-ws.azurewebsites.net/';
-    
     this.baseAPI = 'http://10.255.188.119:8080/' ;
     this.proxy = 'https://cors-anywhere.herokuapp.com/';
     this.authorization = 'amVsbHlXZWJBcHA6WGh5SFQyM0hjZg=='
@@ -82,6 +78,9 @@ export class AppConstantsProvider {
     this.accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiamVsbHl3c3Jlc291cmNlIl0sInVzZXJfbmFtZSI6ImphbWVlbGEubC5hLnRvcnJlcyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1MjkwMzkwOTIsImF1dGhvcml0aWVzIjpbIkFETUlOIl0sImp0aSI6IjM2ZTA4OTVmLTI3ZDctNDExYy1hOWI5LTI0OTM0MWYwMmRiYyIsImNsaWVudF9pZCI6ImplbGx5V2ViQXBwIn0.bQJDdWsxhhmB1gY_NIhD1iBCbd0EPParManmeSO_734';
     this.darkSkyAPIKey = 'c672fcc9605c9fffd77b2412f93c399a';
     this.darkSkyAPI = this.proxy + 'https://api.darksky.net/forecast/' + this.darkSkyAPIKey + '/';
+
+    this.geocoderAPI = 'https://maps.googleapis.com/maps/api/geocode/json?';
+    this.geocoderAPIKey = 'AIzaSyD7jQFbyyiS1l7_K-3RCwUbyygwtgYXyXA';
   }
 
   getUserData() {
