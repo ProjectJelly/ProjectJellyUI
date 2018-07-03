@@ -17,6 +17,7 @@ export class AppConstantsProvider {
   getHoursAPI: any;
   getSpeciesAPI: any;
   getStreamAPI: any;
+  getAnalyticsAPI:any;
   addDeviceAPI: any;
   addSiteAPI: any;
   addUserAPI: any;
@@ -33,11 +34,14 @@ export class AppConstantsProvider {
   proxy: any;
   geocoderAPI: any;
   geocoderAPIKey: any;
+  serverID:any;
+  serverKey: any;
 
   //DATA
   userData: any;
   constructor(public http: HttpClient) {
-    this.baseAPI = 'http://10.255.188.119:8080/' ;
+    this.baseAPI = 'http://10.255.188.9:8080/' ;
+    // this.baseAPI = 'https://pjelly-ws.azurewebsites.net/' ;
     this.proxy = 'https://cors-anywhere.herokuapp.com/';
     this.authorization = 'amVsbHlXZWJBcHA6WGh5SFQyM0hjZg=='
     this.tokenAPI = this.baseAPI + 'oauth/token';
@@ -48,12 +52,13 @@ export class AppConstantsProvider {
     this.getStreamAPI = this.baseAPI + 'api/v1/sites/stream/';
     this.addDeviceAPI = this.baseAPI + 'api/v1/devices';
     this.addSiteAPI =  this.baseAPI + 'api/v1/sites';
-    this.addUserAPI =  this.baseAPI + 'register';
+    this.addUserAPI =  this.baseAPI + 'api/v1/users/register';
     this.editUserAPI = this.baseAPI + 'api/v1/users';
     this.editSiteAPI =  this.baseAPI + 'api/v1/sites';
     this.deleteDeviceAPI = this.baseAPI + 'api/v1/devices/';
     this.deleteSiteAPI = this.baseAPI + 'api/v1/sites/';
     this.getSpeciesAPI = this.baseAPI + 'api/v1/species';
+    this.getAnalyticsAPI = this.baseAPI + 'api/v1/reports/monthly/';
 
     //this.baseAPI = 'https://pjelly-ws.azurewebsites.net/' ;
     // this.tokenAPI = this.proxy + this.baseAPI + 'oauth/token';
@@ -81,6 +86,12 @@ export class AppConstantsProvider {
 
     this.geocoderAPI = 'https://maps.googleapis.com/maps/api/geocode/json?';
     this.geocoderAPIKey = 'AIzaSyD7jQFbyyiS1l7_K-3RCwUbyygwtgYXyXA';
+    //AAAA8WuURqk:APA91bFITLCRkWPhUm4_Xaye2Ln0OlME0eRuFbinKs1uQEel4xDMlG2wJObXitqoHY1Wx6_MIJi0SswuAWUkzFVg7RwXHV1y5oed8vUyJjqRM2n6MwU01uMUZHDvnz2dxj7Nj-Qg9-mKftQXTAnpAuZU4zJxbvAacA
+    //1036891997865
+    // this.serverID = '581934745876';
+    // this.serverKey = 'AAAAh34DiRQ:APA91bFJ6TJ0XCAiXUNNoSQLhJiaRxa_UJWeAaZGz1igF5us145e8MbclVmK0iWdHQ8URfxFsElPoDKcIYuhLcIyxKZPjN-sQtR7z4SYWWynf-tQEJIvNALEU-uNRz_4T_XIs5mLTRdmnG86yQY0agb5JD7ygZX-kA';
+    this.serverID = '1036891997865';
+    this.serverKey = 'AAAA8WuURqk:APA91bFITLCRkWPhUm4_Xaye2Ln0OlME0eRuFbinKs1uQEel4xDMlG2wJObXitqoHY1Wx6_MIJi0SswuAWUkzFVg7RwXHV1y5oed8vUyJjqRM2n6MwU01uMUZHDvnz2dxj7Nj-Qg9-mKftQXTAnpAuZU4zJxbvAacA';
   }
 
   getUserData() {

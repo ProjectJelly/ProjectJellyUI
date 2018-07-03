@@ -103,5 +103,15 @@ export class ManagePondsPage {
     toast.present();
   }
 
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.getSite();
+      refresher.complete();
+    }, 1000);
+  }
+
 }
 

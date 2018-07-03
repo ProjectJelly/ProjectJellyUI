@@ -83,19 +83,26 @@ export class ViewPond {
 
 
 
-  delete(param: any) {
-    this.projectJellyService.deviceDelete(localStorage.getItem('access_token'), param['id'])
+  delete(param: any){
+  console.log('delete device', param);
+    this.projectJellyService.deviceDelete(localStorage.getItem('access_token'), param)
       .subscribe(data => {
-        let index = this.deviceList.findIndex(d => d.id === param['id']); //find index in your array
+        let index = this.deviceList.findIndex(d => d.id === param); //find index in your array
         this.deviceList.splice(index, 1);//remove element from array
-        // let index = this.deviceList.indexOf(param);
-        // if (index > -1) {
-        //   this.deviceList.splice(index, 1);
-        // }
+        this.presentSuccessToast()
       }, (err) => {
         this.presentErrorToast();
       }
       );
+  }
+
+  presentSuccessToast() {
+    let toast = this.toast.create({
+      message: 'You have succesfully deleted a device.',
+      position: 'middle',
+      duration: 3000
+    });
+    toast.present();
   }
 
   presentErrorToast() {

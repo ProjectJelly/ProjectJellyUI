@@ -75,6 +75,15 @@ export class ProjectJellyServiceProvider {
     });
   }
 
+  analyticsGet(token: any, param: any) {
+    return this.http.get(this.appConstants.getAnalyticsAPI + param, {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
   editUserPut(token: any, requestBody: any) {
     let headers = new Headers();
     headers.append('Token', token);

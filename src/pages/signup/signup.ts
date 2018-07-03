@@ -1,22 +1,28 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, AlertController, Platform , Nav} from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
+import { HomePage } from '../../pages/home/home';
 import { ToastController } from 'ionic-angular';
+import { AppConstantsProvider } from '../../providers/app-constants/app-constants';
 
 @Component({
   selector: 'signup',
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-
+  @ViewChild(Nav) nav: Nav;
   private form: FormGroup;
+  private deviceId: any;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private projectJellyService: ProjectJellyServiceProvider,  private toast: ToastController) {}
+  constructor(public platform: Platform, public navCtrl: NavController, 
+    public alertCtrl: AlertController, private appConstants: AppConstantsProvider, private formBuilder: FormBuilder, private projectJellyService: ProjectJellyServiceProvider,  private toast: ToastController) {}
 
   ionViewCanEnter(){
+    //this.initPushNotification();
     this.setSignUpForm();
+    
   }
 
   loginPage(){
@@ -28,7 +34,8 @@ export class SignupPage {
       username: ['', ''],
       password: ['', ''],
       email: ['', ''],
-      contactNo: ['', '']
+      contactNo: ['', ''],
+      //deviceId: ['123343','']
     });
   }
 
@@ -67,5 +74,6 @@ export class SignupPage {
     });
     toast.present();
   }
+
 }
 

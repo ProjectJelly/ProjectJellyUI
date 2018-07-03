@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, Modal, ModalController, ModalOptions } from 'ionic-angular';
 import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
-import { ManagePondsPage } from '../ponds/manage-ponds';
 import { WeatherServiceProvider } from '../../providers/weather-service/weather-service';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
-import { LoginPage } from '../login/login';
 import * as jQuery from 'jquery';
 
 declare var require: any;
@@ -30,6 +28,7 @@ export class HomePage {
   private readingResults: any;
   private thresholds: any;
   private weather: any;
+  private readings:any;
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, private modal: ModalController, public alertCtrl: AlertController, public weatherServiceProvider: WeatherServiceProvider, public authServiceProvider: AuthServiceProvider, public projectJellyService: ProjectJellyServiceProvider) {
     //this.weatherLocation = this.locationDetails.ParentCity.EnglishName;
@@ -99,6 +98,9 @@ export class HomePage {
       .subscribe(data => {
         console.log('stream data', data);
         this.stream = data['data'];
+        this.readingResults = this.stream.readingResults[this.stream.readingResults.length - 1];
+        this.readings = this.stream.readings;
+        console.log('this.readingResults', this.readingResults);
         this.getMitigationActions();
       }
       );
@@ -111,17 +113,13 @@ export class HomePage {
         if (thresh.parameterCode == reading.parameterCode) {
           let readingActions: any = {};
           readingActions = {};
-          if (reading.status == 2) {
+          if (reading.status == 2 || reading.status == 3) {
             readingActions.parameterCode = reading.parameterCode;
             readingActions.description = thresh.deadlyLowTreatment.description;
+            readingActions.status = reading.status;
             //this.mitigatingActions.push(thresh.deadlyLowTreatment.description);
             this.mitigatingActions.push(readingActions);
-          } else if (reading.status == 3) {
-            readingActions.parameterCode = reading.parameterCode;
-            readingActions.description = thresh.deadlyHighTreatment.description;
-            this.mitigatingActions.push(readingActions);
-            //this.mitigatingActions.push(thresh.deadlyHighTreatment.description);
-          }
+          } 
         }
       }
     }
@@ -160,6 +158,16 @@ export class HomePage {
 
     })
 
+  }
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.getSiteById();
+      refresher.complete();
+    }, 1000);
   }
 
 

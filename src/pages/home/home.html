@@ -1,8 +1,8 @@
 <ion-header no-border>
 	<ion-navbar text-center hideBackButton>
 		<button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
+			<ion-icon name="menu"></ion-icon>
+		</button>
 		<ion-title>Stream</ion-title>
 	</ion-navbar>
 </ion-header>
@@ -10,18 +10,23 @@
 
 
 <ion-content padding>
+	
+
 	<ion-grid class="weather" *ngIf="weather">
-		<ion-row class="weather-temp-icon" text-center>	
+		<ion-row class="weather-temp-icon" text-center>
 			<ion-col text-center justify-content-center align-items-center>
-				<div style="display:inline"  class="weather-temp" >
-					<canvas id="icon1" width="120" height="120"></canvas>
-					<p class="weather-temp-text"style="display:inline" >{{weather.currently.temperature}}°</p>
+				<div style="display:inline">
+					<canvas id="icon1" width="85" class="weather-icon" height="100"></canvas>
+
+				</div>
+				<div style="display:inline" class="weather-temp">
+					<p class="weather-temp-text" style="display:inline">{{weather.currently.temperature}}°</p>
 				</div>
 				<!--<div style="display:inline" class="weather-temp-text" justify-content-center>{{weather.currently.temperature}}°</div>-->
 			</ion-col>
 		</ion-row>
 		<ion-row text-center justify-content-center align-items-center>
-			<ion-col class="weather-desc" *ngIf="weather" text-lowercase> 
+			<ion-col class="weather-desc" *ngIf="weather" text-lowercase>
 				{{weather.currently.summary}}
 			</ion-col>
 		</ion-row>
@@ -50,57 +55,57 @@
 		</ion-col>
 
 		<ion-row class="ave-status" *ngIf="stream">
-			 <ng-container *ngFor="let thresh of stream.readingResults">
-			<ion-col col-3 *ngIf="thresh.parameterCode == 'PH'">
-				<ion-card id="{{thresh.status}}">
-					<div class="readings" text-center>
-						<ion-row justify-content-center align-items-center>
-							<p class="PH">{{thresh.readingValue}}</p>
-						</ion-row>
-					</div>
-					<h2 text-center>pH</h2>
-				</ion-card>
-			</ion-col>
-			<ion-col col-3 *ngIf="thresh.parameterCode == 'SN'">
-				<ion-card id="{{thresh.status}}">
-					<div class="readings" text-center>
-						<ion-row justify-content-center align-items-center>
-							<p class="salinity">{{thresh.readingValue}}</p>
-							<p class="measurement">mg/L</p>
-						</ion-row>
-					</div>
-					<h2 text-center>salinity</h2>
-				</ion-card>
-			</ion-col>
+			<ng-container *ngFor="let thresh of stream.readingResults">
+				<ion-col col-3 *ngIf="thresh.parameterCode == 'PH'">
+					<ion-card id="{{thresh.status}}">
+						<div class="readings" text-center>
+							<ion-row justify-content-center align-items-center>
+								<p class="PH">{{thresh.readingValue}}</p>
+							</ion-row>
+						</div>
+						<h2 text-center>pH</h2>
+					</ion-card>
+				</ion-col>
+				<ion-col col-3 *ngIf="thresh.parameterCode == 'SN'">
+					<ion-card id="{{thresh.status}}">
+						<div class="readings" text-center>
+							<ion-row justify-content-center align-items-center>
+								<p class="salinity">{{thresh.readingValue}}</p>
+								<p class="measurement">mg/L</p>
+							</ion-row>
+						</div>
+						<h2 text-center>salinity</h2>
+					</ion-card>
+				</ion-col>
 
-			<ion-col col-3 *ngIf="thresh.parameterCode == 'TMP'">
-				<ion-card id="{{thresh.status}}">
-					<div class="readings" text-center>
-						<ion-row justify-content-center align-items-center>
-							<p class="temp">{{thresh.readingValue}}</p>
-							<p class="measurement">°C</p>
-						</ion-row>
-					</div>
-					<h2 text-center>Temp</h2>
-				</ion-card>
-			</ion-col>
+				<ion-col col-3 *ngIf="thresh.parameterCode == 'TMP'">
+					<ion-card id="{{thresh.status}}">
+						<div class="readings" text-center>
+							<ion-row justify-content-center align-items-center>
+								<p class="temp">{{thresh.readingValue}}</p>
+								<p class="measurement">°C</p>
+							</ion-row>
+						</div>
+						<h2 text-center>Temp</h2>
+					</ion-card>
+				</ion-col>
 
-			<ion-col col-3 *ngIf="thresh.parameterCode == 'DO'">
-				<ion-card id="{{thresh.status}}">
-					<div class="readings" text-center>
-						<ion-row justify-content-center align-items-center>
-							<p class="DO">{{thresh.readingValue}}</p>
-							<p class="measurement">mg/L</p>
-						</ion-row>
-					</div>
-					<h2 text-center>DO</h2>
-				</ion-card>
-			</ion-col>
+				<ion-col col-3 *ngIf="thresh.parameterCode == 'DO'">
+					<ion-card id="{{thresh.status}}">
+						<div class="readings" text-center>
+							<ion-row justify-content-center align-items-center>
+								<p class="DO">{{thresh.readingValue}}</p>
+								<p class="measurement">mg/L</p>
+							</ion-row>
+						</div>
+						<h2 text-center>DO</h2>
+					</ion-card>
+				</ion-col>
 			</ng-container>
 		</ion-row>
 		<ion-row class="mitigating-action">
 			<!--if optimal set to invisible-->
-			
+
 			<!--<button ion-button class="mitigating-action" outline (click)="mitigatingActionPopUp('critical-alert')">Read Mitigating Action</button>-->
 			<button ion-button class="mitigating-action" outline (click)="openModal('MitigatingAction', mitigatingActions)">Read Mitigating Action</button>
 		</ion-row>
@@ -109,44 +114,59 @@
 
 	<h2>readings</h2>
 
-	<ion-card class="critical">
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+	<ion-card class="reading-status" *ngFor="let reading of readings">
 		<!--<img src="img/nin-live.png"/>-->
 		<ion-row>
 			<ion-col col-4 class="warning-color">
-				<h2 text-center>CRITICAL</h2>
+				<h2 text-center>STATUS</h2>
 				<div class="readings">
-					<p class="PH">PH: 6.5</p>
-					<p class="salinity">Salinity: 9 mg/L</p>
-					<p class="temp">Temp: 24 °C</p>
-					<p class="DO">DO: 4.5 mg/L</p>
+					<ng-container *ngFor="let subreading of reading.readings">
+						<p class="PH" *ngIf="subreading.parameterCode == 'PH'">PH: {{subreading.readingValue}}</p>
+						<p class="salinity" *ngIf="subreading.parameterCode == 'SN'">Salinity: {{subreading.readingValue}} mg/L</p>
+						<p class="temp" *ngIf="subreading.parameterCode == 'TMP'">Temp: {{subreading.readingValue}} °C</p>
+						<p class="DO" *ngIf="subreading.parameterCode == 'DO'">DO: {{subreading.readingValue}} mg/L</p>
+					</ng-container>
 				</div>
 			</ion-col>
+
 			<ion-col class="reading-details">
 				<div class="device-number">
-					DEV1234123
+					{{reading.deviceNo}}
 				</div>
+				 <div class="date-time">{{ reading.intervalDate | date: 'medium' }}</div>
 				<div class="site-details">
 					<ion-row>
 						<ion-col>
 							<ion-row>
 								<i class="icon fish"></i>
-								<div class="fish-description">shrimp</div>
+								<div class="fish-description">{{site.species.commonName}}</div>
 							</ion-row>
-						</ion-col>
-						<ion-col>
 							<ion-row>
 								<i class="icon placeholder"></i>
-								<div class="location-description">Lake Sebu</div>
+								<div class="location-description">{{site.address}}</div>
 							</ion-row>
 						</ion-col>
+						<!-- <ion-col>
+							<ion-row>
+								<i class="icon placeholder"></i>
+								<div class="location-description">{{site.address}}</div> 
+							</ion-row>
+						</ion-col> -->
 					</ion-row>
 				</div>
 			</ion-col>
 		</ion-row>
 	</ion-card>
-
+	<!-- 
 	<ion-card class="optimal">
-		<!--<img src="img/nin-live.png"/>-->
 		<ion-row>
 			<ion-col col-4 class="warning-color">
 				<h2 text-center>OPTIMAL</h2>
@@ -182,7 +202,6 @@
 	</ion-card>
 
 	<ion-card class="warning">
-		<!--<img src="img/nin-live.png"/>-->
 		<ion-row>
 			<ion-col col-4 class="warning-color">
 				<h2 text-center>WARNING</h2>
@@ -215,7 +234,5 @@
 				</div>
 			</ion-col>
 		</ion-row>
-	</ion-card>
+	</ion-card> -->
 </ion-content>
-
-

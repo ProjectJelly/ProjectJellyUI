@@ -108,8 +108,21 @@
     border-radius:0px !important; 
 }
 
+@media (max-width: 406px) {
+    .location-description{
+        width: 175px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+    }
+}
+
 
 view-pond{
+    ion-grid {
+        justify-content: center;
+    }
+
     .site-profile{
         background: #238C90;
         margin:20px;
@@ -117,7 +130,7 @@ view-pond{
         //margin-top: -16px;
         width: 115%;
         margin-left: -16px;
-        height: 45%;
+        height: 40%;
         color: #FFF;
         vertical-align: middle;
 
@@ -165,7 +178,19 @@ view-pond{
             padding: 10px !important;
         }
     }
+    .fish-description{
+        margin-top: -10px;
+    }
 
+    @media (max-width: 406px) {
+        .location-description{
+            width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top:-10px;
+        }
+    }
     .delete-btn{
         height: 75% !important;
     }

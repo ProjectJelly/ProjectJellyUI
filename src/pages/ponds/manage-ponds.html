@@ -8,10 +8,18 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
     <button ion-button full class="confirm" (click)="openModal('AddPond', null)">
       add pond
     </button>
-
+    
     <ion-list>
         <ion-item-sliding (ionSwipe)="deleteSite(site.id)"  *ngFor="let site of siteList">
             <ion-item>
@@ -34,9 +42,9 @@
                                         </ion-row>
                                     </ion-col>
                                     <ion-col>
-                                        <ion-row>
+                                        <ion-row class="location-description">
                                             <i class="icon placeholder"></i>
-                                            <div class="location-description">{{site.address}}</div>
+                                           {{site.address}}
                                         </ion-row>
                                     </ion-col>
                                 </ion-row>

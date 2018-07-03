@@ -4,9 +4,54 @@ page-home {
     button {
          align-items: baseline;
     }
+
+    
+}
+
+home{
+    .card{
+        margin-left:0px !important;
+    }
+
+    ion-grid {
+        justify-content: center;
+    }
 }
 
 .card { 
+    .reading-details{
+         padding-left: 7px;
+        
+        .device-number{
+            font-size: 20px;
+            margin-top: 15px !important;
+            margin-bottom:5px;
+        }
+
+        .site-details{
+            font-size: 12px;
+            margin-bottom: 15px;
+            button{
+                height: 1.6em;
+                font-size: 14px;
+                width: 100%;
+                border-radius: 2px;
+            }
+
+            button.activated{
+                color:#FFF !important;
+            }
+        }
+    }
+    .date-time{
+           margin-top: -10px;
+    color: #626663;
+    font-size: 12px;
+        margin-bottom: 8px;
+        }
+}
+
+ .card { 
     .warning-color{
         h2{
             padding-top: 14px;
@@ -72,35 +117,23 @@ page-home {
             width:100%;
     }
 
-    .warning{
+    .reading-status{
         .warning-color{
-            background: #FE9901 !important;
+            background: #238C90 !important;
         }
         button{
-                color: #FE9901 !important;
-                border-color: #FE9901 !important ;
+                color: #26C0C8 !important;
+                border-color: #26C0C8 !important ;
             }
 
             button.activated{
-                background:#FE9901 !important;
+                background:#26C0C8 !important;
             }
             h2{
-                color:#FE9901;
+                color:#26C0C8;
             }
             width:100%;
     }
-
-
-    .optimal{
-        .warning-color{
-            background: #008001 !important;
-        }
-
-        h2{
-             color:#008001;
-        }
-        width:100%;
-    }   
 
     .mitigating-action{
         button{
@@ -150,25 +183,25 @@ page-home {
       margin-top: -16px;
       width: 115%;
       margin-left: -16px;
-      height: 40%;
+      height: 35%;
       color: #FFF;
 
       .weather-temp-icon{
           margin-top: 10px;
       }
       .weather-icon{
-        margin-left:-10px; 
+        margin-left: 0px;
         margin-top: -10px;
       }
 
       .weather-temp{
           font-size: 73px;
-          margin-left:-10px;
+          margin-left:-4px;
       }
 
       .weather-desc{
-          font-size:20px;
-              margin-top: -25px;
+            font-size:20px;
+            margin-top: -20px;
       }
 
       .weather-location{
@@ -243,5 +276,6 @@ page-home {
             }
             
         }
+
     }
  

@@ -8,25 +8,40 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-        <ion-label>Trend</ion-label>
-        <ion-select [(ngModel)]="trend">
-          <ion-option value="salinity">See All</ion-option>
-            <ion-option value="salinity">Salinity</ion-option>
-            <ion-option value="temperature">Temperature</ion-option>
-            <ion-option value="do">Dissolved Oxygen</ion-option>
-            <ion-option value="ph">pH Activity</ion-option>
-            <ion-option value="fishkill">Fish Kill Risk</ion-option>
-            <ion-option value="maps">Intensity/Concentration Maps</ion-option>
-        </ion-select>
-    </ion-item>
+  <ion-row class="site-dropdown-header">
+		<ion-item class="site-dropdown" *ngIf="siteList">
+			<ion-label>Site</ion-label>
+			<ion-select [(ngModel)]="siteId" (ionChange)="siteFilter(site);">
+				<ion-option *ngFor="let site of siteList" value="{{site.id}}">{{site.siteName}}</ion-option>
+			</ion-select>
+		</ion-item>
+	</ion-row>
 
+  <h2>PH</h2>
     <ion-card>
-      <ion-card-header>
-        Salinity
-      </ion-card-header>
       <ion-card-content>
-        <canvas #lineCanvas></canvas>
+        <canvas #phCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+<h2>Dissolved Oxygen</h2>
+    <ion-card>
+      <ion-card-content>
+        <canvas #doCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <h2>Salinity</h2>
+    <ion-card>
+      <ion-card-content>
+        <canvas #salintyCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <h2>Temperature</h2>
+    <ion-card>
+      <ion-card-content>
+        <canvas #tmpCanvas></canvas>
       </ion-card-content>
     </ion-card>
 </ion-content>

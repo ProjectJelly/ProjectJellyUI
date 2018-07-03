@@ -28,6 +28,7 @@ export class EditPond {
   private speciesList: any;
   private user: any;
   private site: any;
+  private deleteDevices: any;
 
   constructor(private navParams: NavParams, private view: ViewController, private geocoder: GeocodingServiceProvider, private formBuilder: FormBuilder, public projectJellyService: ProjectJellyServiceProvider, private toast: ToastController) {
     let requestBodyData = navParams.get('data');
@@ -35,6 +36,7 @@ export class EditPond {
     this.site = requestBodyData;
     console.log('this.site', this.site);
     this.setForm();
+    this.deleteDevices = [];
     // console.log('data in edit',navParams.get('data'));
   }
 
@@ -84,6 +86,8 @@ export class EditPond {
 
   removeDeviceField(i: number): void {
     const control = <FormArray>this.form.controls.devices;
+    console.log('control.value[i].device', control.value[i].device);
+    this.deleteDevices.push(control.value[i].device);
     control.removeAt(i);
   }
 
@@ -137,6 +141,22 @@ export class EditPond {
       );
   }
 
+  deleteDevice(device: any){
+    var deviceId: any;
+    for(let i = 0; i < this.site.devicesDto.length; i++){
+      if(this.site.devicesDto[i].deviceNo == device){
+        deviceId = this.site.devicesDto[i].id;
+      }
+    }
+    this.projectJellyService.deviceDelete(localStorage.getItem('access_token'), deviceId)
+      .subscribe(data => {
+
+      }, (err) => {
+        this.presentErrorToast();
+      }
+      );
+  }
+
   editPond() {
     let siteId: any;
     let requestBody: any = {};
@@ -157,7 +177,16 @@ export class EditPond {
     this.projectJellyService.showLoading();
 
     for (let i = 0; i < this.form.value.devices.length; i++) {
-      requestBody.devices.push(this.form.value.devices[i].device);
+      var deviceExist = false;
+      for(let j = 0; j < this.site.devicesDto.length; j++){
+        if(this.site.devicesDto[j].deviceNo == this.form.value.devices[i].device){
+          deviceExist = true;
+        }
+      }
+      if(!deviceExist){
+        console.log('device not exist', this.form.value.devices[i].device);
+        requestBody.devices.push(this.form.value.devices[i].device);
+      }
     }
 
     this.geocoder.getGeocode(this.form.value.location)
@@ -179,6 +208,11 @@ export class EditPond {
           }
           );
       });
+
+      for(let i = 0; i < this.deleteDevices.length; i++){
+        console.log('this.deleteDevices[i]', this.deleteDevices[i]);
+        this.deleteDevice(this.deleteDevices[i]);
+      }
   }
 
   presentSuccessToast() {
