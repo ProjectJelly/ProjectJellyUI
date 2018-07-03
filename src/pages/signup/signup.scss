@@ -1,0 +1,63 @@
+signup{
+    color:#FFF !important;
+    ion-content {
+        font-family: "Segoe UI Light";
+        background: #26C0C8 !important;
+    }
+
+    .item-md{
+        background: #26C0C8 !important;
+        padding-left:0px;
+    }
+
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+        color: #FFF;
+    }
+
+    .text-input-md{
+        color: #FFF !important;
+    }
+    .signup-btn{
+        background:#FFF;
+        font-family: "Segoe UI Semibold";
+        color: #26C0C8;
+        text-transform: none;
+        border-radius:5px;
+        margin-top:10px;
+    }
+
+    .signup-btn.activated{
+        background:#7F7F7F !important;
+        color:#FFF;
+            
+    }
+    
+    .signup-btn:hover{
+        background:#D0CECF !important;
+        color:#26C0C8;     
+    }
+
+    .button-md{
+        -webkit-box-shadow:  0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+    }
+
+    .title{
+        font-family: "Segoe UI Light";
+        font-size:30px;
+        color: #FFF;
+        margin-top:-15px;
+        margin-bottom: 30px;
+    }
+
+    .logo{
+        margin-top: 15px;
+    }
+
+    .loginpage-btn{
+        margin-top:60px;
+        font-size: 14px;
+        text-transform: none;
+        color: #FFF;
+    }
+}

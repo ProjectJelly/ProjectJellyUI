@@ -1,0 +1,54 @@
+<ion-header no-border>
+    <ion-navbar>
+        <ion-title>mitigating action</ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="closeModal()">Close</button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="mitigatingActions">
+
+    <ion-card id="{{actions.status}}" *ngFor="let actions of mitigatingActions">
+        <ion-row>
+            <ion-col class="site">
+                <ion-row>
+                    <ion-col>
+                        <div class="reading-title" *ngIf="actions.parameterCode == 'PH'">
+                            <h2>pH</h2>
+                            <ng-container class="actions-status" *ngIf="actions.status == 2">WARNING STATUS</ng-container>
+                            <ng-container class="actions-status" *ngIf="actions.status == 3">CRITICAL STATUS</ng-container>
+                        </div>
+                        <div class="reading-title" *ngIf="actions.parameterCode == 'DO'">
+                            <h2>Dissolved Oxygen</h2>
+                            <ng-container class="actions-status" *ngIf="actions.status == 2">WARNING STATUS</ng-container>
+                            <ng-container class="actions-status" *ngIf="actions.status == 3">CRITICAL STATUS</ng-container>
+                        </div>
+                        <div class="reading-title" *ngIf="actions.parameterCode == 'TMP'">
+                            <h2>Temperature</h2>
+                            <ng-container class="actions-status" *ngIf="actions.status == 2">WARNING STATUS</ng-container>
+                            <ng-container class="actions-status" *ngIf="actions.status == 3">CRITICAL STATUS</ng-container>
+                        </div>
+                        <div class="reading-title" *ngIf="actions.parameterCode == 'SN'">
+                            <h2>Salinity</h2>
+                            <ng-container class="actions-status" *ngIf="actions.status == 2">WARNING STATUS</ng-container>
+                            <ng-container class="actions-status" *ngIf="actions.status == 3">CRITICAL STATUS</ng-container>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="actions-description">
+                    {{actions.description}}
+                </ion-row>
+            </ion-col>
+            <!--<ion-col col-2>
+                            <button ion-button color="dark" class="edit-btn" clear (click)="openModal('EditPond', site)"><i class="icon edit"></i> edit</button>
+                        </ion-col>-->
+
+        </ion-row>
+    </ion-card>
+
+</ion-content>
+
+<ion-content padding *ngIf="!mitigatingActions">
+    There are no actions needed for your pond.
+</ion-content>
