@@ -25,6 +25,20 @@ import { GeocodingServiceProvider } from '../providers/geocoding-service/geocodi
 import { NativeGeocoder,
          NativeGeocoderReverseResult,
          NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { FcmProvider } from '../providers/fcm/fcm';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestore } from 'angularfire2/firestore'
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { Firebase } from '@ionic-native/firebase';
+
+const firebase = {
+    apiKey: "AIzaSyAhU21U_q2eoog_r3fKj6kJLPgaFjM2kZA",
+    authDomain: "jellyservices-1529322235729.firebaseapp.com",
+    databaseURL: "https://jellyservices-1529322235729.firebaseio.com",
+    projectId: "jellyservices-1529322235729",
+    storageBucket: "jellyservices-1529322235729.appspot.com",
+    messagingSenderId: "541287921876"
+  };
 
 @NgModule({
   declarations: [
@@ -42,7 +56,9 @@ import { NativeGeocoder,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     ViewPondModule,
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(firebase),
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,7 +81,11 @@ import { NativeGeocoder,
     AppConstantsProvider,
     ProjectJellyServiceProvider,
     GeocodingServiceProvider,
-    NativeGeocoder
+    NativeGeocoder,
+    Firebase,
+    AngularFirestore,
+    AngularFirestoreModule,
+    FcmProvider
   ]
 })
 export class AppModule {}

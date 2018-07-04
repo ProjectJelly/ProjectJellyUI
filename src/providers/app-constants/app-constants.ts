@@ -40,7 +40,7 @@ export class AppConstantsProvider {
   //DATA
   userData: any;
   constructor(public http: HttpClient) {
-    this.baseAPI = 'http://10.255.188.9:8080/' ;
+    this.baseAPI = 'https://jelly-ws.azurewebsites.net/' ;
     // this.baseAPI = 'https://pjelly-ws.azurewebsites.net/' ;
     this.proxy = 'https://cors-anywhere.herokuapp.com/';
     this.authorization = 'amVsbHlXZWJBcHA6WGh5SFQyM0hjZg=='

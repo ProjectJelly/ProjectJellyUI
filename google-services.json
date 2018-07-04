@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "541287921876",
+    "firebase_url": "https://jellyservices-1529322235729.firebaseio.com",
+    "project_id": "jellyservices-1529322235729",
+    "storage_bucket": "jellyservices-1529322235729.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541287921876:android:883122eb9b46a8f7",
+        "android_client_info": {
+          "package_name": "com.jelly.notify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541287921876-4155b647vfcobhf6872v8737uq738par.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYTiYd9Dp4Bz3s41CMjolL8B8OgOHET4c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541287921876:android:e13c0a5f258ae348",
+        "android_client_info": {
+          "package_name": "io.ionic.jelly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541287921876-4155b647vfcobhf6872v8737uq738par.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYTiYd9Dp4Bz3s41CMjolL8B8OgOHET4c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

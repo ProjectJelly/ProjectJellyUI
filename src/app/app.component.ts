@@ -14,6 +14,7 @@ import { ProjectJellyServiceProvider } from '../providers/project-jelly-service/
 import { AppConstantsProvider } from '../providers/app-constants/app-constants';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -37,6 +38,9 @@ export class MyApp {
       { title: 'Edit Profile', component: EditProfilePage },
     ];
   }
+
+
+  
 
   openPage(page) {
     this.nav.setRoot(page.component);

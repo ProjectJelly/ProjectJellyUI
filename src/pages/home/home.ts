@@ -5,6 +5,11 @@ import { WeatherServiceProvider } from '../../providers/weather-service/weather-
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { ProjectJellyServiceProvider } from '../../providers/project-jelly-service/project-jelly-service';
 import * as jQuery from 'jquery';
+import { FcmProvider } from '../../providers/fcm/fcm';
+import { tap } from 'rxjs/operators';
+import { ToastController } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
+
 
 declare var require: any;
 const example = require('../../assets/skycons/skycons');
@@ -28,14 +33,31 @@ export class HomePage {
   private readingResults: any;
   private thresholds: any;
   private weather: any;
-  private readings:any;
+  private readings: any;
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, private modal: ModalController, public alertCtrl: AlertController, public weatherServiceProvider: WeatherServiceProvider, public authServiceProvider: AuthServiceProvider, public projectJellyService: ProjectJellyServiceProvider) {
+  constructor(public platform: Platform, public fcm: FcmProvider, public toastCtrl: ToastController, public navCtrl: NavController, public formBuilder: FormBuilder, private modal: ModalController, public alertCtrl: AlertController, public weatherServiceProvider: WeatherServiceProvider, public authServiceProvider: AuthServiceProvider, public projectJellyService: ProjectJellyServiceProvider) {
     //this.weatherLocation = this.locationDetails.ParentCity.EnglishName;
   }
 
   ionViewCanEnter() {
     this.getSite();
+  }
+
+  ionViewDidLoad() {
+    if(this.platform.is('android')){
+      this.fcm.getToken();
+      this.fcm.listenToNotifications().pipe(
+        tap(msg => {
+          // show a toast
+          const toast = this.toastCtrl.create({
+            message: msg['body'],
+            duration: 3000
+          });
+          toast.present();
+        })
+      )
+        .subscribe()
+    }
   }
 
   mitigatingActionPopUp(className: string) {
@@ -119,7 +141,7 @@ export class HomePage {
             readingActions.status = reading.status;
             //this.mitigatingActions.push(thresh.deadlyLowTreatment.description);
             this.mitigatingActions.push(readingActions);
-          } 
+          }
         }
       }
     }
@@ -143,24 +165,24 @@ export class HomePage {
   }
 
   runSkyCons() {
-    var weather = this.weather.currently.icon ;
+    var weather = this.weather.currently.icon;
     console.log('weather', weather);
     jQuery(function () {
       var oldcanv = document.getElementById('icon1');
-      if(oldcanv != null){
-      document.getElementById("canvas-icon").removeChild(oldcanv)
+      if (oldcanv != null) {
+        document.getElementById("canvas-icon").removeChild(oldcanv)
 
       }
 
       jQuery('<canvas>').attr({
         id: 'icon1'
-    }).css({
+      }).css({
         width: '128px',
         height: '70px'
-    }).appendTo('#canvas-icon');
+      }).appendTo('#canvas-icon');
 
       console.log('skycons', skycons);
-      var skycons = new example.Skycons({ "color": "white" },  {"resizeClear": true});
+      var skycons = new example.Skycons({ "color": "white" }, { "resizeClear": true });
       skycons.remove("icon1");
       skycons.add("icon1", weather);
       skycons.play();
