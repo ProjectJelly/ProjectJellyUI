@@ -76,9 +76,9 @@ export class AppConstantsProvider {
     // this.deleteSiteAPI = this.proxy + this.baseAPI + 'api/v1/sites';
     // this.getSpeciesAPI = this.proxy + this.baseAPI + 'api/v1/species';
 
-    this.getCultureEnvironmentAPI = '../../assets/mock/getCultureEnvironment.json';
-    this.getCultureTypeAPI = '../../assets/mock/getCultureType.json';
-    this.getHoursAPI = '../../assets/mock/getHours.json';
+    this.getCultureEnvironmentAPI = './assets/mock/getCultureEnvironment.json';
+    this.getCultureTypeAPI = './assets/mock/getCultureType.json';
+    this.getHoursAPI = './assets/mock/getHours.json';
     this.refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiamVsbHl3c3Jlc291cmNlIl0sInVzZXJfbmFtZSI6ImphbWVlbGEubC5hLnRvcnJlcyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiI5ZDdiYzIxZS1mYTExLTRkY2UtODhkZC01N2I4NTRiYjAzNzAiLCJleHAiOjE1MzE0Njg1NTYsImF1dGhvcml0aWVzIjpbIkFETUlOIl0sImp0aSI6IjJjYmZjMjI1LWNlNjUtNDE5MS1hMzQ0LTg3YmMyYjQ0NDhkNSIsImNsaWVudF9pZCI6ImplbGx5V2ViQXBwIn0.GDI0Dti7WwQA595cgpTaxr2sQxuuZmBeRKkJS0DopfA';
     this.accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiamVsbHl3c3Jlc291cmNlIl0sInVzZXJfbmFtZSI6ImphbWVlbGEubC5hLnRvcnJlcyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1MjkwMzkwOTIsImF1dGhvcml0aWVzIjpbIkFETUlOIl0sImp0aSI6IjM2ZTA4OTVmLTI3ZDctNDExYy1hOWI5LTI0OTM0MWYwMmRiYyIsImNsaWVudF9pZCI6ImplbGx5V2ViQXBwIn0.bQJDdWsxhhmB1gY_NIhD1iBCbd0EPParManmeSO_734';
     this.darkSkyAPIKey = 'c672fcc9605c9fffd77b2412f93c399a';

@@ -146,16 +146,12 @@ export class HomePage {
     var weather = this.weather.currently.icon ;
     console.log('weather', weather);
     jQuery(function () {
+      console.log('skycons', skycons);
       var skycons = new example.Skycons({ "color": "white" },  {"resizeClear": true});
-      // on Android, a nasty hack is needed: {"resizeClear": true}
-
-      // you can add a canvas by it's ID...
+      skycons.remove("icon1");
       skycons.add("icon1", weather);
-      // if you're using the Forecast API, you can also supply
-      // strings: "partly-cloudy-day" or "rain".
-      // start animation!
       skycons.play();
-
+      console.log('skycons', skycons);
     })
 
   }
