@@ -10,14 +10,16 @@
 
 
 <ion-content padding>
-	
+
 
 	<ion-grid class="weather" *ngIf="weather">
 		<ion-row class="weather-temp-icon" text-center>
-			<ion-col text-center justify-content-center align-items-center>
-				<div style="display:inline">
-					<canvas id="icon1" width="85" class="weather-icon" height="100"></canvas>
-
+			<ion-col text-center justify-content-center align-items-center style="
+    padding-left: 0px;
+    margin-left: -10px;
+">
+				<div style="display:inline" id="canvas-icon">
+					<!--<canvas id="icon1" width="85" class="weather-icon" height="100"></canvas>-->
 				</div>
 				<div style="display:inline" class="weather-temp">
 					<p class="weather-temp-text" style="display:inline">{{weather.currently.temperature}}°</p>
@@ -40,7 +42,7 @@
 	<ion-row class="site-dropdown-header">
 		<ion-item class="site-dropdown" *ngIf="siteList">
 			<ion-label>Site</ion-label>
-			<ion-select [(ngModel)]="siteId" (ionChange)="siteFilter(site);">
+			<ion-select [(ngModel)]="siteId" (ionChange)="siteFilter(site)">
 				<ion-option *ngFor="let site of siteList" value="{{site.id}}">{{site.siteName}}</ion-option>
 			</ion-select>
 		</ion-item>
@@ -115,12 +117,9 @@
 	<h2>readings</h2>
 
 	<ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
-      refreshingSpinner="circles">
-    </ion-refresher-content>
-  </ion-refresher>
+		<ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+		</ion-refresher-content>
+	</ion-refresher>
 
 	<ion-card class="reading-status" *ngFor="let reading of readings">
 		<!--<img src="img/nin-live.png"/>-->
@@ -141,7 +140,7 @@
 				<div class="device-number">
 					{{reading.deviceNo}}
 				</div>
-				 <div class="date-time">{{ reading.intervalDate | date: 'medium' }}</div>
+				<div class="date-time">{{ reading.intervalDate | date: 'medium' }}</div>
 				<div class="site-details">
 					<ion-row>
 						<ion-col>

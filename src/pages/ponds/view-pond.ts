@@ -12,8 +12,7 @@ import { ToastController } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'view-pond',
-  templateUrl: 'view-pond.html',
-  styleUrls: ['/pages/ponds/manage-ponds.scss']
+  templateUrl: 'view-pond.html'
 })
 export class ViewPond {
 

@@ -16,8 +16,7 @@ import { GeocodingServiceProvider } from '../../providers/geocoding-service/geoc
 @IonicPage()
 @Component({
   selector: 'add-pond',
-  templateUrl: 'add-pond.html',
-  styleUrls: ['/pages/ponds/modal-ponds.scss']
+  templateUrl: 'add-pond.html'
 })
 export class AddPond {
 

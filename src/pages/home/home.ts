@@ -146,6 +146,19 @@ export class HomePage {
     var weather = this.weather.currently.icon ;
     console.log('weather', weather);
     jQuery(function () {
+      var oldcanv = document.getElementById('icon1');
+      if(oldcanv != null){
+      document.getElementById("canvas-icon").removeChild(oldcanv)
+
+      }
+
+      jQuery('<canvas>').attr({
+        id: 'icon1'
+    }).css({
+        width: '128px',
+        height: '70px'
+    }).appendTo('#canvas-icon');
+
       console.log('skycons', skycons);
       var skycons = new example.Skycons({ "color": "white" },  {"resizeClear": true});
       skycons.remove("icon1");
